@@ -1,0 +1,1 @@
+COPY ..\TP\FMOD\*.* ..\BIN\x64\Debug\

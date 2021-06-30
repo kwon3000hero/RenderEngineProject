@@ -1,0 +1,1 @@
+#include "KGameResource.h"

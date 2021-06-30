@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Device">
+      <UniqueIdentifier>{272ddbd7-fd88-40c2-aac2-38bc27458ddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj">
+      <UniqueIdentifier>{259c65d1-59fe-41f1-b990-907854144cd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Actor">
+      <UniqueIdentifier>{773f8d26-373f-4b80-b100-87f8ac9fcca0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Scene">
+      <UniqueIdentifier>{b1c3ac04-fb46-440f-87c9-099448a27a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{b835163a-b4d2-4123-84b7-21d14f186425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sub">
+      <UniqueIdentifier>{4f8ab7e0-a297-459f-84ce-b9e1368f2249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sub\InputASM">
+      <UniqueIdentifier>{34c56d53-6a8e-4e11-8fb3-e6ee6ec5e1b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sub\OutputMerge">
+      <UniqueIdentifier>{ca88d390-cc8c-4532-98f3-59a03c14d8fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sub\Rasterizer">
+      <UniqueIdentifier>{1c5151db-d2dd-40d4-b410-2e5ae368b8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sub\Shader">
+      <UniqueIdentifier>{3ef538e8-6a74-4105-bb2a-705f5da77440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Pipeline">
+      <UniqueIdentifier>{150a791f-356d-4d4b-b07b-5276b1634511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Component">
+      <UniqueIdentifier>{0c110599-cdb6-4548-bbf8-bfb277f84cf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Component\DefinedComponent">
+      <UniqueIdentifier>{b3690ded-bf4b-4883-99e8-c251e99f60e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Component\DefinedComponent\Render">
+      <UniqueIdentifier>{90f9fc3f-a1c4-4205-8652-d8387d4e495b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Component\DefinedComponent\Logic">
+      <UniqueIdentifier>{9cc6c0d7-59fb-49c2-ba24-b06eea30f47b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Component\DefinedComponent\RenderEffect">
+      <UniqueIdentifier>{99587cc1-43a7-409e-b580-43b50a20cb53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sub\FBX">
+      <UniqueIdentifier>{bed89a2d-d074-401c-884c-b9290e6f1785}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sub\Texture">
+      <UniqueIdentifier>{66a9c78f-c53e-4139-b643-a0944e9db79b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Sub\Font">
+      <UniqueIdentifier>{9a73d832-eada-4919-b11f-8c44f269c6c2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="KGameDevice.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameActor.cpp">
+      <Filter>Obj\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="KComManager.cpp">
+      <Filter>Obj\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameScene.cpp">
+      <Filter>Obj\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameComponentManager.cpp">
+      <Filter>Obj\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="KRender.cpp">
+      <Filter>Obj\Component\DefinedComponent\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="KVertexBuffer.cpp">
+      <Filter>Resource\Sub\InputASM</Filter>
+    </ClCompile>
+    <ClCompile Include="KIndexBuffer.cpp">
+      <Filter>Resource\Sub\InputASM</Filter>
+    </ClCompile>
+    <ClCompile Include="KDepthStencil.cpp">
+      <Filter>Resource\Sub\OutputMerge</Filter>
+    </ClCompile>
+    <ClCompile Include="KRasterizer.cpp">
+      <Filter>Resource\Sub\Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="KPixelShader.cpp">
+      <Filter>Resource\Sub\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="KShader.cpp">
+      <Filter>Resource\Sub\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="KVertexShader.cpp">
+      <Filter>Resource\Sub\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="KConstantBuffer.cpp">
+      <Filter>Resource\Sub\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="KCamera.cpp">
+      <Filter>Obj\Component\DefinedComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="K3DBufferBase.cpp">
+      <Filter>Resource\Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameLogic.cpp" />
+    <ClCompile Include="KUpdateBase.cpp" />
+    <ClCompile Include="KFrameAnimator.cpp">
+      <Filter>Obj\Component\DefinedComponent\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="KBlend.cpp">
+      <Filter>Resource\Sub\OutputMerge</Filter>
+    </ClCompile>
+    <ClCompile Include="KDepthStencilTarget.cpp">
+      <Filter>Resource\Sub\OutputMerge</Filter>
+    </ClCompile>
+    <ClCompile Include="KMesh.cpp">
+      <Filter>Resource\Sub\InputASM</Filter>
+    </ClCompile>
+    <ClCompile Include="KRenderPipeline.cpp">
+      <Filter>Resource\Pipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="KCollision.cpp">
+      <Filter>Obj\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="KCuttingRender.cpp">
+      <Filter>Obj\Component\DefinedComponent\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="KTexture.cpp">
+      <Filter>Resource\Sub\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="KRenderTarget.cpp">
+      <Filter>Resource\Sub\OutputMerge</Filter>
+    </ClCompile>
+    <ClCompile Include="KSampler.cpp">
+      <Filter>Resource\Sub\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="KCuttingTexture.cpp">
+      <Filter>Resource\Sub\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="KTransColCheck.cpp" />
+    <ClCompile Include="KGameDeviceBlendInit.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameDeviceDepthInit.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameDeviceMeshInit.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameDeviceRasterizerInit.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameDeviceShaderInit.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameDeviceSamplerInit.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameDeviceRenderPipelineInit.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameDebug3D.cpp" />
+    <ClCompile Include="KTransform.cpp">
+      <Filter>Obj\Component\DefinedComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameFont.cpp">
+      <Filter>Resource\Sub\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="KGameMacros.cpp" />
+    <ClCompile Include="KFBX.cpp">
+      <Filter>Resource\Sub\FBX</Filter>
+    </ClCompile>
+    <ClCompile Include="KMeshAnimator.cpp">
+      <Filter>Obj\Component\DefinedComponent\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="KLight.cpp">
+      <Filter>Obj\Component\DefinedComponent\RenderEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="KBloomEffect.cpp">
+      <Filter>Obj\Component\DefinedComponent\RenderEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="KHeightTerrain.cpp">
+      <Filter>Obj\Component\DefinedComponent\Logic</Filter>
+    </ClCompile>
+    <ClCompile Include="KFxaa.cpp">
+      <Filter>Obj\Component\DefinedComponent\RenderEffect</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KGameDevice.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="KGameActor.h">
+      <Filter>Obj\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="KComManager.h">
+      <Filter>Obj\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="KGameScene.h">
+      <Filter>Obj\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="KGameComponentManager.h">
+      <Filter>Obj\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="KRender.h">
+      <Filter>Obj\Component\DefinedComponent\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="KVertexBuffer.h">
+      <Filter>Resource\Sub\InputASM</Filter>
+    </ClInclude>
+    <ClInclude Include="KIndexBuffer.h">
+      <Filter>Resource\Sub\InputASM</Filter>
+    </ClInclude>
+    <ClInclude Include="KDepthStencil.h">
+      <Filter>Resource\Sub\OutputMerge</Filter>
+    </ClInclude>
+    <ClInclude Include="KRasterizer.h">
+      <Filter>Resource\Sub\Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="KPixelShader.h">
+      <Filter>Resource\Sub\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="KShader.h">
+      <Filter>Resource\Sub\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="KVertexShader.h">
+      <Filter>Resource\Sub\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="KConstantBuffer.h">
+      <Filter>Resource\Sub\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="KCamera.h">
+      <Filter>Obj\Component\DefinedComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="K3DBufferBase.h">
+      <Filter>Resource\Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="KGameLogic.h" />
+    <ClInclude Include="KUpdateBase.h" />
+    <ClInclude Include="KFrameAnimator.h">
+      <Filter>Obj\Component\DefinedComponent\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="KBlend.h">
+      <Filter>Resource\Sub\OutputMerge</Filter>
+    </ClInclude>
+    <ClInclude Include="KDepthStencilTarget.h">
+      <Filter>Resource\Sub\OutputMerge</Filter>
+    </ClInclude>
+    <ClInclude Include="KRenderTarget.h">
+      <Filter>Resource\Sub\OutputMerge</Filter>
+    </ClInclude>
+    <ClInclude Include="KMesh.h">
+      <Filter>Resource\Sub\InputASM</Filter>
+    </ClInclude>
+    <ClInclude Include="KRenderPipeline.h">
+      <Filter>Resource\Pipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="KCollision.h">
+      <Filter>Obj\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="KCuttingRender.h">
+      <Filter>Obj\Component\DefinedComponent\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="KTexture.h">
+      <Filter>Resource\Sub\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="KSampler.h">
+      <Filter>Resource\Sub\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="KCuttingTexture.h">
+      <Filter>Resource\Sub\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="KVertexHeader.h" />
+    <ClInclude Include="KGameDebug3D.h" />
+    <ClInclude Include="KTransform.h">
+      <Filter>Obj\Component\DefinedComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="KGameFont.h">
+      <Filter>Resource\Sub\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="KGameMacros.h" />
+    <ClInclude Include="KFBX.h">
+      <Filter>Resource\Sub\FBX</Filter>
+    </ClInclude>
+    <ClInclude Include="KMeshAnimator.h">
+      <Filter>Obj\Component\DefinedComponent\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="KLight.h">
+      <Filter>Obj\Component\DefinedComponent\RenderEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="KBloomEffect.h">
+      <Filter>Obj\Component\DefinedComponent\RenderEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="KHeightTerrain.h">
+      <Filter>Obj\Component\DefinedComponent\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="KFxaa.h">
+      <Filter>Obj\Component\DefinedComponent\RenderEffect</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

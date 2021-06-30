@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <FxCompile Include="2DIMAGE.hlsl" />
+    <FxCompile Include="HDEBUG.hlsl" />
+    <FxCompile Include="MergeTarget.hlsl" />
+    <FxCompile Include="2DLIGHT.hlsl" />
+    <FxCompile Include="DEBUGIMAGE.hlsl" />
+    <FxCompile Include="DefferdMerge.hlsl" />
+    <FxCompile Include="DefferdLighting.hlsl" />
+    <FxCompile Include="3DMESHFORWARD.hlsl" />
+    <FxCompile Include="3DMESHDEFFERD.hlsl" />
+    <FxCompile Include="3DGRID.hlsl" />
+    <FxCompile Include="3DHeightMapForward.hlsl" />
+    <FxCompile Include="Shadow.hlsl" />
+    <FxCompile Include="3DHeightMapDefferd.hlsl" />
+    <FxCompile Include="3DCOLORDEFFERD.hlsl" />
+    <FxCompile Include="3DSky.hlsl" />
+    <FxCompile Include="EmissionBloom.hlsl" />
+    <FxCompile Include="LightBloom.hlsl" />
+    <FxCompile Include="ColorShader.hlsl" />
+    <FxCompile Include="EmissionBloomCheck.hlsl" />
+    <FxCompile Include="ShadowAnimation.hlsl" />
+    <FxCompile Include="TileMap.hlsl" />
+    <FxCompile Include="Fxaa.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AnimationHeader.hlsli">
+      <Filter>BaseUtil</Filter>
+    </None>
+    <None Include="CalculateFunction.hlsli">
+      <Filter>BaseUtil</Filter>
+    </None>
+    <None Include="LightHeader.hlsli">
+      <Filter>BaseUtil</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="BaseUtil">
+      <UniqueIdentifier>{7fd0596c-f6e8-4845-a2e4-145dee501449}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FxaaShader.h" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="KGAMEDIR.cpp" />
+    <ClCompile Include="KGAMEFILE.cpp" />
+    <ClCompile Include="KGameInput.cpp" />
+    <ClCompile Include="KGAMEMATH.cpp" />
+    <ClCompile Include="KGAMEPATH.cpp" />
+    <ClCompile Include="KGAMETIME.cpp" />
+    <ClCompile Include="KGAMEWIN.cpp" />
+    <ClCompile Include="KGameType.cpp">
+      <Filter>BASE</Filter>
+    </ClCompile>
+    <ClCompile Include="KGAMEDEBUG.cpp" />
+    <ClCompile Include="KGAMESTRING.cpp" />
+    <ClCompile Include="KGameReference.cpp" />
+    <ClCompile Include="KGAMERANDOM.cpp" />
+    <ClCompile Include="KObjectManager.cpp" />
+    <ClCompile Include="KThread.cpp" />
+    <ClCompile Include="KCriticalSection.cpp" />
+    <ClCompile Include="KGameResource.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KGAMEDEBUG.h" />
+    <ClInclude Include="KGAMEDIR.h" />
+    <ClInclude Include="KGAMEFILE.h" />
+    <ClInclude Include="KGameInput.h" />
+    <ClInclude Include="KGAMEMATH.h" />
+    <ClInclude Include="KGAMEPATH.h" />
+    <ClInclude Include="KGAMETIME.h" />
+    <ClInclude Include="KGAMEWIN.h" />
+    <ClInclude Include="KGameType.h">
+      <Filter>BASE</Filter>
+    </ClInclude>
+    <ClInclude Include="KGAMENAME.h">
+      <Filter>BASE</Filter>
+    </ClInclude>
+    <ClInclude Include="KGAMEFILEBASE.h">
+      <Filter>BASE</Filter>
+    </ClInclude>
+    <ClInclude Include="KGAMESTRING.h" />
+    <ClInclude Include="KGameReference.h" />
+    <ClInclude Include="KGAMERANDOM.h" />
+    <ClInclude Include="KObjectManager.h" />
+    <ClInclude Include="KThread.h" />
+    <ClInclude Include="KCriticalSection.h" />
+    <ClInclude Include="KGameResource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="BASE">
+      <UniqueIdentifier>{7d7c7286-b87d-4770-ac1d-b9b0ef7eb192}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
