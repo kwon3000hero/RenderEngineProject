@@ -82,7 +82,7 @@ void TestComponent::Init()
 			GRID->Transform()->WorldRotate({ 0.0f, 0.0f, 0.0f });
 
 			SkyRender = GRID->CreateComponent<KRenderManager>(L"GRIDRECT", L"GRID", 0);
-			SkyRender->SetConstantBuffer(L"CAMPOSMAT", NEWACTOR->Transform()->CWorldPosition(), CBMode::CM_LINK);
+			SkyRender->SetConstantBuffer(L"CAMPOSMAT", NEWACTOR->Transform()->CWorldPosition(), ConstantBufferMode::Link);
 		}
 	}
 

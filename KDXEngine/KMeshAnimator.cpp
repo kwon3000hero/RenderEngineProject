@@ -180,7 +180,7 @@ std::vector<KPTR<KRenderPlayer>> KMeshAnimator::CreateAnimation(const KGAMEDIR& 
 
 		for (auto& renderPlayer : m_RenderPlayerGroupContainer[_fbxName])
 		{
-			renderPlayer->m_RenderOption[0] = 1;
+			renderPlayer->m_RenderOption[static_cast<int>(RenderOption::Animation)] = true;
 			renderPlayer->SetTexture(L"FrameAnimationTexture", m_AnimationBoneDataTextureContainer[_fbxName]);
 		}
 

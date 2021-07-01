@@ -48,19 +48,19 @@ cbuffer TRANSFORMDATA : register(b0)
     TRANSFORMMAT TransData;
 };
 
-cbuffer RENDEROPTION : register(b3)
+cbuffer RenderOption : register(b3)
 {
-    int IsExistAnimation;
-    int IsExistNormalTex;
-    int IsExistSpcTex;
-    int IsExistEmvTex;
+    bool IsExistAnimation;
+    bool IsExistNormalTex;
+    bool IsExistSpcTex;
+    bool IsExistEmvTex;
 };
 
 VTX3D_OUT VS_3DMESHFORWARD(VTX3D_IN _In)
 {
     VTX3D_OUT OUT = (VTX3D_OUT) 0.0f;
     
-    if (IsExistAnimation != 0)
+    if (true == IsExistAnimation)
     {
         SkinningTex(_In.vPOSITION, _In.vNORMAL, _In.vWEIGHT, _In.vINDEX);
     }
@@ -89,13 +89,13 @@ float4 PS_3DMESHFORWARD(VTX3D_OUT _In) : SV_Target
     float4 LightColor = (float4) 0.0f;
     float4 ReturnColor = (float4) 0.0f;
     
-    if (0 != IsExistSpcTex)
+    if (true == IsExistSpcTex)
     {
         TexColor += SpecularTex.Sample(Smp, _In.vUV.xy);
     }
     TexColor.w = 1.0f;
 
-    if (0 != IsExistNormalTex)
+    if (true == IsExistNormalTex)
     {
         CalculateBump(_In.vNORMAL, NormalTex, Smp, _In.vUV.xy, _In.vNORMAL, _In.vTANGENT, _In.vBINORMAL);
     }

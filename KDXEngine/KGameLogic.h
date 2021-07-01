@@ -1,5 +1,5 @@
 #pragma once
-#include "KGameComponentManager.h"
+#include "KGameComponent.h"
 #include "KTransform.h"
 #include "KGameActor.h"
 #include <KGAMEINPUT.h>

@@ -42,11 +42,11 @@ void KGameDebug3D::Init()
 	m_CenterVector.x *= -1.0f;
 	m_TextureRenderPlayer = new KRenderPlayer(L"DEBUGTEXRECT", L"DEBUGIMAGE");
 	m_TextureRenderPlayer->SetSampler(L"Smp", L"PCSMP");
-	m_TextureRenderPlayer->SetConstantBuffer(L"TRANSFORMDATA", &m_DebugTextureMatrix, CBMode::CM_LINK);
+	m_TextureRenderPlayer->SetConstantBuffer(L"TRANSFORMDATA", &m_DebugTextureMatrix, ConstantBufferMode::Link);
 
 	m_BackbufferRenderPlayer = new KRenderPlayer(L"DEBUGTEXRECT", L"DEBUGBACK");
-	m_BackbufferRenderPlayer->SetConstantBuffer(L"TRANSFORMDATA", &m_DebugTextureMatrix, CBMode::CM_LINK);
-	m_BackbufferRenderPlayer->SetConstantBuffer(L"BACKCOLOR", &m_BackColor, CBMode::CM_LINK);
+	m_BackbufferRenderPlayer->SetConstantBuffer(L"TRANSFORMDATA", &m_DebugTextureMatrix, ConstantBufferMode::Link);
+	m_BackbufferRenderPlayer->SetConstantBuffer(L"BACKCOLOR", &m_BackColor, ConstantBufferMode::Link);
 
 }
 
@@ -78,8 +78,8 @@ void KGameDebug3D::DebugRender()
 		{
 			TransformMatrix DATA = m_Info[i].Trans->MatrixData();
 			DATA.WVP.ArrVector[3].z -= 0.001f;
-			RP.SetConstantBuffer(L"TRANSFORMDATA", &DATA, CBMode::CM_LINK);
-			RP.SetConstantBuffer(L"DEBUGCOLOR", (void*)&m_Info[i].Color, CBMode::CM_LINK);
+			RP.SetConstantBuffer(L"TRANSFORMDATA", &DATA, ConstantBufferMode::Link);
+			RP.SetConstantBuffer(L"DEBUGCOLOR", (void*)&m_Info[i].Color, ConstantBufferMode::Link);
 			RP.Render();
 		}
 		else

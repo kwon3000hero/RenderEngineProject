@@ -1,4 +1,4 @@
-#include <KGameComponentManager.h>
+#include <KGameComponent.h>
 
 class KFreeObject : public KActorGameComponent
 {

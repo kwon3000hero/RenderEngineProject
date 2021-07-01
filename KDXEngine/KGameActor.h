@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KComManager.h"
+#include "KGameComponentManager.h"
 #include <list>
 
 class KTransform;

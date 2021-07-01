@@ -17,8 +17,8 @@ void KCuttingRender::StartData(int _Order)
 	KCuttingRender::SetOrder(_Order);
 	m_RD = KCuttingRender::CreateRenderPlayer(L"RECT", L"2DSPRITE");
 	SetSamplerMode(DEFOP);
-	SetConstantBuffer(L"CUTDATA", m_CutData, CBMode::CM_LINK);
-	SetConstantBuffer(L"TEXDATA", DATA, CBMode::CM_LINK);
+	SetConstantBuffer(L"CUTDATA", m_CutData, ConstantBufferMode::Link);
+	SetConstantBuffer(L"TEXDATA", DATA, ConstantBufferMode::Link);
 }
 void KCuttingRender::StartData(const KGameString& _CuttingTexName, int _Order /*= 0*/)
 {

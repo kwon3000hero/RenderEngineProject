@@ -66,13 +66,13 @@
     <ClCompile Include="KGameActor.cpp">
       <Filter>Obj\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="KComManager.cpp">
+    <ClCompile Include="KGameComponentManager.cpp">
       <Filter>Obj\Component</Filter>
     </ClCompile>
     <ClCompile Include="KGameScene.cpp">
       <Filter>Obj\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="KGameComponentManager.cpp">
+    <ClCompile Include="KGameComponent.cpp">
       <Filter>Obj\Component</Filter>
     </ClCompile>
     <ClCompile Include="KRender.cpp">
@@ -199,13 +199,13 @@
     <ClInclude Include="KGameActor.h">
       <Filter>Obj\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="KComManager.h">
+    <ClInclude Include="KGameComponentManager.h">
       <Filter>Obj\Component</Filter>
     </ClInclude>
     <ClInclude Include="KGameScene.h">
       <Filter>Obj\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="KGameComponentManager.h">
+    <ClInclude Include="KGameComponent.h">
       <Filter>Obj\Component</Filter>
     </ClInclude>
     <ClInclude Include="KRender.h">

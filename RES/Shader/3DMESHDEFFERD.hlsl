@@ -48,19 +48,19 @@ cbuffer TRANSFORMDATA : register(b0)
     TRANSFORMMAT TransData;
 };
 
-cbuffer RENDEROPTION : register(b3)
+cbuffer RenderOption : register(b3)
 {
-    int IsExistAnimation;
-    int IsExistNormalTex;
-    int IsExistSpcTex;
-    int IsExistEmiTex;
+    bool IsExistAnimation;
+    bool IsExistNormalTex;
+    bool IsExistSpcTex;
+    bool IsExistEmiTex;
 };
 
 VTX3D_OUT VS_3DMESHDEFFERD(VTX3D_IN _In)
 {
     VTX3D_OUT OUT = (VTX3D_OUT) 0.0f;
     
-    if (0 != IsExistAnimation)
+    if (true == IsExistAnimation)
     {
         SkinningTex(_In.vPOSITION, _In.vNORMAL, _In.vWEIGHT, _In.vINDEX);
     }
@@ -101,17 +101,17 @@ DEFFERDCOLOR PS_3DMESHDEFFERD(VTX3D_OUT _In)
     ReturnColor.vNORMAL = _In.vNORMAL;
     ReturnColor.vDepth.x = ReturnColor.vPOS.z;
 
-    if (0 != IsExistSpcTex)
+    if (true == IsExistSpcTex)
     {
         ReturnColor.vDif += SpcTex.Sample(Smp, _In.vUV.xy);
     }
     
-    if (0 != IsExistNormalTex)
+    if (true == IsExistNormalTex)
     {
         CalculateBump(ReturnColor.vNORMAL, NormalTex, Smp, _In.vUV.xy, _In.vNORMAL, _In.vTANGENT, _In.vBINORMAL);
     }
     
-    if (0 != IsExistEmiTex)
+    if (true == IsExistEmiTex)
     {
         ReturnColor.vDepth.y = EmiTex.Sample(Smp, _In.vUV.xy);
     }

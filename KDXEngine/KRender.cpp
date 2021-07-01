@@ -122,7 +122,7 @@ std::list<KRenderPlayer::KConstantBufferSetter*> KRenderPlayer::ConstantBufferSe
 	return List;
 }
 
-void KRenderPlayer::SetConstantBuffer(const KGameString& _name, void* pData, CBMode _Mode)
+void KRenderPlayer::SetConstantBuffer(const KGameString& _name, void* pData, ConstantBufferMode _Mode)
 {
 	if (false == IsExistContantBuffer(_name))
 	{
@@ -137,10 +137,10 @@ void KRenderPlayer::SetConstantBuffer(const KGameString& _name, void* pData, CBM
 
 			switch (_Mode)
 			{
-			case CBMode::CM_LINK:
+			case ConstantBufferMode::Link:
 				m_ConstantBufferContainer[i][_name].m_pSettingData = pData;
 				break;
-			case CBMode::CM_NEW:
+			case ConstantBufferMode::New:
 			{
 				if (nullptr == m_ConstantBufferContainer[i][_name].m_pSettingData)
 				{
@@ -272,7 +272,7 @@ void KRenderPlayer::ShadowOn()
 void KRenderPlayer::ShadowRender()
 {
 	SetRenderConstantBuffer(L"TRANSFORMDATA");
-	if (1 != m_RenderOption[0])
+	if (true != m_RenderOption[static_cast<int>(RenderOption::Animation)])
 	{
 		KPTR<KRenderPipeline> RPL = KRenderPipeline::Find(L"SHADOW");
 		RPL->Setting();
@@ -343,19 +343,19 @@ void KRenderPlayer::SetRenderPipeline(const KGameString& _Name)
 
 				if (nullptr != m_Parent && L"TRANSFORMDATA" == ShaderData.first)
 				{
-					SetConstantBuffer(ShaderData.first, (void*)&(m_Parent->m_Matrix), CBMode::CM_LINK);
+					SetConstantBuffer(ShaderData.first, (void*)&(m_Parent->m_Matrix), ConstantBufferMode::Link);
 				}
 
 				if (nullptr != m_Parent && L"LIGHTDATABUFFER" == ShaderData.first)
 				{
 					LightDataBuffer* LightData = m_Parent->Actor()->Scene()->m_LightDataBufferContainer[m_Parent->Order()];
-					SetConstantBuffer(ShaderData.first, (void*)LightData, CBMode::CM_LINK);
+					SetConstantBuffer(ShaderData.first, (void*)LightData, ConstantBufferMode::Link);
 				}
 
-				if (L"RENDEROPTION" == ShaderData.first)
+				if (L"RenderOption" == ShaderData.first)
 				{
-					memset(m_RenderOption, 0, sizeof(int) * 4);
-					SetConstantBuffer(ShaderData.first, (void*)m_RenderOption, CBMode::CM_LINK);
+					memset(m_RenderOption, 0, sizeof(bool) * 4);
+					SetConstantBuffer(ShaderData.first, (void*)m_RenderOption, ConstantBufferMode::Link);
 				}
 				break;
 			default:
@@ -545,7 +545,7 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 		{
 			if (nullptr != specularTexture)
 			{
-				renderPlayer->m_RenderOption[2] = 1;
+				renderPlayer->m_RenderOption[static_cast<int>(RenderOption::Specular)] = true;
 				renderPlayer->SetTexture(L"SpcTex", specularTextureName);
 			}
 		}
@@ -554,7 +554,7 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 		{
 			if (nullptr != normalTexture)
 			{
-				renderPlayer->m_RenderOption[1] = 1;
+				renderPlayer->m_RenderOption[static_cast<int>(RenderOption::Normal)] = true;
 				renderPlayer->SetTexture(L"NormalTex", normalTextureName);
 			}
 		}
@@ -566,7 +566,7 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 
 		if (0 >= fbx->m_UserAnimationContainer.size())
 		{
-			renderPlayer->m_RenderOption[0] = 0;
+			renderPlayer->m_RenderOption[static_cast<int>(RenderOption::Animation)] = false;
 			std::list<KRenderPlayer::KTextureSetter*> list = renderPlayer->TextureSetterList(L"FrameAnimationTexture");
 			for (auto setter : list)
 			{
@@ -688,7 +688,7 @@ bool KRenderManager::IsBump()
 {
 	for (int i = 0; i < (int)m_RenderPlayerContainer.size(); i++)
 	{
-		if (1 != m_RenderPlayerContainer[i]->m_RenderOption[1])
+		if (1 != m_RenderPlayerContainer[i]->m_RenderOption[static_cast<int>(RenderOption::Normal)])
 		{
 			return false;
 		}
@@ -707,7 +707,7 @@ void KRenderManager::BumpOn()
 
 void KRenderManager::RenderPlayerBumpOn(int _index)
 {
-	m_RenderPlayerContainer[_index]->m_RenderOption[1] = 1;
+	m_RenderPlayerContainer[_index]->m_RenderOption[static_cast<int>(RenderOption::Normal)] = true;
 }
 
 void KRenderManager::BumpOff()
@@ -720,7 +720,7 @@ void KRenderManager::BumpOff()
 
 void KRenderManager::RenderPlayerBumpOff(int _index)
 {
-	m_RenderPlayerContainer[_index]->m_RenderOption[1] = 0;
+	m_RenderPlayerContainer[_index]->m_RenderOption[static_cast<int>(RenderOption::Normal)] = false;
 }
 
 void KRenderManager::ShadowOn()
@@ -767,7 +767,7 @@ void KRenderManager::SetSampler(const KGameString& _NAME, const KGameString& _RE
 	m_RenderPlayerContainer[_PlayerIndex]->SetSampler(_NAME, _RESNAME);
 }
 
-void KRenderManager::SetConstantBuffer(const KGameString& _NAME, void* Data, CBMode _Mode /*= CBMODE::CM_LINK*/, int _PlayerIndex /*= 0*/)
+void KRenderManager::SetConstantBuffer(const KGameString& _NAME, void* Data, ConstantBufferMode _Mode /*= CBMODE::CM_LINK*/, int _PlayerIndex /*= 0*/)
 {
 	if (_PlayerIndex >= m_RenderPlayerContainer.size())
 	{

@@ -29,7 +29,7 @@ void KBloomEffect::Init()
 	m_BloomPlayer = new KRenderPlayer(L"FULLRECT", L"EMISSIONBLOOM");
 	m_BloomPlayer->SetTexture(L"CheckTex", m_SmallTarget->Texture(0));
 	m_BloomPlayer->SetSampler(L"Smp", L"LWSMP");
-	m_BloomPlayer->SetConstantBuffer(L"ScreenSize", &BloomSize, CBMode::CM_NEW);
+	m_BloomPlayer->SetConstantBuffer(L"ScreenSize", &BloomSize, ConstantBufferMode::New);
 
 	m_LightBloomPlayer = new KRenderPlayer(L"FULLRECT", L"LIGHTBLOOM");
 	m_LightBloomPlayer->SetTexture(L"BloomTarget", m_BloomEffectTarget2->Texture(0));

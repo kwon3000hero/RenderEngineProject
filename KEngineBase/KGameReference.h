@@ -7,25 +7,25 @@ private:
 	friend class KPTR;
 
 private:
-	int m_RefCount;
+	int m_ReferenceCount;
 
 private:
 	inline void AddRef()
 	{
-		++m_RefCount;
+		++m_ReferenceCount;
 	}
 
 	inline void DecRef()
 	{
-		--m_RefCount;
+		--m_ReferenceCount;
 
-		if (0 >= m_RefCount)
+		if (0 >= m_ReferenceCount)
 		{
 			delete this;
 		}
 	}
 public:
-	KGameReference() : m_RefCount(0)
+	KGameReference() : m_ReferenceCount(0)
 	{
 
 	}

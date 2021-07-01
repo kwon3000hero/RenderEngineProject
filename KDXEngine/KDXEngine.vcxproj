@@ -25,7 +25,7 @@
     <ClCompile Include="KCamera.cpp" />
     <ClCompile Include="KConstantBuffer.cpp" />
     <ClCompile Include="KCollision.cpp" />
-    <ClCompile Include="KComManager.cpp" />
+    <ClCompile Include="KGameComponentManager.cpp" />
     <ClCompile Include="KCuttingRender.cpp" />
     <ClCompile Include="KCuttingTexture.cpp" />
     <ClCompile Include="KDepthStencil.cpp" />
@@ -34,7 +34,7 @@
     <ClCompile Include="KFrameAnimator.cpp" />
     <ClCompile Include="KFxaa.cpp" />
     <ClCompile Include="KGameActor.cpp" />
-    <ClCompile Include="KGameComponentManager.cpp" />
+    <ClCompile Include="KGameComponent.cpp" />
     <ClCompile Include="KGameDebug3D.cpp" />
     <ClCompile Include="KGameDevice.cpp" />
     <ClCompile Include="KGameDeviceBlendInit.cpp" />
@@ -74,7 +74,7 @@
     <ClInclude Include="KCamera.h" />
     <ClInclude Include="KConstantBuffer.h" />
     <ClInclude Include="KCollision.h" />
-    <ClInclude Include="KComManager.h" />
+    <ClInclude Include="KGameComponentManager.h" />
     <ClInclude Include="KCuttingRender.h" />
     <ClInclude Include="KCuttingTexture.h" />
     <ClInclude Include="KDepthStencil.h" />
@@ -83,7 +83,7 @@
     <ClInclude Include="KFrameAnimator.h" />
     <ClInclude Include="KFxaa.h" />
     <ClInclude Include="KGameActor.h" />
-    <ClInclude Include="KGameComponentManager.h" />
+    <ClInclude Include="KGameComponent.h" />
     <ClInclude Include="KGameDebug3D.h" />
     <ClInclude Include="KGameDevice.h" />
     <ClInclude Include="KGameFont.h" />

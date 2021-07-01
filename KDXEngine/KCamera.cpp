@@ -232,7 +232,7 @@ void KCamera::MergeDefferd()
 
 void KCamera::CalculateDefferdLight(LightData* _pLightData, KPTR<KRenderTarget> _shadowRenderTargets)
 {
-	m_defferdLightPlayer->SetConstantBuffer(L"CURRENTLIGHTBUFFER", (void*)_pLightData, CBMode::CM_LINK);
+	m_defferdLightPlayer->SetConstantBuffer(L"CURRENTLIGHTBUFFER", (void*)_pLightData, ConstantBufferMode::Link);
 	m_defferdLightPlayer->SetTexture(L"SHADOWTEX", _shadowRenderTargets->Texture(0));
 
 	m_lightCameraTarget->Effect(m_defferdLightPlayer, false, false);

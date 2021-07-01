@@ -5,10 +5,19 @@
 #include "KMesh.h"
 #include <KGAMEDIR.h>
 
-enum class CBMode
+enum class ConstantBufferMode
 {
-	CM_LINK,
-	CM_NEW,
+	Link,
+	New,
+	MAX
+};
+
+enum class RenderOption
+{
+	Animation,
+	Normal,
+	Specular,
+	Emissive,
 	MAX
 };
 
@@ -28,8 +37,8 @@ public:
 	D3D11_PRIMITIVE_TOPOLOGY m_MeshRenderType;
 	KPTR<KMesh> m_mesh;
 	KPTR<KRenderPipeline> m_CurrentRenderPipeline;
-	//1: normal, 2: specular
-	int m_RenderOption[4];
+
+	bool m_RenderOption[static_cast<int>(RenderOption::MAX)];
 
 	friend KRenderManager;
 
@@ -50,7 +59,7 @@ public:
 	class KConstantBufferSetter
 	{
 		KGameString m_Name;
-		CBMode m_Mode;
+		ConstantBufferMode m_Mode;
 		friend class KRenderPlayer;
 		friend class KRenderManager;
 		const KShaderData* m_pShaderData;
@@ -59,15 +68,15 @@ public:
 		void* m_pSettingData;
 
 	public:
-		KConstantBufferSetter() : m_pShaderData(nullptr), m_ConstantBuffer(nullptr), m_pSettingData(nullptr), m_Mode(CBMode::CM_LINK) {		}
-		KConstantBufferSetter(KGameString _name, KShaderData* _Data, KPTR<KConstantBuffer> _Res) : m_pShaderData(_Data), m_ConstantBuffer(_Res), m_pSettingData(nullptr), m_Mode(CBMode::CM_LINK)
+		KConstantBufferSetter() : m_pShaderData(nullptr), m_ConstantBuffer(nullptr), m_pSettingData(nullptr), m_Mode(ConstantBufferMode::Link) {		}
+		KConstantBufferSetter(KGameString _name, KShaderData* _Data, KPTR<KConstantBuffer> _Res) : m_pShaderData(_Data), m_ConstantBuffer(_Res), m_pSettingData(nullptr), m_Mode(ConstantBufferMode::Link)
 		{
 			m_Name = _name;
 		}
 
 		~KConstantBufferSetter()
 		{
-			if (m_Mode == CBMode::CM_NEW)
+			if (m_Mode == ConstantBufferMode::New)
 			{
 				if (nullptr != m_pSettingData)
 				{
@@ -115,7 +124,7 @@ public:
 	std::list<KSamplerSetter*> SamplerSetterList(const KGameString& _name);
 	std::list<KConstantBufferSetter*> ConstantBufferSetterList(const KGameString& _name);
 
-	void SetConstantBuffer(const KGameString& _name, void* pData, CBMode _Mode);
+	void SetConstantBuffer(const KGameString& _name, void* pData, ConstantBufferMode _Mode);
 	void SetSampler(const KGameString& _name, const KGameString& _samplerName);
 	void SetTexture(const KGameString& _name, const KPTR<KTexture>& _texture);
 	void SetTexture(const KGameString& _name, const KGameString& _textureName);
@@ -149,13 +158,13 @@ public:
 	void SetSampler(const KGameString& _NAME, const KGameString& _RESNAME, int _PlayerIndex = 0);
 
 	template<typename T>
-	void SetConstantBuffer(const KGameString& _NAME, T& Data, CBMode _Mode = CBMode::CM_LINK, int _PlayerIndex = 0)
+	void SetConstantBuffer(const KGameString& _NAME, T& Data, ConstantBufferMode _Mode = ConstantBufferMode::Link, int _PlayerIndex = 0)
 	{
 		SetConstantBuffer(_NAME, (void*)&Data, _Mode, _PlayerIndex);
 	}
 
 	template<typename T>
-	void SetAllConstantBuffer(const KGameString& _name, T& Data, CBMode _Mode = CBMode::CM_LINK)
+	void SetAllConstantBuffer(const KGameString& _name, T& Data, ConstantBufferMode _Mode = ConstantBufferMode::Link)
 	{
 		for (int i = 0; i < m_RenderPlayerContainer.size(); i++)
 		{
@@ -163,7 +172,7 @@ public:
 		}
 	}
 
-	void SetConstantBuffer(const KGameString& _NAME, void* Data, CBMode _Mode = CBMode::CM_LINK, int _PlayerIndex = 0);
+	void SetConstantBuffer(const KGameString& _NAME, void* Data, ConstantBufferMode _Mode = ConstantBufferMode::Link, int _PlayerIndex = 0);
 
 public:
 	KPTR<KRenderPlayer> CreateRenderPlayer(const KGameString& _MeshName, const KGameString& _RenderPipeLineName);

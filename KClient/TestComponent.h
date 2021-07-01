@@ -1,5 +1,5 @@
 #pragma once
-#include <KGameComponentManager.h>
+#include <KGameComponent.h>
 
 #pragma comment(lib, "KDXLogic.lib")
 

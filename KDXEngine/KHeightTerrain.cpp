@@ -105,7 +105,7 @@ void KHeightTerrain::CreateGround(int _x, int _z, const KGameString& _DifTexName
 	m_renderPlayer->SetTexture(L"DifTex0", _DifTexName);
 	m_renderPlayer->SetTexture(L"HeightTex", _heightMapName);
 	m_renderPlayer->SetSampler(L"Smp", L"LWSMP");
-	m_renderPlayer->SetConstantBuffer(L"MAPDATA", &m_MapData, CBMode::CM_LINK);
+	m_renderPlayer->SetConstantBuffer(L"MAPDATA", &m_MapData, ConstantBufferMode::Link);
 
 	m_renderPlayer->ShadowOn();
 

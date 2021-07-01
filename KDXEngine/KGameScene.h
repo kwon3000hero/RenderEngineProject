@@ -1,13 +1,13 @@
 #pragma once
 #include "KGameResource.h"
-#include "KComManager.h"
+#include "KGameComponentManager.h"
 
 #include <set>
 #include <list>
 #include <map>
 #include <unordered_map>
 
-#include "KGameComponentManager.h"
+#include "KGameComponent.h"
 
 class KCollision;
 class KCamera;
