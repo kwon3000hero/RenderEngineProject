@@ -36,7 +36,7 @@ void KLightManager::Init()
 {
 	m_ShadowTargetSize = { 4096.0F, 4096.0F };
 
-	if (nullptr == Actor()->GetComponent<KTransform>())
+	if (nullptr == Actor()->GetComponent<KTransform>().get())
 	{
 		assert(false);
 	}
@@ -45,7 +45,7 @@ void KLightManager::Init()
 	m_ShadowTarget->Create(m_ShadowTargetSize, { 0,0,0,0 }, DXGI_FORMAT::DXGI_FORMAT_R32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE);
 	m_ShadowTarget->CreateDepth();
 
-	Scene()->PushLightManager(this);
+	Scene()->PushLightManager(KPTR<KLightManager>(this));
 }
 
 void KLightManager::PrevRender()

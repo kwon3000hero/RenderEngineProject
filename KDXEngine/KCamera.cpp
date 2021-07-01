@@ -15,11 +15,6 @@ KPostEffect::KPostEffect() : m_pCamera(nullptr), m_IsUpdate(true)
 
 KPostEffect::~KPostEffect()
 {
-	if (nullptr != m_pCamera)
-	{
-		delete m_pCamera;
-		m_pCamera = nullptr;
-	}
 }
 
 KCamera::KCamera() : m_OriFov(60.0F), m_CurFov(60.0F), m_CurSize(KGameWindow::MainWindow()->Size()), m_OriSize(KGameWindow::MainWindow()->Size()), m_Near(0.1f), m_Far(10000.0f), m_eMode(CAMMODE::PROJ)
@@ -34,17 +29,17 @@ KCamera::~KCamera()
 
 void KCamera::Init()
 {
-	if (nullptr == Actor()->GetComponent<KTransform>())
+	if (nullptr == Actor()->GetComponent<KTransform>().get())
 	{
 		assert(false);
 	}
 
-	if (nullptr != Actor()->GetComponent<KCamera>())
+	if (nullptr != Actor()->GetComponent<KCamera>().get())
 	{
 		assert(false);
 	}
 
-	Scene()->PushCamera(this);
+	Scene()->PushCamera(KPTR<KCamera>(this));
 
 	m_currentCameraTarget = new KRenderTarget();
 	m_currentCameraTarget->Create(

@@ -11,34 +11,34 @@ void KCollision::StartData(KCollisionType _Type, int _Order)
 	m_Type = _Type;
 }
 
-void KCollision::Init() {
+void KCollision::Init()
+{
 	KPTR<KTransform> PTR = Actor()->GetComponent<KTransform>();
 
-	// 트랜드 폼도 있고
-	if (nullptr == PTR)
+	if (nullptr == PTR.get())
 	{
 		assert(false);
 	}
 
 	Parent(PTR);
-	Scene()->PushCol(this);
+	Scene()->PushCol(KPTR<KCollision>(this));
 }
 
-void KCollision::ColEnter(KCollision* _Other)
+void KCollision::ColEnter(KPTR<KCollision> _Other)
 {
 	for (auto& Auto : m_EnterFunc)
 	{
 		Auto(this, _Other);
 	}
 }
-void KCollision::ColStay(KCollision* _Other)
+void KCollision::ColStay(KPTR<KCollision> _Other)
 {
 	for (auto& Auto : m_StayFunc)
 	{
 		Auto(this, _Other);
 	}
 }
-void KCollision::ColExit(KCollision* _Other)
+void KCollision::ColExit(KPTR<KCollision> _Other)
 {
 	for (auto& Auto : m_ExitFunc)
 	{
@@ -85,12 +85,12 @@ void KCollision::ColCheck(KPTR<KCollision> _OtherCol)
 
 void KCollision::DebugRender()
 {
-	SetCameraMatrix(KGameScene::MainCam());
+	SetCameraMatrix(KPTR<KCamera>(KGameScene::MainCam()));
 
 	switch (m_Type)
 	{
 	case KCollisionType::OBB2D:
-		KGameDebug3D::DebugRect(this);
+		KGameDebug3D::DebugRect(KPTR<KTransform>(this));
 		break;
 	case KCollisionType::ABB2D:
 		break;

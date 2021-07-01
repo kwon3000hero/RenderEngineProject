@@ -29,7 +29,7 @@ private:
 	public:
 		KMeshAnimator* m_pMeshAnimation;
 
-		KFBX* m_pFbx;
+		KPTR<KFBX> m_pFbx;
 		KGameString m_animationName;
 		KFBXAnimationData* m_pCurrentAnimationData;
 
@@ -77,7 +77,7 @@ private:
 	{
 		if (m_AnimationContainer.end() == m_AnimationContainer.find(_AniName))
 		{
-			return nullptr;
+			return static_cast<KPTR<KMeshAnimation>>(0);
 		}
 
 		return m_AnimationContainer[_AniName];

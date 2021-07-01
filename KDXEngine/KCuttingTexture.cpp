@@ -6,7 +6,7 @@ void KCuttingTexture::Create(int _W, int _H)
 {
 	KPTR<KTexture> Ptr = KTexture::Find(m_Path);
 
-	if (nullptr == Ptr)
+	if (nullptr == Ptr.get())
 	{
 		AssertMsg(L"텍스처가 존재하지 않습니다.");
 	}
@@ -18,7 +18,7 @@ void KCuttingTexture::Create(const KVector& _Start, const KVector& _Size, int _W
 {
 	KPTR<KTexture> Ptr = KTexture::Find(m_Path);
 
-	if (nullptr == Ptr)
+	if (nullptr == Ptr.get())
 	{
 		AssertMsg(L"텍스처가 존재하지 않습니다.");
 	}

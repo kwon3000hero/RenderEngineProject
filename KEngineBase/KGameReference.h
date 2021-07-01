@@ -41,8 +41,8 @@ template<typename PTRTYPE>
 class KPTR
 {
 public:
-	template<typename WPTRTYPE>
-	friend class KWPTR;
+	template<typename type>
+	friend class KWeakPTR;
 
 
 private:
@@ -50,6 +50,11 @@ private:
 
 public:
 	PTRTYPE* operator->() const
+	{
+		return m_pType;
+	}
+
+	PTRTYPE* get() const
 	{
 		return m_pType;
 	}
@@ -81,7 +86,7 @@ public:
 
 	KPTR& operator=(const KPTR& _Ptr)
 	{
-		if (m_pType == _Ptr)
+		if (m_pType == _Ptr.get())
 		{
 			return *this;
 		}
@@ -93,28 +98,27 @@ public:
 		return *this;
 	}
 
+	//bool operator==(const KPTR& _Ptr) const
+	//{
+	//	return m_pType == _Ptr.m_pType;
+	//}
 
-	bool operator==(const KPTR& _Ptr) const
+
+	//bool operator==(void* _Ptr) const
+	//{
+	//	return m_pType == _Ptr;
+	//}
+
+	//bool operator!=(void* _Ptr) const
+	//{
+	//	return m_pType != _Ptr;
+	//}
+
+
+	bool operator!=(const KPTR& _Ptr) const
 	{
-		return m_pType == _Ptr.m_pType;
+		return m_pType != _Ptr.m_pType;
 	}
-
-
-	bool operator==(void* _Ptr) const
-	{
-		return m_pType == _Ptr;
-	}
-
-	bool operator!=(void* _Ptr) const
-	{
-		return m_pType != _Ptr;
-	}
-
-	bool operator!=(PTRTYPE* _Ptr) const
-	{
-		return m_pType != _Ptr;
-	}
-
 
 public:
 	void CheckDecRef()
@@ -137,7 +141,7 @@ public:
 		m_pType->AddRef();
 	}
 public:
-	KPTR() : m_pType(nullptr)
+	explicit KPTR() : m_pType(nullptr)
 	{
 
 	}
@@ -158,69 +162,68 @@ public:
 		CheckDecRef();
 	}
 };
-
-template<typename PTRTYPE>
-typename bool operator==(void* _Ptr, const KPTR<PTRTYPE>& _PTR)
-{
-	return _PTR == _Ptr;
-}
-
-template<typename PTRTYPE>
-typename bool operator!=(void* _Ptr, const KPTR<PTRTYPE>& _PTR)
-{
-	return _PTR != _Ptr;
-}
+//
+//template<typename PTRTYPE>
+//typename bool operator==(void* _Ptr, const KPTR<PTRTYPE>& _PTR)
+//{
+//	return _PTR == _Ptr;
+//}
+//
+//template<typename PTRTYPE>
+//typename bool operator!=(KPTR<PTRTYPE> _Ptr, void* _PTR)
+//{
+//	return _PTR != _Ptr.m_pType;
+//}
 
 template<typename PTRTYPE>
 class KWeakPTR
 {
 private:
-	PTRTYPE* PTR;
+	PTRTYPE* m_Type;
 
 public:
 	operator PTRTYPE* ()
 	{
-		return PTR;
+		return m_Type;
 	}
 
 	operator KPTR<PTRTYPE>()
 	{
-		return PTR;
+		return KPTR<PTRTYPE>(m_Type);
 	}
 
 	PTRTYPE* operator->()
 	{
-		return PTR;
-	}
-
-	KWeakPTR& operator=(PTRTYPE* _Ptr)
-	{
-		if (PTR == _Ptr)
-		{
-			return *this;
-		}
-
-		PTR = _Ptr;
-
-		return *this;
+		return m_Type;
 	}
 
 	KWeakPTR& operator=(const KWeakPTR& _Ptr)
 	{
-		if (PTR == _Ptr)
+		if (_Ptr.get() == m_Type)
 		{
 			return *this;
 		}
 
-		PTR = _Ptr.PTR;
+		m_Type = _Ptr.m_Type;
 
 		return *this;
 	}
 
-
-	bool operator==(const KWeakPTR& _Ptr) const
+	KWeakPTR& operator=(const KPTR<PTRTYPE>& _Ptr)
 	{
-		return PTR == _Ptr.PTR;
+		if (_Ptr.get() == m_Type)
+		{
+			return *this;
+		}
+
+		m_Type = _Ptr.m_pType;
+
+		return *this;
+	}
+
+	/*bool operator==(const KWeakPTR& _Ptr) const
+	{
+		return PTR == _Ptr.m_Type;
 	}
 
 
@@ -232,39 +235,40 @@ public:
 	bool operator!=(void* _Ptr) const
 	{
 		return PTR != _Ptr;
-	}
+	}*/
 
 public:
-	KWeakPTR() : PTR(nullptr)
+	explicit KWeakPTR() : m_Type(nullptr)
 	{
 
 	}
 
-	KWeakPTR(const KPTR<PTRTYPE>& _Ptr) : PTR(_Ptr.m_pType)
+	KWeakPTR(const KPTR<PTRTYPE>& _Ptr) : m_Type(_Ptr.m_pType)
 	{
 	}
 
-	KWeakPTR(const KWeakPTR& _Ptr) : PTR(_Ptr.PTR)
+	KWeakPTR(const KWeakPTR& _Ptr) : m_Type(_Ptr.m_Type)
 	{
 	}
 
 
-	KWeakPTR(PTRTYPE* _Ptr) : PTR(_Ptr)
+	KWeakPTR(PTRTYPE* _Ptr) : m_Type(_Ptr)
 	{
 	}
 
-	~KWeakPTR() {
+	~KWeakPTR()
+	{
 	}
 };
 
-template<typename PTRTYPE>
-typename bool operator==(void* _Ptr, const KWeakPTR<PTRTYPE>& _PTR)
-{
-	return _PTR == _Ptr;
-}
-
-template<typename PTRTYPE>
-typename bool operator!=(void* _Ptr, const KWeakPTR<PTRTYPE>& _PTR)
-{
-	return _PTR != _Ptr;
-}
+//template<typename PTRTYPE>
+//typename bool operator==(void* _Ptr, const KWeakPTR<PTRTYPE>& _PTR)
+//{
+//	return _PTR == _Ptr;
+//}
+//
+//template<typename PTRTYPE>
+//typename bool operator!=(void* _Ptr, const KWeakPTR<PTRTYPE>& _PTR)
+//{
+//	return _PTR != _Ptr;
+//}

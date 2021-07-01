@@ -179,7 +179,7 @@ void KRenderPlayer::SetSampler(const KGameString& _name, const KGameString& _sam
 
 void KRenderPlayer::SetTexture(const KGameString& _name, const KPTR<KTexture>& _texture)
 {
-	if (nullptr == _texture)
+	if (nullptr == _texture.get())
 	{
 		AssertMsg(L"존재하지 않는 텍스처 세팅입니다 : " + _name);
 	}
@@ -266,7 +266,7 @@ void KRenderPlayer::SetterInit()
 
 void KRenderPlayer::ShadowOn()
 {
-	m_Parent->m_ShadowRenderPlayerContainer.push_back(this);
+	m_Parent->m_ShadowRenderPlayerContainer.push_back(KPTR<KRenderPlayer>(this));
 }
 
 void KRenderPlayer::ShadowRender()
@@ -290,7 +290,7 @@ void KRenderPlayer::ShadowRender()
 void KRenderPlayer::SetMesh(const KGameString& _Name)
 {
 	m_mesh = KMesh::Find(_Name);
-	if (nullptr == m_mesh)
+	if (nullptr == m_mesh.get())
 	{
 		AssertMsg(L"매쉬가 존재하지 않습니다. =" + _Name);
 	}
@@ -299,7 +299,7 @@ void KRenderPlayer::SetMesh(const KGameString& _Name)
 
 void KRenderPlayer::SetMesh(const KPTR<KMesh>& _mesh)
 {
-	if (nullptr == _mesh)
+	if (nullptr == _mesh.get())
 	{
 		AssertMsg(L"없는 mesh 입니다.");
 	}
@@ -311,7 +311,7 @@ void KRenderPlayer::SetRenderPipeline(const KGameString& _Name)
 {
 	m_CurrentRenderPipeline = KRenderPipeline::Find(_Name);
 
-	if (nullptr == m_CurrentRenderPipeline)
+	if (nullptr == m_CurrentRenderPipeline.get())
 	{
 		AssertMsg(L"랜더링 파이프라인이 존재하지 않습니다 = " + _Name);
 	}
@@ -325,13 +325,13 @@ void KRenderPlayer::SetRenderPipeline(const KGameString& _Name)
 			switch (ShaderData.second.SHADERRESTYPE)
 			{
 			case SHADERRES_TYPE::SR_TEXTURE:
-				m_TextureContainer[(int)ShaderData.second.SHADERRESTYPE].insert(std::map<KGameString, KRenderPlayer::KTextureSetter>::value_type(ShaderData.first, KRenderPlayer::KTextureSetter(&ShaderData.second, nullptr)));
+				m_TextureContainer[(int)ShaderData.second.SHADERRESTYPE].insert(std::map<KGameString, KRenderPlayer::KTextureSetter>::value_type(ShaderData.first, KRenderPlayer::KTextureSetter(&ShaderData.second, static_cast<KPTR<KTexture>>(0))));
 				break;
 			case SHADERRES_TYPE::SR_SAMPLER:
-				m_SamplerContainer[(int)ShaderData.second.SHADERRESTYPE].insert(std::map<KGameString, KRenderPlayer::KSamplerSetter>::value_type(ShaderData.first, KRenderPlayer::KSamplerSetter(&ShaderData.second, nullptr)));
+				m_SamplerContainer[(int)ShaderData.second.SHADERRESTYPE].insert(std::map<KGameString, KRenderPlayer::KSamplerSetter>::value_type(ShaderData.first, KRenderPlayer::KSamplerSetter(&ShaderData.second, static_cast<KPTR<KSampler>>(0))));
 				break;
 			case SHADERRES_TYPE::SR_CBUFFER:
-				m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE].insert(std::map<KGameString, KRenderPlayer::KConstantBufferSetter>::value_type(ShaderData.first, KRenderPlayer::KConstantBufferSetter(ShaderData.first, &ShaderData.second, nullptr)));
+				m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE].insert(std::map<KGameString, KRenderPlayer::KConstantBufferSetter>::value_type(ShaderData.first, KRenderPlayer::KConstantBufferSetter(ShaderData.first, &ShaderData.second, static_cast<KPTR<KConstantBuffer>>(0))));
 
 				m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE][ShaderData.first].m_ConstantBuffer = new KConstantBuffer();
 				m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE][ShaderData.first].m_ConstantBuffer->m_DataInfo = ShaderData.second.m_Info;
@@ -381,7 +381,7 @@ void KRenderPlayer::Render()
 	{
 		for (auto& Setter : m_TextureContainer[i])
 		{
-			if (nullptr == Setter.second.m_Texture)
+			if (nullptr == Setter.second.m_Texture.get())
 			{
 				if (true == Setter.second.m_IsExistTexture)
 				{
@@ -399,7 +399,7 @@ void KRenderPlayer::Render()
 	{
 		for (auto& Setter : m_SamplerContainer[i])
 		{
-			if (nullptr == Setter.second.m_Sampler)
+			if (nullptr == Setter.second.m_Sampler.get())
 			{
 				AssertMsg(L"랜더링을 위한 샘플러를 세팅해주지 않았습니다. = " + Setter.first);
 			}
@@ -412,7 +412,7 @@ void KRenderPlayer::Render()
 	{
 		for (auto& Setter : m_ConstantBufferContainer[i])
 		{
-			if (nullptr == Setter.second.m_ConstantBuffer)
+			if (nullptr == Setter.second.m_ConstantBuffer.get())
 			{
 				AssertMsg(L"랜더링을 위한 상수버퍼가 만들어지지 않았습니다. = " + Setter.first);
 			}
@@ -487,7 +487,7 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 		KGameString diffuseTextureName = KGAMEPATH::GetFileName(fbx->m_UserMaterialDataContainer[i].DiffuseTexture);
 
 		KPTR<KTexture> diffuseTexture = KTexture::Find(diffuseTextureName);
-		if (nullptr == diffuseTexture)
+		if (nullptr == diffuseTexture.get())
 		{
 			KTexture::Load(_dir.m_Path + "\\" + diffuseTextureName);
 			diffuseTexture = KTexture::Find(diffuseTextureName);
@@ -495,7 +495,7 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 
 		KGameString specularTextureName = KGAMEPATH::GetFileName(fbx->m_UserMaterialDataContainer[i].SpecularTexture);
 		KPTR<KTexture> specularTexture = KTexture::Find(specularTextureName);
-		if (nullptr == specularTexture)
+		if (nullptr == specularTexture.get())
 		{
 			KTexture::Load(_dir.m_Path + "\\" + specularTextureName);
 			specularTexture = KTexture::Find(specularTextureName);
@@ -503,7 +503,7 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 
 		KGameString normalTextureName = KGAMEPATH::GetFileName(fbx->m_UserMaterialDataContainer[i].NormalTexture);
 		KPTR<KTexture> normalTexture = KTexture::Find(normalTextureName);
-		if (nullptr == normalTexture)
+		if (nullptr == normalTexture.get())
 		{
 			KTexture::Load(_dir.m_Path + "\\" + normalTextureName);
 			normalTexture = KTexture::Find(normalTextureName);
@@ -543,7 +543,7 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 
 		if (true == renderPlayer->IsExistTexture(L"SpcTex"))
 		{
-			if (nullptr != specularTexture)
+			if (nullptr != specularTexture.get())
 			{
 				renderPlayer->m_RenderOption[static_cast<int>(RenderOption::Specular)] = true;
 				renderPlayer->SetTexture(L"SpcTex", specularTextureName);
@@ -552,7 +552,7 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 
 		if (true == renderPlayer->IsExistTexture(L"NormalTex"))
 		{
-			if (nullptr != normalTexture)
+			if (nullptr != normalTexture.get())
 			{
 				renderPlayer->m_RenderOption[static_cast<int>(RenderOption::Normal)] = true;
 				renderPlayer->SetTexture(L"NormalTex", normalTextureName);
@@ -601,13 +601,13 @@ void KRenderManager::Init()
 {
 	KPTR<KTransform> PTR = Actor()->GetComponent<KTransform>();
 
-	if (nullptr == PTR)
+	if (nullptr == PTR.get())
 	{
 		assert(false);
 	}
 
 	Parent(PTR);
-	Scene()->PushRenderManager(this);
+	Scene()->PushRenderManager(KPTR<KRenderManager>(this));
 }
 
 void KRenderManager::Render(KPTR<KCamera> _ViewCam)

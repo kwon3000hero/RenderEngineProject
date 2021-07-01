@@ -29,7 +29,7 @@ private:
 	};
 
 	static Starter m_sStarter;
-	static bool(*ColFunc[(int)KCollisionType::MAX][(int)KCollisionType::MAX])(const KPTR<KTransform>& t0, const KPTR<KTransform>& t1);
+	static bool(*ColFunc[(int)KCollisionType::MAX][(int)KCollisionType::MAX])(KPTR<KTransform>t0, KPTR<KTransform> t1);
 
 public:
 	friend KRenderManager;
@@ -80,10 +80,10 @@ public:
 		return m_Parent;
 	}
 
-	void Parent(KTransform* Ptr)
+	void Parent(KPTR<KTransform> Ptr)
 	{
 		m_Parent = Ptr;
-		m_Parent->m_Child.push_back(this);
+		m_Parent->m_Child.push_back(KPTR<KTransform>(this));
 
 		CalculateWorldScale();
 		CalculateWorldRotation();
@@ -118,12 +118,12 @@ public:
 	KVector WDOWN() { return -m_Matrix.Final.ArrVector[1].NormalToReturn(); }
 
 
-	KVector LFORWARD() { return m_Matrix.ROT.ArrVector[2]; }
-	KVector LRIGHT() { return m_Matrix.ROT.ArrVector[0]; }
-	KVector LUP() { return m_Matrix.ROT.ArrVector[1]; }
-	KVector LBACK() { return -m_Matrix.ROT.ArrVector[2]; }
-	KVector LLEFT() { return -m_Matrix.ROT.ArrVector[0]; }
-	KVector LDOWN() { return -m_Matrix.ROT.ArrVector[1]; }
+	KVector LFORWARD() { return m_Matrix.Offset.ArrVector[2]; }
+	KVector LRIGHT() { return m_Matrix.Offset.ArrVector[0]; }
+	KVector LUP() { return m_Matrix.Offset.ArrVector[1]; }
+	KVector LBACK() { return -m_Matrix.Offset.ArrVector[2]; }
+	KVector LLEFT() { return -m_Matrix.Offset.ArrVector[0]; }
+	KVector LDOWN() { return -m_Matrix.Offset.ArrVector[1]; }
 
 public:
 	void CalculateWorldScale()
@@ -338,25 +338,25 @@ public:
 	bool Col(KCollisionType _thisType, KCollisionType _otherType, KPTR<KTransform> t1);
 
 private:
-	static bool ColOBB2DToOBB2D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColOBB2DToSphere2D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColOBB2DToAABB2D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColSphere2DToOBB2D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColSphere2DToSphere2D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColSphere2DToAABB2D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColAABB2DToOBB2D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColAABB2DToSphere2D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColAABB2DToAABB2D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
+	static bool ColOBB2DToOBB2D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColOBB2DToSphere2D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColOBB2DToAABB2D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColSphere2DToOBB2D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColSphere2DToSphere2D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColSphere2DToAABB2D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColAABB2DToOBB2D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColAABB2DToSphere2D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColAABB2DToAABB2D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
 
-	static bool ColOBB3DToOBB3D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColOBB3DToSphere3D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColOBB3DToAABB3D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColSphere3DToOBB3D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColSphere3DToSphere3D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColSphere3DToAABB3D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColAABB3DToOBB3D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColAABB3DToSphere3D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
-	static bool ColAABB3DToAABB3D(const KPTR<KTransform>& _t0, const KPTR<KTransform>& t1);
+	static bool ColOBB3DToOBB3D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColOBB3DToSphere3D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColOBB3DToAABB3D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColSphere3DToOBB3D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColSphere3DToSphere3D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColSphere3DToAABB3D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColAABB3DToOBB3D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColAABB3DToSphere3D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
+	static bool ColAABB3DToAABB3D(KPTR<KTransform> _t0, KPTR<KTransform> t1);
 
 public:
 	DirectX::BoundingBox AABB2D() const;

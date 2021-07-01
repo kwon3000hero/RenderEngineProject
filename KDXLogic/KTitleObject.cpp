@@ -3,7 +3,7 @@
 #include "KLogicMath.h"
 #include "KLogicValue.h"
 
-KPTR<KCuttingRender> pRender = nullptr;
+KPTR<KCuttingRender> pRender = static_cast<KPTR<KCuttingRender>>(0);
 
 KTitleObject::KTitleObject() :m_progress(0.0f)
 {

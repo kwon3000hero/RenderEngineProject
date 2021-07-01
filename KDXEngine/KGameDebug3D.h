@@ -22,8 +22,8 @@ private:
 	{
 	public:
 		KDEBUG_DRAW_TYPE m_Type;
-		KCamera* Cam;
-		KTransform* Trans;
+		KWeakPTR<KCamera> Cam;
+		KWeakPTR<KTransform> Trans;
 		KVector Color;
 	};
 
@@ -92,7 +92,7 @@ private:
 public:
 	static void DebugText(const KGameString& _str, float _size, const KVector& _pos, const KVector& _color);
 	static void DebugDraw(KDEBUG_DRAW_TYPE _Type, KPTR<KTransform> _Ptr, KPTR<KCamera> _Cam);
-	static void DebugRect(KPTR<KTransform> _Ptr, KPTR<KCamera> _Cam = nullptr);
+	static void DebugRect(KPTR<KTransform> _Ptr, KPTR<KCamera> _Cam = static_cast<KPTR<KCamera>>(0));
 
 	static void DebugTexture(KPTR<KRenderTarget> _renderTarget, const KVector& _pos, const KVector& _size, const KVector& _color = KVector::ZERO);
 	static void DebugTexture(KPTR<KTexture> _renderTarget, const KVector& _pos, const KVector& _size, const KVector& _color = KVector::ZERO);

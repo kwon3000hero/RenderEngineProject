@@ -6,7 +6,7 @@ void KFrameAnimator::Init()
 {
 	m_Render = Actor()->GetComponent<KCuttingRender>();
 
-	if (nullptr == m_Render)
+	if (nullptr == m_Render.get())
 	{
 		AssertMsg(L"커팅 랜더러가 없습니다.");
 	}

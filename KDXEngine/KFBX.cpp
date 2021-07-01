@@ -618,7 +618,7 @@ void KFBX::CreateMesh()
 			indexBuffer->Create(m_FbxIndexContainer[fbxVertexId][fbxIndexId].size(), sizeof(UINT), &m_FbxIndexContainer[fbxVertexId][fbxIndexId][0], D3D11_USAGE::D3D11_USAGE_DEFAULT);
 			m_indexBufferContainer.push_back(indexBuffer);
 
-			KMesh* pMesh = new KMesh();
+			KPTR<KMesh> pMesh = new KMesh();
 			pMesh->AddVertexBuffer(vertexBuffer);
 			pMesh->AddIndexBuffer(indexBuffer);
 

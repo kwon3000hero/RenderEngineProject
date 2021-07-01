@@ -2,7 +2,7 @@
 #include "KCamera.h"
 #include "KLight.h"
 
-bool (*KTransform::ColFunc[(int)KCollisionType::MAX][(int)KCollisionType::MAX])(const KPTR<KTransform>& t0, const KPTR<KTransform>& t1) = { nullptr, };
+bool (*KTransform::ColFunc[(int)KCollisionType::MAX][(int)KCollisionType::MAX])(KPTR<KTransform> t0, KPTR<KTransform> t1) = { nullptr, };
 
 KTransform::Starter::Starter()
 {
@@ -40,13 +40,13 @@ KPTR<KTransform> KTransform::GetChild(int _index)
 
 void KTransform::Init()
 {
-	if (nullptr != Actor()->GetComponent<KTransform>())
+	if (nullptr != Actor()->GetComponent<KTransform>().get())
 	{
 		assert(false);
 	}
 
-	Actor()->SetTransform(this);
-	Scene()->PushTransform(this);
+	Actor()->SetTransform(KPTR<KTransform>(this));
+	Scene()->PushTransform(KPTR<KTransform>(this));
 }
 
 void KTransform::UpdateTransform()
@@ -108,7 +108,7 @@ void KTransform::UpdateTransform()
 
 bool KTransform::Col(KCollisionType _ThisType, KCollisionType _OtherType, KPTR<KTransform> _OtherTrans)
 {
-	return ColFunc[(int)_ThisType][(int)_OtherType](this, _OtherTrans);
+	return ColFunc[(int)_ThisType][(int)_OtherType](KPTR<KTransform>(this), _OtherTrans);
 }
 
 void KTransform::CalculateMatrixData()

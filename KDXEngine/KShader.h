@@ -40,7 +40,7 @@ public:
 
 class KRenderManager;
 class KRenderPlayer;
-class KShader// : public KGameReference
+class KShader//: public KGameReference
 {
 public:
 	friend KRenderManager;

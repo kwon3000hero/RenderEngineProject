@@ -29,12 +29,12 @@ protected:
 	KWeakPTR<KGameScene> m_Scene;
 
 protected:
-	void SetScene(KGameScene* _PTR)
+	void SetScene(KPTR<KGameScene> _PTR)
 	{
 		m_Scene = _PTR;
 	}
 public:
-	KGameScene* Scene()
+	KPTR<KGameScene> Scene()
 	{
 		return m_Scene;
 	}

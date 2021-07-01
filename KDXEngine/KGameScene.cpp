@@ -23,13 +23,13 @@ bool KGameScene::ZSORT(KPTR<KRenderManager>& _Left, KPTR<KRenderManager>& _Right
 }
 
 
-KPTR<KGameScene> KGameScene::m_CurrentScene = nullptr;
-KPTR<KGameScene> KGameScene::m_NextScene = nullptr;
+KPTR<KGameScene> KGameScene::m_CurrentScene = static_cast<KPTR<KGameScene>>(0);
+KPTR<KGameScene> KGameScene::m_NextScene = static_cast<KPTR<KGameScene>>(0);
 
 void KGameScene::ChangeScene(const KGameString& _Name)
 {
 	m_NextScene = Find(_Name);
-	if (nullptr == m_NextScene)
+	if (nullptr == m_NextScene.get())
 	{
 		assert(false);
 	}
@@ -37,9 +37,9 @@ void KGameScene::ChangeScene(const KGameString& _Name)
 
 void KGameScene::Progress()
 {
-	if (nullptr != m_NextScene)
+	if (nullptr != m_NextScene.get())
 	{
-		if (nullptr == m_CurrentScene)
+		if (nullptr == m_CurrentScene.get())
 		{
 			m_CurrentScene = m_NextScene;
 			m_NextScene = nullptr;
@@ -51,7 +51,7 @@ void KGameScene::Progress()
 		}
 	}
 
-	if (nullptr == m_CurrentScene)
+	if (nullptr == m_CurrentScene.get())
 	{
 		assert(false);
 	}
@@ -71,7 +71,7 @@ KPTR<KGameScene> KGameScene::CurrentScene()
 	return m_CurrentScene;
 }
 
-KCamera* KGameScene::MainCam()
+KPTR<KCamera> KGameScene::MainCam()
 {
 	return m_CurrentScene->m_MainCam;
 }
@@ -90,8 +90,8 @@ KGameScene::~KGameScene()
 
 KPTR<KGameActor> KGameScene::CreateActor()
 {
-	KGameActor* NewActor = new KGameActor();
-	NewActor->SetScene(this);
+	KPTR<KGameActor> NewActor = new KGameActor();
+	NewActor->SetScene(KPTR<KGameScene>(this));
 	NewActor->CreateComponent<KTransform>();
 	m_ActorList.push_back(NewActor);
 	return NewActor;
@@ -445,7 +445,7 @@ void KGameScene::Render()
 	KGameDevice::MainGameDevice()->DeviceRenderEnd();
 }
 
-void KGameScene::PushCamera(KCamera* _pCam)
+void KGameScene::PushCamera(KPTR<KCamera> _pCam)
 {
 	if (m_cameraGroupContainer.end() == m_cameraGroupContainer.find(_pCam->Order()))
 	{
@@ -460,7 +460,7 @@ void KGameScene::PushCamera(KCamera* _pCam)
 	}
 }
 
-void KGameScene::PushLightManager(KLightManager* _pLight)
+void KGameScene::PushLightManager(KPTR<KLightManager> _pLight)
 {
 	for (auto& Var : _pLight->m_ViewGroup)
 	{
@@ -482,7 +482,7 @@ void KGameScene::PushLightManager(KLightManager* _pLight)
 	}
 }
 
-void KGameScene::PushRenderManager(KRenderManager* _pRenderManager)
+void KGameScene::PushRenderManager(KPTR<KRenderManager> _pRenderManager)
 {
 	if (m_RenderManagerGroupContainer.end() == m_RenderManagerGroupContainer.find(_pRenderManager->Order()))
 	{
@@ -495,7 +495,7 @@ void KGameScene::PushRenderManager(KRenderManager* _pRenderManager)
 
 ///////////////////////////////// Col
 
-void KGameScene::PushCol(KCollision* _Col)
+void KGameScene::PushCol(KPTR<KCollision> _Col)
 {
 	if (m_AllCol.end() == m_AllCol.find(_Col->Order()))
 	{

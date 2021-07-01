@@ -12,12 +12,12 @@ class KPixelShader;
 class KRenderPipeline : public KGameResource<KRenderPipeline>
 {
 private:
-	static KVertexShader* m_pCurrentVertexShader;
-	static KPixelShader* m_pCurrentPixelShader;
+	static KPTR<KVertexShader> m_pCurrentVertexShader;
+	static KPTR<KPixelShader> m_pCurrentPixelShader;
 
-	static KRasterizer* m_pCurrentRasterizer;
-	static KDepthStencil* m_pCurrentDepthStencil;
-	static KBlend* m_pCurrentBlend;
+	static KPTR<KRasterizer> m_pCurrentRasterizer;
+	static KPTR<KDepthStencil> m_pCurrentDepthStencil;
+	static KPTR<KBlend> m_pCurrentBlend;
 
 public:
 	static void Reset();
@@ -50,7 +50,7 @@ public:
 public:
 	static KPTR<KRenderPipeline> Create(const KGameString& _Name)
 	{
-		KRenderPipeline* pNewRes = new KRenderPipeline();
+		KPTR<KRenderPipeline> pNewRes = new KRenderPipeline();
 		pNewRes->SetName(_Name);
 		pNewRes->InsertResource();
 

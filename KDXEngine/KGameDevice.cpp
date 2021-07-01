@@ -21,7 +21,7 @@ KPTR<KGameDevice> KGameDevice::Find(const KGameString& _DeviceName)
 {
 	if (m_AllDevice.end() == m_AllDevice.find(_DeviceName))
 	{
-		return nullptr;
+		return static_cast<KPTR<KGameDevice>>(0);
 	}
 
 	return m_AllDevice[_DeviceName];
@@ -29,7 +29,7 @@ KPTR<KGameDevice> KGameDevice::Find(const KGameString& _DeviceName)
 
 void KGameDevice::Create(const KGameString& _WindowName, KVector _ClearColor)
 {
-	if (nullptr != Find(_WindowName))
+	if (nullptr != Find(_WindowName).get())
 	{
 		assert(false);
 	}
@@ -55,7 +55,7 @@ KGameDevice::~KGameDevice()
 
 void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 {
-	if (nullptr == _Window)
+	if (nullptr == _Window.get())
 	{
 		assert(false);
 	}

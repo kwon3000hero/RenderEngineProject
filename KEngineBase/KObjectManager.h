@@ -40,7 +40,7 @@ public:
 		ObjectType* pNewObject = new ObjectType(_Args...);
 		m_objectList.push_back(pNewObject);
 
-		if (nullptr == m_MainObject)
+		if (nullptr == m_MainObject.get())
 		{
 			m_MainObject = pNewObject;
 		}

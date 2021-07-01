@@ -13,7 +13,7 @@ void KMesh::AddVertexBuffer(const KGameString& _vertexBufferName)
 {
 	KPTR<KVertexBuffer> VBPTR = KVertexBuffer::Find(_vertexBufferName);
 
-	if (nullptr == VBPTR)
+	if (nullptr == VBPTR.get())
 	{
 		AssertMsg(L"존재하지 않는 버텍스 버퍼를 사용하려고 했습니다.");
 	}
@@ -23,7 +23,7 @@ void KMesh::AddVertexBuffer(const KGameString& _vertexBufferName)
 
 void KMesh::AddVertexBuffer(const KPTR<KVertexBuffer>& _vertexBuffer)
 {
-	if (nullptr == _vertexBuffer)
+	if (nullptr == _vertexBuffer.get())
 	{
 		AssertMsg(L"if (nullptr == _vertexBuffer)");
 	}
@@ -35,7 +35,7 @@ void KMesh::AddIndexBuffer(const KGameString& _indexBufferName)
 {
 	KPTR<KIndexBuffer> indexBufferPtr = KIndexBuffer::Find(_indexBufferName);
 
-	if (nullptr == indexBufferPtr)
+	if (nullptr == indexBufferPtr.get())
 	{
 		AssertMsg(L"존재하지 않는 인덱스 버퍼를 사용하려고 했습니다.");
 	}
@@ -45,7 +45,7 @@ void KMesh::AddIndexBuffer(const KGameString& _indexBufferName)
 
 void KMesh::AddIndexBuffer(const KPTR<KIndexBuffer>& _indexBuffer)
 {
-	if (nullptr == _indexBuffer)
+	if (nullptr == _indexBuffer.get())
 	{
 		AssertMsg(L"if (nullptr == _indexBuffer)");
 	}

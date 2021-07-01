@@ -28,7 +28,7 @@ void KFreeCamera::FollowTransform(KPTR<KTransform> _FollowTransform, KVector _Fo
 void KFreeCamera::Init()
 {
 	// 트랜드 폼도 있고
-	if (nullptr == Actor()->GetComponent<KCamera>())
+	if (nullptr == Actor()->GetComponent<KCamera>().get())
 	{
 		assert(false);
 	}
@@ -54,7 +54,7 @@ void KFreeCamera::Init()
 
 void KFreeCamera::Update()
 {
-	if (nullptr == m_FollowTransform)
+	if (nullptr == m_FollowTransform.get())
 	{
 		FreeUpdate();
 	}
@@ -137,7 +137,7 @@ void KFreeCamera::FreeUpdate()
 
 void KFreeCamera::FollowUpdate()
 {
-	if (nullptr == m_FollowTransform)
+	if (nullptr == m_FollowTransform.get())
 	{
 		AssertMsg(L"NULLPTR인 대상을 쫓을수는 없습니다.");
 	}

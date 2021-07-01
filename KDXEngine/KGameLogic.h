@@ -10,6 +10,6 @@ class KGameLogic : public KActorGameComponent
 {
 public:
 	KPTR<KGameActor> CreateObject(const KGameString& _Name = L"");
-	KTransform* Transform() { return Actor()->Transform(); };
+	KPTR<KTransform> Transform() { return Actor()->Transform(); };
 };
 

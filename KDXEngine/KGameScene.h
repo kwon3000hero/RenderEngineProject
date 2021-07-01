@@ -30,12 +30,12 @@ private:
 
 public:
 	static KPTR<KGameScene> CurrentScene();
-	static KCamera* MainCam();
+	static KPTR<KCamera> MainCam();
 	static void ChangeScene(const KGameString& _Name);
 	static void Progress();
 
 private:
-	KCamera* m_MainCam;
+	KWeakPTR<KCamera> m_MainCam;
 	std::list<KPTR<KGameActor>> m_ActorList;
 
 
@@ -98,9 +98,9 @@ private:
 	static bool LightSort(KPTR<KLightManager>& _Left, KPTR<KLightManager>& _Right);
 	static bool ZSORT(KPTR<KRenderManager>& _Left, KPTR<KRenderManager>& _Right);
 
-	void PushRenderManager(KRenderManager* _Render);
-	void PushCamera(KCamera* _Render);
-	void PushLightManager(KLightManager* _pLight);
+	void PushRenderManager(KPTR<KRenderManager> _Render);
+	void PushCamera(KPTR<KCamera> _Render);
+	void PushLightManager(KPTR<KLightManager> _pLight);
 
 private:
 	class KColGroup : public KGameReference
@@ -115,7 +115,7 @@ private:
 
 public:
 	void LinkCollision(int Left, int Right);
-	void PushCol(KCollision* _Render);
+	void PushCol(KPTR<KCollision> _Render);
 
 public:
 	KGameScene();

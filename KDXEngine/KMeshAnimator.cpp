@@ -108,7 +108,7 @@ void KMeshAnimator::KMeshAnimation::PrevUpdate()
 
 void KMeshAnimator::SetCurrentFrame(int _frame)
 {
-	if (nullptr != m_CurrentAnimation)
+	if (nullptr != m_CurrentAnimation.get())
 	{
 		m_CurrentAnimation->m_CurrentFrame = _frame;
 		m_CurrentAnimation->m_NextFrame = _frame + 1;
@@ -119,14 +119,14 @@ void KMeshAnimator::SetCurrentFrame(int _frame)
 
 void KMeshAnimator::ChangeAnimation(const KGameString& _ani)
 {
-	if (nullptr != m_CurrentAnimation)
+	if (nullptr != m_CurrentAnimation.get())
 	{
 		m_CurrentAnimation->RenderPlayerOff();
 	}
 
 	m_CurrentAnimation = FindAnimation(_ani);
 
-	if (nullptr == m_CurrentAnimation)
+	if (nullptr == m_CurrentAnimation.get())
 	{
 		AssertMsg(_ani + L" 존재하지 않는 애니메이션으로 체인지 하려고 했습니다.");
 	}
@@ -138,7 +138,7 @@ std::vector<KPTR<KRenderPlayer>> KMeshAnimator::CreateAnimation(const KGAMEDIR& 
 {
 	KPTR<KFBX> fbx = KFBX::Find(_fbxName);
 
-	if (nullptr == fbx)
+	if (nullptr == fbx.get())
 	{
 		AssertMsg(L"존재하지 않는 fbx에서 애니메이션을 만들려고 했습니다.");
 	}
@@ -150,14 +150,14 @@ std::vector<KPTR<KRenderPlayer>> KMeshAnimator::CreateAnimation(const KGAMEDIR& 
 		AssertMsg(_takeName + L" 존재하지 않는 애니메이션 에서 애니메이션을 만들려고 했습니다.");
 	}
 
-	if (nullptr != FindAnimation(_aniName))
+	if (nullptr != FindAnimation(_aniName).get())
 	{
 		AssertMsg(_takeName + L", " + _aniName + L" 이미 존재하는 애니메이션을 또 만들려고 했습니다.");
 	}
 
 	KPTR<KMeshAnimation> newAnimation = new KMeshAnimation();
 
-	newAnimation->m_pFbx = fbx;
+	newAnimation->m_pFbx = fbx.get();
 	newAnimation->m_pCurrentAnimationData = pAnimationData;
 	newAnimation->m_animationName = _aniName;
 	newAnimation->m_Loop = _loop;
@@ -225,7 +225,7 @@ void KMeshAnimator::Init()
 {
 	m_RenderManager = Actor()->GetComponent<KRenderManager>();
 
-	if (nullptr == m_RenderManager)
+	if (nullptr == m_RenderManager.get())
 	{
 		AssertMsg(L"랜더러가 없으면 3D애니메이션을 만들수 없습니다.");
 	}
@@ -233,7 +233,7 @@ void KMeshAnimator::Init()
 
 void KMeshAnimator::Update()
 {
-	if (nullptr == m_CurrentAnimation)
+	if (nullptr == m_CurrentAnimation.get())
 	{
 		return;
 	}
@@ -248,7 +248,7 @@ void KMeshAnimator::Update()
 
 void KMeshAnimator::PrevUpdate()
 {
-	if (nullptr == m_CurrentAnimation)
+	if (nullptr == m_CurrentAnimation.get())
 	{
 		AssertMsg(L"애니메이션이 지정되지 않았습니다.");
 	}

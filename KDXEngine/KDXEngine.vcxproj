@@ -62,7 +62,7 @@
     <ClCompile Include="KShader.cpp" />
     <ClCompile Include="KTexture.cpp" />
     <ClCompile Include="KTransform.cpp" />
-    <ClCompile Include="KTransColCheck.cpp" />
+    <ClCompile Include="KTransformCollisionCheck.cpp" />
     <ClCompile Include="KUpdateBase.cpp" />
     <ClCompile Include="KVertexBuffer.cpp" />
     <ClCompile Include="KVertexShader.cpp" />

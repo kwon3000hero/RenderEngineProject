@@ -26,7 +26,7 @@ public:
 		m_SyncObject();
 		KPTR<KThread> ptr = Find(_name);
 
-		if (nullptr == ptr)
+		if (nullptr == ptr.get())
 		{
 			AssertMsg(L"존재하지 않는 쓰레드로 콜백 진행 불가.");
 		}
@@ -40,7 +40,7 @@ public:
 		m_SyncObject();
 		KPTR<KThread> ptr = Find(_name);
 
-		if (nullptr == ptr)
+		if (nullptr == ptr.get())
 		{
 			AssertMsg(L"존재하지 않는 쓰레드로 콜백 진행 불가.0");
 		}

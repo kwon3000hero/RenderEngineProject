@@ -140,7 +140,7 @@ void KGameDebug3D::DebugDraw(KDEBUG_DRAW_TYPE _Type, KPTR<KTransform> _Ptr, KPTR
 	m_Info[DebugSize].m_Type = _Type;
 	m_Info[DebugSize].Trans = _Ptr;
 
-	if (nullptr != _Cam)
+	if (nullptr != _Cam.get())
 	{
 		m_Info[DebugSize].Cam = _Cam;
 	}

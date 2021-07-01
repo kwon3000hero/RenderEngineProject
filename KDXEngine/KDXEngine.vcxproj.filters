@@ -143,7 +143,7 @@
     <ClCompile Include="KCuttingTexture.cpp">
       <Filter>Resource\Sub\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="KTransColCheck.cpp" />
+    <ClCompile Include="KTransformCollisionCheck.cpp" />
     <ClCompile Include="KGameDeviceBlendInit.cpp">
       <Filter>Device</Filter>
     </ClCompile>

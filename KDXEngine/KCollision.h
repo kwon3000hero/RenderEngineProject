@@ -13,9 +13,9 @@ private:
 	std::unordered_set<KCollision*> m_OtherCol;
 
 public:
-	std::list<std::function<void(KCollision*, KCollision*)>> m_EnterFunc;
-	std::list<std::function<void(KCollision*, KCollision*)>> m_StayFunc;
-	std::list<std::function<void(KCollision*, KCollision*)>> m_ExitFunc;
+	std::list<std::function<void(KPTR<KCollision>, KPTR<KCollision>)>> m_EnterFunc;
+	std::list<std::function<void(KPTR<KCollision>, KPTR<KCollision>)>> m_StayFunc;
+	std::list<std::function<void(KPTR<KCollision>, KPTR<KCollision>)>> m_ExitFunc;
 
 	bool IsDeath() override
 	{
@@ -31,7 +31,7 @@ public:
 public:
 
 	template<typename T>
-	void EnterFunc(void(T::* _Func)(KCollision*, KCollision*), T* _Obj)
+	void EnterFunc(void(T::* _Func)(KPTR<KCollision>, KPTR<KCollision>), T* _Obj)
 	{
 		if (nullptr == _Func)
 		{
@@ -41,7 +41,7 @@ public:
 		m_EnterFunc.push_back(std::bind(_Func, _Obj, std::placeholders::_1, std::placeholders::_2));
 	}
 
-	void EnterFunc(void(*_Func)(KCollision*, KCollision*))
+	void EnterFunc(void(*_Func)(KPTR<KCollision>, KPTR<KCollision>))
 	{
 		if (nullptr == _Func)
 		{
@@ -52,7 +52,7 @@ public:
 	}
 
 	template<typename T>
-	void StayFunc(void(T::* _Func)(KCollision*, KCollision*), T* _Obj)
+	void StayFunc(void(T::* _Func)(KPTR<KCollision>, KPTR<KCollision>), T* _Obj)
 	{
 		if (nullptr == _Func)
 		{
@@ -62,7 +62,7 @@ public:
 		m_StayFunc.push_back(std::bind(_Func, _Obj, std::placeholders::_1, std::placeholders::_2));
 	}
 
-	void StayFunc(void(*_Func)(KCollision*, KCollision*))
+	void StayFunc(void(*_Func)(KPTR<KCollision>, KPTR<KCollision>))
 	{
 		if (nullptr == _Func)
 		{
@@ -74,7 +74,7 @@ public:
 
 
 	template<typename T>
-	void ExitFunc(void(T::* _Func)(KCollision*, KCollision*), T* _Obj)
+	void ExitFunc(void(T::* _Func)(KPTR<KCollision>, KPTR<KCollision>), T* _Obj)
 	{
 		if (nullptr == _Func)
 		{
@@ -84,7 +84,7 @@ public:
 		m_ExitFunc.push_back(std::bind(_Func, _Obj, std::placeholders::_1, std::placeholders::_2));
 	}
 
-	void ExitFunc(void(*_Func)(KCollision*, KCollision*))
+	void ExitFunc(void(*_Func)(KPTR<KCollision>, KPTR<KCollision>))
 	{
 		if (nullptr == _Func)
 		{
@@ -104,8 +104,8 @@ public:
 private:
 	void ColCheck(KPTR<KCollision> _OtherCol);
 
-	void ColEnter(KCollision* _Other);
-	void ColStay(KCollision* _Other);
-	void ColExit(KCollision* _Other);
+	void ColEnter(KPTR<KCollision> _Other);
+	void ColStay(KPTR<KCollision> _Other);
+	void ColExit(KPTR<KCollision> _Other);
 };
 

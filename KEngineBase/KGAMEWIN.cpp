@@ -1,7 +1,7 @@
 #include "KGAMEWIN.h"
 
 bool KGameWindow::m_bProgress = true;
-KPTR<KGameWindow> KGameWindow::m_MainWindow = nullptr;
+KPTR<KGameWindow> KGameWindow::m_MainWindow = static_cast<KPTR<KGameWindow>>(0);
 
 std::set<KGameString> KGameWindow::m_classNameContainer;
 std::map<KGameString, KPTR<KGameWindow>> KGameWindow::m_winContainer;
@@ -91,7 +91,7 @@ KPTR<KGameWindow> KGameWindow::CreateWin(const wchar_t* title, const wchar_t* cl
 		BOOM;
 	}
 
-	KGameWindow* pWin = new KGameWindow();
+	KPTR<KGameWindow> pWin = new KGameWindow();
 
 	pWin->m_HWND = CreateWindow(className, title, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, nullptr, nullptr);
@@ -100,15 +100,15 @@ KPTR<KGameWindow> KGameWindow::CreateWin(const wchar_t* title, const wchar_t* cl
 
 	if (nullptr == pWin->m_HWND || nullptr == pWin->m_dc)
 	{
-		return nullptr;
+		return static_cast<KPTR<KGameWindow>>(0);
 	}
 
 	pWin->Show();
 	pWin->Update();
 
-	m_winContainer.insert(std::map<std::wstring, KGameWindow*>::value_type(title, pWin));
+	m_winContainer.insert(std::map<std::wstring, KPTR<KGameWindow>>::value_type(title, pWin));
 
-	if (nullptr == m_MainWindow)
+	if (nullptr == m_MainWindow.get())
 	{
 		m_MainWindow = pWin;
 	}

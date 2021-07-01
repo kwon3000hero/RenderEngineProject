@@ -21,7 +21,7 @@ void KRenderTarget::Create(KVector _Size, KVector _Color, DXGI_FORMAT _Fmt, UINT
 
 	m_ClearColor = _Color;
 
-	KTexture* pTexture = new KTexture();
+	KPTR<KTexture> pTexture = new KTexture();
 	pTexture->Create(_Size, _Fmt, _BindFlag, D3D11_USAGE::D3D11_USAGE_DEFAULT);
 	m_RenderTargetTextureContainer.push_back(pTexture);
 	m_RenderTargetViewContainer.push_back(pTexture->m_pRTV);
@@ -36,7 +36,7 @@ void KRenderTarget::Create(ID3D11Texture2D* _pTEX, KVector _Color, UINT _BindFla
 	}
 
 	m_ClearColor = _Color;
-	KTexture* pTexture = new KTexture();
+	KPTR<KTexture> pTexture = new KTexture();
 	pTexture->Create(_pTEX, _BindFlag);
 	m_RenderTargetTextureContainer.push_back(pTexture);
 	m_RenderTargetViewContainer.push_back(pTexture->m_pRTV);
@@ -50,7 +50,7 @@ void KRenderTarget::Clear(bool _isEnableDepth/* = true*/)
 		KGameDevice::MainContext()->ClearRenderTargetView(renderTarget, m_ClearColor.Arr);
 	}
 
-	if (nullptr != m_Depth && true == _isEnableDepth)
+	if (nullptr != m_Depth.get() && true == _isEnableDepth)
 	{
 		m_Depth->Clear();
 	}
@@ -82,7 +82,7 @@ void KRenderTarget::Setting()
 {
 	ID3D11DepthStencilView* DSV = nullptr;
 
-	if (nullptr != m_Depth)
+	if (nullptr != m_Depth.get())
 	{
 		DSV = m_Depth->DSV();
 	}
@@ -96,7 +96,7 @@ void KRenderTarget::Setting(unsigned int _index)
 {
 	ID3D11DepthStencilView* DSV = nullptr;
 
-	if (nullptr != m_Depth)
+	if (nullptr != m_Depth.get())
 	{
 		DSV = m_Depth->DSV();
 	}

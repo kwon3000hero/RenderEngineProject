@@ -3,7 +3,7 @@
 
 void KSceneGameComponent::StartComData(void* Ptr)
 {
-	KGameScene* PTR = (KGameScene*)Ptr;
+	KPTR<KGameScene> PTR(reinterpret_cast<KGameScene*>(Ptr));
 
 	if (false == PTR->Equal<KGameScene>())
 	{
@@ -16,7 +16,7 @@ void KSceneGameComponent::StartComData(void* Ptr)
 
 void KActorGameComponent::StartComData(void* Ptr)
 {
-	KGameActor* PTR = (KGameActor*)Ptr;
+	KPTR<KGameActor> PTR(reinterpret_cast<KGameActor*>(Ptr));
 
 	if (false == PTR->Equal<KGameActor>())
 	{

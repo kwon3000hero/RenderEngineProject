@@ -21,8 +21,8 @@ public:
 	void Update() override;
 
 public:
-	void PlayerColFunc(KCollision* _this, KCollision* _Other);
-	void PlayerColFunc2(KCollision* _this, KCollision* _Other);
+	void PlayerColFunc(KPTR<KCollision> _this, KPTR<KCollision> _Other);
+	void PlayerColFunc2(KPTR<KCollision> _this, KPTR<KCollision> _Other);
 
 };
 

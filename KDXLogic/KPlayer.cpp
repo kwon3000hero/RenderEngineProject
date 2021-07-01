@@ -74,12 +74,12 @@ void KPlayer::Update()
 
 }
 
-void KPlayer::PlayerColFunc(KCollision* _this, KCollision* _Other) 
+void KPlayer::PlayerColFunc(KPTR<KCollision> _this, KPTR<KCollision> _Other) 
 {
 
 }
 
-void KPlayer::PlayerColFunc2(KCollision* _this, KCollision* _Other) 
+void KPlayer::PlayerColFunc2(KPTR<KCollision> _this, KPTR<KCollision> _Other) 
 {
 	_Other->Actor()->Death();
 }

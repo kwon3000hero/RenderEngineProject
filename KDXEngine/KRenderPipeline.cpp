@@ -6,11 +6,11 @@
 #include "KBlend.h"
 
 
-KVertexShader* KRenderPipeline::m_pCurrentVertexShader;
-KPixelShader* KRenderPipeline::m_pCurrentPixelShader;
-KRasterizer* KRenderPipeline::m_pCurrentRasterizer;
-KDepthStencil* KRenderPipeline::m_pCurrentDepthStencil;
-KBlend* KRenderPipeline::m_pCurrentBlend;
+KPTR<KVertexShader> KRenderPipeline::m_pCurrentVertexShader;
+KPTR<KPixelShader> KRenderPipeline::m_pCurrentPixelShader;
+KPTR<KRasterizer> KRenderPipeline::m_pCurrentRasterizer;
+KPTR<KDepthStencil> KRenderPipeline::m_pCurrentDepthStencil;
+KPTR<KBlend> KRenderPipeline::m_pCurrentBlend;
 
 void KRenderPipeline::Reset()
 {
@@ -58,7 +58,7 @@ void KRenderPipeline::SetVertexShader(const KGameString& _Name)
 {
 	m_vertexShader = KVertexShader::Find(_Name);
 
-	if (nullptr == m_vertexShader)
+	if (nullptr == m_vertexShader.get())
 	{
 		AssertMsg(L"버텍스 쉐이더가 존재하지 않습니다. = " + _Name);
 	}
@@ -70,12 +70,12 @@ void KRenderPipeline::SetPixelShader(const KGameString& _Name)
 {
 	m_pixelShader = KPixelShader::Find(_Name);
 
-	if (nullptr == m_pixelShader)
+	if (nullptr == m_pixelShader.get())
 	{
 		AssertMsg(L"픽셀 쉐이더가 존재하지 않습니다. = " + _Name);
 	}
 
-	m_shaderContainer.push_back(m_pixelShader);
+	m_shaderContainer.push_back(m_pixelShader.get());
 }
 
 
@@ -84,7 +84,7 @@ void KRenderPipeline::SetRasterizer(const KGameString& _Name)
 {
 	m_rasterizer = KRasterizer::Find(_Name);
 
-	if (nullptr == m_rasterizer)
+	if (nullptr == m_rasterizer.get())
 	{
 		AssertMsg(L"레스터 라이저가 존재하지 않습니다. = " + _Name);
 	}
@@ -95,7 +95,7 @@ void KRenderPipeline::SetDepthStencil(const KGameString& _Name)
 {
 	m_depthStencil = KDepthStencil::Find(_Name);
 
-	if (nullptr == m_depthStencil)
+	if (nullptr == m_depthStencil.get())
 	{
 		AssertMsg(L"뎁스스텐실 설정이 존재하지 않습니다. = " + _Name);
 	}
@@ -105,7 +105,7 @@ void KRenderPipeline::SetBlend(const KGameString& _Name)
 {
 	m_blend = KBlend::Find(_Name);
 
-	if (nullptr == m_blend)
+	if (nullptr == m_blend.get())
 	{
 		AssertMsg(L"블랜드가 존재하지 않습니다. = " + _Name);
 	}
@@ -122,32 +122,32 @@ KPTR<KPixelShader> KRenderPipeline::PixelShader()
 void KRenderPipeline::Create() {}
 void KRenderPipeline::Setting()
 {
-	if (nullptr != m_vertexShader && m_vertexShader != m_pCurrentVertexShader)
+	if (nullptr != m_vertexShader.get() && m_vertexShader != m_pCurrentVertexShader)
 	{
 		m_vertexShader->Setting();
 		m_pCurrentVertexShader = m_vertexShader;
 	}
 
-	if (nullptr != m_pixelShader && m_pixelShader != m_pCurrentPixelShader)
+	if (nullptr != m_pixelShader.get() && m_pixelShader != m_pCurrentPixelShader)
 	{
 		m_pixelShader->Setting();
 		m_pCurrentPixelShader = m_pixelShader;
 	}
 
 
-	if (nullptr != m_rasterizer && m_rasterizer != m_pCurrentRasterizer)
+	if (nullptr != m_rasterizer.get() && m_rasterizer != m_pCurrentRasterizer)
 	{
 		m_rasterizer->Setting();
 		m_pCurrentRasterizer = m_rasterizer;
 	}
 
-	if (nullptr != m_depthStencil && m_depthStencil != m_pCurrentDepthStencil)
+	if (nullptr != m_depthStencil.get() && m_depthStencil != m_pCurrentDepthStencil)
 	{
 		m_depthStencil->Setting();
 		m_pCurrentDepthStencil = m_depthStencil;
 	}
 
-	if (nullptr != m_blend && m_blend != m_pCurrentBlend)
+	if (nullptr != m_blend.get() && m_blend != m_pCurrentBlend)
 	{
 		m_blend->Setting();
 		m_pCurrentBlend = m_blend;

@@ -15,7 +15,7 @@ struct LightData;
 class KPostEffect : public KGameReference
 {
 private:
-	KCamera* m_pCamera;
+	KPTR<KCamera> m_pCamera;
 
 protected:
 	KPTR<KRenderPlayer> m_RenderPlayer;
@@ -25,7 +25,7 @@ public:
 	friend KCamera;
 
 public:
-	KCamera* CameraPtr()
+	KPTR<KCamera> CameraPtr()
 	{
 		return m_pCamera;
 	}

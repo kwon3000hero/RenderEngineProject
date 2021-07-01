@@ -28,7 +28,7 @@ public:
 
 private:
 	KVector m_CutData;
-	KRenderPlayer* m_RD;
+	KPTR<KRenderPlayer> m_RD;
 	KPTR<KCuttingTexture> m_Tex;
 	TextureRenderData DATA;
 	KVector m_fadeProgress;

@@ -24,7 +24,7 @@ void UserMeshLoading(KThread* PTR)
 	Dir.MoveParent(L"KCM3D");
 	Dir.Move(L"RES");
 	Dir.Move(L"Mesh");
-	
+
 
 
 	if (true == KGAMEPATH::IsExist(Dir.FilePath(UserStr)))
@@ -42,8 +42,8 @@ void UserMeshLoading(KThread* PTR)
 
 void TitleCom::Init()
 {
-	KPTR<KThread> Thread = KThread::Find(L"USERMESHLOADING");
-	if (nullptr != Thread)
+	KPTR<KThread> Thread(KThread::Find(L"USERMESHLOADING"));
+	if (nullptr != Thread.get())
 	{
 		Thread->Start(UserMeshLoading);
 		return;
@@ -60,9 +60,10 @@ void TitleCom::PrevUpdate()
 {
 	if (true == bIsLoadFbx)
 	{
-		KPTR<KFBX> FBX = KFBX::Find(Str);
+		KPTR<KFBX> FBX;
+		FBX = KFBX::Find(Str);
 
-		if (nullptr == FBX)
+		if (nullptr == FBX.get())
 		{
 			return;
 		}

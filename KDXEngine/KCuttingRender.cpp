@@ -76,7 +76,7 @@ void KCuttingRender::SetFadeProgress(float _progress)
 
 void KCuttingRender::CutIndex(size_t _Index)
 {
-	if (nullptr == m_Tex)
+	if (nullptr == m_Tex.get())
 	{
 		AssertMsg(L"컷팅 텍스처가 세팅되지 않았습니다.");
 	}

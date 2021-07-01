@@ -15,7 +15,6 @@ public:
 	friend KGameComponentManager;
 	void StartData() {}
 
-
 public:
 	int Order()
 	{
@@ -27,8 +26,7 @@ public:
 		m_Order = _Order;
 	}
 
-private:
-	virtual void StartComData(void* Ptr) = 0;
+	virtual void StartComData(void* Ptr) PURE;	
 
 public:
 	KGameComponent() : m_Order(0)
@@ -50,7 +48,7 @@ public:
 	void StartComData(void* Ptr) override;
 
 protected:
-	void SetScene(KGameScene* _PTR)
+	void SetScene(KPTR<KGameScene> _PTR)
 	{
 		m_Scene = _PTR;
 	}
@@ -83,7 +81,7 @@ public:
 	void StartComData(void* Ptr) override;
 
 private:
-	void SetActor(KGameActor* _pActor)
+	void SetActor(KPTR<KGameActor> _pActor)
 	{
 		m_Actor = _pActor;
 	}
