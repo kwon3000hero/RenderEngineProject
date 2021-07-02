@@ -50,13 +50,13 @@ void KCollision::ColExit(KPTR<KCollision> _Other)
 
 void KCollision::ColCheck(KPTR<KCollision> _OtherCol)
 {
-	if (true == Col(m_Type, _OtherCol->m_Type, _OtherCol))
+	if (true == Col(m_Type, _OtherCol->m_Type, static_cast<KPTR<KTransform>>(_OtherCol.get())))
 	{
-		if (m_OtherCol.end() == m_OtherCol.find(_OtherCol))
+		if (m_OtherCol.end() == m_OtherCol.find(_OtherCol.get()))
 		{
 			// 충돌후
 			_OtherCol->m_OtherCol.insert(this);
-			m_OtherCol.insert(_OtherCol);
+			m_OtherCol.insert(_OtherCol.get());
 
 			ColEnter(_OtherCol);
 			_OtherCol->ColEnter(this);
@@ -70,12 +70,12 @@ void KCollision::ColCheck(KPTR<KCollision> _OtherCol)
 	else
 	{
 		// 충돌중
-		if (m_OtherCol.end() != m_OtherCol.find(_OtherCol))
+		if (m_OtherCol.end() != m_OtherCol.find(_OtherCol.get()))
 		{
 			ColExit(_OtherCol);
 			_OtherCol->ColExit(this);
 
-			m_OtherCol.erase(_OtherCol);
+			m_OtherCol.erase(_OtherCol.get());
 			_OtherCol->m_OtherCol.erase(this);
 			// 충돌 끝
 		}

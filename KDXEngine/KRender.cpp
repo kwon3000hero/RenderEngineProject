@@ -272,7 +272,7 @@ void KRenderPlayer::ShadowOn()
 void KRenderPlayer::ShadowRender()
 {
 	SetRenderConstantBuffer(L"TRANSFORMDATA");
-	if (true != m_RenderOption[static_cast<int>(RenderOption::Animation)])
+	if (false == m_RenderOption[static_cast<int>(RenderOption::Animation)])
 	{
 		KPTR<KRenderPipeline> RPL = KRenderPipeline::Find(L"SHADOW");
 		RPL->Setting();

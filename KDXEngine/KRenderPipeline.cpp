@@ -63,7 +63,7 @@ void KRenderPipeline::SetVertexShader(const KGameString& _Name)
 		AssertMsg(L"버텍스 쉐이더가 존재하지 않습니다. = " + _Name);
 	}
 
-	m_shaderContainer.push_back(m_vertexShader);
+	m_shaderContainer.push_back(m_vertexShader.get());
 
 }
 void KRenderPipeline::SetPixelShader(const KGameString& _Name)

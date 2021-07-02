@@ -59,17 +59,6 @@ public:
 		return m_pType;
 	}
 
-	operator PTRTYPE* ()
-	{
-		return m_pType;
-	}
-
-	template<typename OtherType>
-	operator KPTR<OtherType>()
-	{
-		return m_pType;
-	}
-
 	KPTR& operator=(PTRTYPE* _Ptr)
 	{
 		if (m_pType == _Ptr)

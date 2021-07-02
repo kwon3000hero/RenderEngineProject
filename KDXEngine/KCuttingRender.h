@@ -1,7 +1,7 @@
 #pragma once
 #include "KRender.h"
 
-enum class SMPOP
+enum class SamplerOption
 {
 	SO_POINT,
 	SO_LINER,
@@ -24,7 +24,7 @@ class KCuttingTexture;
 class KCuttingRender : public KRenderManager
 {
 public:
-	static SMPOP DEFOP;
+	static SamplerOption DEFOP;
 
 private:
 	KVector m_CutData;
@@ -37,7 +37,7 @@ public:
 	void CuttingTex(const KGameString& _CuttingTexName, size_t _Index = 0);
 	void CutIndex(size_t _Index);
 	void SetFadeProgress(float _progress);
-	void SetSamplerMode(SMPOP _OP);
+	void SetSamplerMode(SamplerOption _OP);
 	void RatioSetting(RATIOOP _RO = RATIOOP::RO_W);
 
 	void LineOn();

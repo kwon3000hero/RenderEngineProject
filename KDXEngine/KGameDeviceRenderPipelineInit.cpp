@@ -5,7 +5,6 @@
 void KGameDevice::InitRenderPipeline()
 {
 	{
-		// 머지용 랜더파이스라인
 		KPTR<KRenderPipeline> RPL = KRenderPipeline ::Create(L"FXAA");
 		RPL->SetVertexShader(L"VS_FXAA");
 		RPL->SetPixelShader(L"PS_FXAA");
@@ -15,7 +14,6 @@ void KGameDevice::InitRenderPipeline()
 	}
 
 	{
-		// 머지용 랜더파이스라인
 		KPTR<KRenderPipeline> RPL = KRenderPipeline::Create(L"LIGHTBLOOM");
 		RPL->SetVertexShader(L"VS_LightBloom");
 		RPL->SetPixelShader(L"PS_LightBloom");
@@ -25,7 +23,6 @@ void KGameDevice::InitRenderPipeline()
 	}
 
 	{
-		// 머지용 랜더파이스라인
 		KPTR<KRenderPipeline> RPL = KRenderPipeline::Create(L"EMISSIONBLOOM");
 		RPL->SetVertexShader(L"VS_EmissionBloom");
 		RPL->SetPixelShader(L"PS_EmissionBloom");
@@ -37,7 +34,6 @@ void KGameDevice::InitRenderPipeline()
 
 
 	{
-		// 머지용 랜더파이스라인
 		KPTR<KRenderPipeline> RPL = KRenderPipeline::Create(L"EMISSIONBLOOMCHECK");
 		RPL->SetVertexShader(L"VS_EmssionBloomCheck");
 		RPL->SetPixelShader(L"PS_EmssionBloomCheck");

@@ -14,7 +14,7 @@ void KFrameAnimator::Init()
 
 void KFrameAnimator::CreateAni(const KGameString& _CuttingTex, const KGameString& _AniName, size_t _Start, size_t _End, float _Time, bool _Loop /*= true*/)
 {
-	if (nullptr == KCuttingTexture::Find(_CuttingTex))
+	if (nullptr == KCuttingTexture::Find(_CuttingTex).get())
 	{
 		AssertMsg(L"애니메이션을 만드는데 텍스처 세팅이 안됩니다.");
 	}

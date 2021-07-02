@@ -1,7 +1,7 @@
 #include "KCuttingRender.h"
 #include "KCuttingTexture.h"
 
-SMPOP KCuttingRender::DEFOP = SMPOP::SO_POINT;
+SamplerOption KCuttingRender::DEFOP = SamplerOption::SO_POINT;
 
 KCuttingRender::KCuttingRender() : m_Tex(nullptr), m_fadeProgress({ 0,0,0,0 })
 {
@@ -26,14 +26,14 @@ void KCuttingRender::StartData(const KGameString& _CuttingTexName, int _Order /*
 	CuttingTex(_CuttingTexName);
 }
 
-void KCuttingRender::SetSamplerMode(SMPOP _OP)
+void KCuttingRender::SetSamplerMode(SamplerOption _OP)
 {
 	switch (_OP)
 	{
-	case SMPOP::SO_POINT:
+	case SamplerOption::SO_POINT:
 		SetSampler(L"Smp", L"PCSMP");
 		break;
-	case SMPOP::SO_LINER:
+	case SamplerOption::SO_LINER:
 		SetSampler(L"Smp", L"LCSMP");
 		break;
 	default:
