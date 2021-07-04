@@ -50,7 +50,7 @@ public:
 public:
 	static KPTR<KRenderPipeline> Create(const KGameString& _Name)
 	{
-		KPTR<KRenderPipeline> pNewRes = new KRenderPipeline();
+		KPTR<KRenderPipeline> pNewRes = make_KPTR<KRenderPipeline>();
 		pNewRes->SetName(_Name);
 		pNewRes->InsertResource();
 

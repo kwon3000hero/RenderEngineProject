@@ -42,12 +42,12 @@ void KGameScene::Progress()
 		if (nullptr == m_CurrentScene.get())
 		{
 			m_CurrentScene = m_NextScene;
-			m_NextScene = nullptr;
+			m_NextScene = static_cast<KPTR<KGameScene>>(0);
 		}
 		else
 		{
 			m_CurrentScene = m_NextScene;
-			m_NextScene = nullptr;
+			m_NextScene = static_cast<KPTR<KGameScene>>(0);
 		}
 	}
 
@@ -90,7 +90,7 @@ KGameScene::~KGameScene()
 
 KPTR<KGameActor> KGameScene::CreateActor()
 {
-	KPTR<KGameActor> NewActor = new KGameActor();
+	KPTR<KGameActor> NewActor = make_KPTR<KGameActor>();
 	NewActor->SetScene(KPTR<KGameScene>(this));
 	NewActor->CreateComponent<KTransform>();
 	m_ActorList.push_back(NewActor);
@@ -165,7 +165,7 @@ void KGameScene::PrevRender()
 
 void KGameScene::Release()
 {
-	for (auto& ColGroup : m_AllCol)
+	for (auto& ColGroup : m_collisionContainer)
 	{
 		std::list<KPTR<KCollision>> ::iterator StartIter = ColGroup.second->m_AllCol.begin();;
 		std::list<KPTR<KCollision>> ::iterator EndIter = ColGroup.second->m_AllCol.end();
@@ -495,42 +495,42 @@ void KGameScene::PushRenderManager(KPTR<KRenderManager> _pRenderManager)
 
 ///////////////////////////////// Col
 
-void KGameScene::PushCol(KPTR<KCollision> _Col)
+void KGameScene::PushCol(KPTR<KCollision> _collision)
 {
-	if (m_AllCol.end() == m_AllCol.find(_Col->Order()))
+	if (m_collisionContainer.end() == m_collisionContainer.find(_collision->Order()))
 	{
-		m_AllCol[_Col->Order()] = new KColGroup();
-		m_AllCol[_Col->Order()]->Order = _Col->Order();
+		m_collisionContainer[_collision->Order()] = make_KPTR<KColGroup>();
+		m_collisionContainer[_collision->Order()]->Order = _collision->Order();
 	}
 
-	m_AllCol[_Col->Order()]->m_AllCol.push_back(_Col);
+	m_collisionContainer[_collision->Order()]->m_AllCol.push_back(_collision);
 }
 
 void KGameScene::LinkCollision(int Left, int Right)
 {
-	if (m_AllCol.end() == m_AllCol.find(Left))
+	if (m_collisionContainer.end() == m_collisionContainer.find(Left))
 	{
-		m_AllCol[Left] = new KColGroup();
-		m_AllCol[Left]->Order = Left;
+		m_collisionContainer[Left] = make_KPTR<KColGroup>();
+		m_collisionContainer[Left]->Order = Left;
 	}
 
-	if (m_AllCol[Left]->m_OtherCol.end() != m_AllCol[Left]->m_OtherCol.find(Right))
+	if (m_collisionContainer[Left]->m_OtherCol.end() != m_collisionContainer[Left]->m_OtherCol.find(Right))
 	{
 		AssertMsg(L"이미 링크한 충돌그룹끼리 다시 링크 시킬수 없습니다.");
 	}
 
-	m_AllCol[Left]->m_OtherCol.insert(Right);
+	m_collisionContainer[Left]->m_OtherCol.insert(Right);
 }
 
 void KGameScene::Collision()
 {
-	for (auto& _ColGroup : m_AllCol)
+	for (auto& _ColGroup : m_collisionContainer)
 	{
 		for (auto& _ColIndex : _ColGroup.second->m_OtherCol)
 		{
-			std::unordered_map<int, KPTR<KColGroup>>::iterator Other = m_AllCol.find(_ColIndex);
+			std::unordered_map<int, KPTR<KColGroup>>::iterator Other = m_collisionContainer.find(_ColIndex);
 
-			if (Other == m_AllCol.end())
+			if (Other == m_collisionContainer.end())
 			{
 				continue;
 			}

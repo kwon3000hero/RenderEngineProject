@@ -40,11 +40,11 @@ void KGameDebug3D::Init()
 
 	m_CenterVector = KGameWindow::MainWindow()->Size().HalfVector2D();
 	m_CenterVector.x *= -1.0f;
-	m_TextureRenderPlayer = new KRenderPlayer(L"DEBUGTEXRECT", L"DEBUGIMAGE");
+	m_TextureRenderPlayer = make_KPTR<KRenderPlayer>(L"DEBUGTEXRECT", L"DEBUGIMAGE");
 	m_TextureRenderPlayer->SetSampler(L"Smp", L"PCSMP");
 	m_TextureRenderPlayer->SetConstantBuffer(L"TRANSFORMDATA", &m_DebugTextureMatrix, ConstantBufferMode::Link);
 
-	m_BackbufferRenderPlayer = new KRenderPlayer(L"DEBUGTEXRECT", L"DEBUGBACK");
+	m_BackbufferRenderPlayer = make_KPTR <KRenderPlayer>(L"DEBUGTEXRECT", L"DEBUGBACK");
 	m_BackbufferRenderPlayer->SetConstantBuffer(L"TRANSFORMDATA", &m_DebugTextureMatrix, ConstantBufferMode::Link);
 	m_BackbufferRenderPlayer->SetConstantBuffer(L"BACKCOLOR", &m_BackColor, ConstantBufferMode::Link);
 

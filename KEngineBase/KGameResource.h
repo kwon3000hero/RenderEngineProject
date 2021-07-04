@@ -25,7 +25,7 @@ public:
 
 		if (m_ResourceContainer.end() == findIter)
 		{
-			return nullptr;
+			return static_cast<KPTR<T>>(0);
 		}
 
 		return findIter->second;

@@ -606,19 +606,19 @@ void KFBX::CreateMesh()
 	size_t fbxVertexContainerSize = m_FbxVertexContainer.size();
 	for (size_t fbxVertexId = 0; fbxVertexId < fbxVertexContainerSize; ++fbxVertexId)
 	{
-		KPTR<KVertexBuffer> vertexBuffer = new KVertexBuffer();
+		KPTR<KVertexBuffer> vertexBuffer = make_KPTR<KVertexBuffer>();
 		vertexBuffer->Create(m_FbxVertexContainer[fbxVertexId].size(), sizeof(KFBX3DVertex), &m_FbxVertexContainer[fbxVertexId][0], D3D11_USAGE::D3D11_USAGE_DEFAULT);
 		m_vertexBufferContainer.push_back(vertexBuffer);
 
 		size_t fbxIndexContainerSize = m_FbxIndexContainer[fbxVertexId].size();
 		for (size_t fbxIndexId = 0; fbxIndexId < fbxIndexContainerSize; ++fbxIndexId)
 		{
-			KPTR<KIndexBuffer> indexBuffer = new KIndexBuffer();
+			KPTR<KIndexBuffer> indexBuffer = make_KPTR<KIndexBuffer>();
 			indexBuffer->SetFormat(DXGI_FORMAT::DXGI_FORMAT_R32_UINT);
 			indexBuffer->Create(m_FbxIndexContainer[fbxVertexId][fbxIndexId].size(), sizeof(UINT), &m_FbxIndexContainer[fbxVertexId][fbxIndexId][0], D3D11_USAGE::D3D11_USAGE_DEFAULT);
 			m_indexBufferContainer.push_back(indexBuffer);
 
-			KPTR<KMesh> pMesh = new KMesh();
+			KPTR<KMesh> pMesh = make_KPTR<KMesh>();
 			pMesh->AddVertexBuffer(vertexBuffer);
 			pMesh->AddIndexBuffer(indexBuffer);
 

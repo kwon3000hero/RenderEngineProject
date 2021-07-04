@@ -52,7 +52,7 @@ public:
 		bool m_IsExistTexture;
 
 	public:
-		KTextureSetter() : m_Data(nullptr), m_Texture(nullptr), m_IsExistTexture(false) {		}
+		KTextureSetter() : m_Data(nullptr), m_IsExistTexture(false) {		}
 		KTextureSetter(KShaderData* _Data, KPTR<KTexture> _Res) : m_Data(_Data), m_Texture(_Res), m_IsExistTexture(true) {}
 	};
 
@@ -68,7 +68,7 @@ public:
 		void* m_pSettingData;
 
 	public:
-		KConstantBufferSetter() : m_pShaderData(nullptr), m_ConstantBuffer(nullptr), m_pSettingData(nullptr), m_Mode(ConstantBufferMode::Link) {		}
+		KConstantBufferSetter() : m_pShaderData(nullptr), m_pSettingData(nullptr), m_Mode(ConstantBufferMode::Link) {		}
 		KConstantBufferSetter(KGameString _name, KShaderData* _Data, KPTR<KConstantBuffer> _Res) : m_pShaderData(_Data), m_ConstantBuffer(_Res), m_pSettingData(nullptr), m_Mode(ConstantBufferMode::Link)
 		{
 			m_Name = _name;
@@ -95,7 +95,7 @@ public:
 		KPTR<KSampler> m_Sampler;
 
 	public:
-		KSamplerSetter() : m_Data(nullptr), m_Sampler(nullptr) {		}
+		KSamplerSetter() : m_Data(nullptr) {		}
 		KSamplerSetter(KShaderData* _Data, KPTR<KSampler> _Res) : m_Data(_Data), m_Sampler(_Res) {		}
 	};
 

@@ -46,8 +46,8 @@ void KHeightTerrain::CreateGround(int _x, int _z, const KGameString& _DifTexName
 		}
 	}
 
-	m_VB = new KVertexBuffer();
-	m_IB = new KIndexBuffer();
+	m_VB = make_KPTR<KVertexBuffer>();
+	m_IB = make_KPTR<KIndexBuffer>();
 
 	std::vector<UINT> m_Index;
 
@@ -94,7 +94,7 @@ void KHeightTerrain::CreateGround(int _x, int _z, const KGameString& _DifTexName
 	m_VB->Create(m_VTX.size(), sizeof(KTerrainVertex), (void*)&m_VTX[0], D3D11_USAGE_DYNAMIC);
 	m_IB->Create(m_Index.size(), sizeof(UINT), (void*)&m_Index[0], D3D11_USAGE_DYNAMIC);
 
-	m_MESH = new KMesh();
+	m_MESH = make_KPTR<KMesh>();
 
 	m_MESH->AddVertexBuffer(m_VB);
 	m_MESH->AddIndexBuffer(m_IB);

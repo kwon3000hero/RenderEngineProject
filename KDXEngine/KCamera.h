@@ -190,7 +190,7 @@ public:
 	KPTR<T> CreateEffect()
 	{
 		KPTR<T> newObject = KObjectManager::CreateObject<T>();
-		newObject->m_pCamera = this;
+		newObject->m_pCamera = KPTR<KCamera>(this);
 		newObject->Init();
 		return newObject;
 	}

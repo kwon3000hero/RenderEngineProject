@@ -6,11 +6,11 @@
 
 void KFxaa::Init()
 {
-	m_FXAAPlayer = new KRenderPlayer(L"FULLRECT", L"FXAA");
+	m_FXAAPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"FXAA");
 	m_FXAAPlayer->SetTexture(L"inputTexture", CameraPtr()->CurrentCameraTarget()->Texture(0));
 	m_FXAAPlayer->SetSampler(L"anisotropicSampler", L"LWSMP");
 
-	m_FXAATarget = new KRenderTarget();
+	m_FXAATarget = make_KPTR<KRenderTarget>();
 	m_FXAATarget->Create(
 		KVector{ KGameWindow::MainWindow()->Size().x, KGameWindow::MainWindow()->Size().y },
 		KVector::ZERO);

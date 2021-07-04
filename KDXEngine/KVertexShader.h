@@ -13,7 +13,7 @@ public:
 public:
 	static KPTR<KVertexShader> Load(const KGameString& _path, const KGameString& _funcName, unsigned int _VH, unsigned int _VL)
 	{
-		KPTR <KVertexShader> pNewShader = new KVertexShader();
+		KPTR <KVertexShader> pNewShader = make_KPTR<KVertexShader>();
 		pNewShader->m_Path = _path;
 		pNewShader->SetName(_funcName);
 		pNewShader->Load(_funcName, _VH, _VL);

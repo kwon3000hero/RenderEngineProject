@@ -5,9 +5,9 @@
 #include "KRenderTarget.h"
 #include "KLight.h"
 
-KPostEffect::KPostEffect() : m_pCamera(nullptr), m_IsUpdate(true)
+KPostEffect::KPostEffect() : m_IsUpdate(true)
 {
-	m_EffectTarget = new KRenderTarget();
+	m_EffectTarget = make_KPTR<KRenderTarget>();
 	m_EffectTarget->Create(
 		KVector{ KGameWindow::MainWindow()->Size().x, KGameWindow::MainWindow()->Size().y },
 		KVector::ZERO);
@@ -41,19 +41,19 @@ void KCamera::Init()
 
 	Scene()->PushCamera(KPTR<KCamera>(this));
 
-	m_currentCameraTarget = new KRenderTarget();
+	m_currentCameraTarget = make_KPTR<KRenderTarget>();
 	m_currentCameraTarget->Create(
 		KVector{ KGameWindow::MainWindow()->Size().x, KGameWindow::MainWindow()->Size().y },
 		KVector::ZERO);
 
-	m_forwardCameraTarget = new KRenderTarget();
+	m_forwardCameraTarget = make_KPTR<KRenderTarget>();
 	m_forwardCameraTarget->Create(
 		KVector{ KGameWindow::MainWindow()->Size().x, KGameWindow::MainWindow()->Size().y },
 		KVector::ZERO);
 
 	m_forwardCameraTarget->SetDepthStencil(KGameDevice::MainGameDevice()->MainTarget->DepthStencil());
 
-	m_defferdCameraTarget = new KRenderTarget();
+	m_defferdCameraTarget = make_KPTR<KRenderTarget>();
 	m_defferdCameraTarget->Create(
 		KVector{ KGameWindow::MainWindow()->Size().x, KGameWindow::MainWindow()->Size().y },
 		KVector::ZERO);
@@ -61,7 +61,7 @@ void KCamera::Init()
 
 	m_defferdCameraTarget->CreateDepth();
 
-	m_globalBufferCameraTarget = new KRenderTarget();
+	m_globalBufferCameraTarget = make_KPTR<KRenderTarget>();
 	//Diffuse0
 	m_globalBufferCameraTarget->Create(
 		KVector{ KGameWindow::MainWindow()->Size().x, KGameWindow::MainWindow()->Size().y },
@@ -80,7 +80,7 @@ void KCamera::Init()
 		KVector::ZERO);
 	m_globalBufferCameraTarget->SetDepthStencil(KGameDevice::MainGameDevice()->MainTarget->DepthStencil());
 
-	m_lightCameraTarget = new KRenderTarget();
+	m_lightCameraTarget = make_KPTR<KRenderTarget>();
 	//diffuse
 	m_lightCameraTarget->Create(
 		KVector{ KGameWindow::MainWindow()->Size().x, KGameWindow::MainWindow()->Size().y },
@@ -100,13 +100,13 @@ void KCamera::Init()
 		KVector::ZERO);
 	m_lightCameraTarget->CreateDepth();
 
-	m_defferdLightPlayer = new KRenderPlayer(L"FULLRECT", L"DEFFERDCALCULATEDLIGHT");
+	m_defferdLightPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"DEFFERDCALCULATEDLIGHT");
 	m_defferdLightPlayer->SetSampler(L"Smp", L"LCSMP");
 	m_defferdLightPlayer->SetTexture(L"POSTEX", m_globalBufferCameraTarget->Texture(1));
 	m_defferdLightPlayer->SetTexture(L"NORMALTEX", m_globalBufferCameraTarget->Texture(2));
 	m_defferdLightPlayer->SetTexture(L"DEPTHTEX", m_globalBufferCameraTarget->Texture(3));
 
-	m_defferdMergePlayer = new KRenderPlayer(L"FULLRECT", L"DEFFERDMERGE");
+	m_defferdMergePlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"DEFFERDMERGE");
 	m_defferdMergePlayer->SetSampler(L"Smp", L"PCSMP");
 	m_defferdMergePlayer->SetTexture(L"ColorTex", m_globalBufferCameraTarget->Texture(0));
 	m_defferdMergePlayer->SetTexture(L"LightTex", m_lightCameraTarget->Texture(3));

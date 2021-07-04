@@ -157,7 +157,7 @@ std::vector<KPTR<KRenderPlayer>> KMeshAnimator::CreateAnimation(const KGAMEDIR& 
 
 	KPTR<KMeshAnimation> newAnimation = new KMeshAnimation();
 
-	newAnimation->m_pFbx = fbx.get();
+	newAnimation->m_pFbx = fbx;
 	newAnimation->m_pCurrentAnimationData = pAnimationData;
 	newAnimation->m_animationName = _aniName;
 	newAnimation->m_Loop = _loop;

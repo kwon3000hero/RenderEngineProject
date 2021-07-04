@@ -54,7 +54,7 @@ protected:
 	}
 
 public:
-	KGameScene* Scene()
+	KPTR<KGameScene> Scene()
 	{
 		return m_Scene;
 	}
@@ -87,7 +87,7 @@ private:
 	}
 
 public:
-	KGameActor* Actor()
+	KPTR<KGameActor> Actor()
 	{
 		return m_Actor;
 	}

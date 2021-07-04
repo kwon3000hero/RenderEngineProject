@@ -21,7 +21,7 @@ void KRenderTarget::Create(KVector _Size, KVector _Color, DXGI_FORMAT _Fmt, UINT
 
 	m_ClearColor = _Color;
 
-	KPTR<KTexture> pTexture = new KTexture();
+	KPTR<KTexture> pTexture = make_KPTR<KTexture>();
 	pTexture->Create(_Size, _Fmt, _BindFlag, D3D11_USAGE::D3D11_USAGE_DEFAULT);
 	m_RenderTargetTextureContainer.push_back(pTexture);
 	m_RenderTargetViewContainer.push_back(pTexture->m_pRTV);
@@ -36,7 +36,7 @@ void KRenderTarget::Create(ID3D11Texture2D* _pTEX, KVector _Color, UINT _BindFla
 	}
 
 	m_ClearColor = _Color;
-	KPTR<KTexture> pTexture = new KTexture();
+	KPTR<KTexture> pTexture = make_KPTR<KTexture>();
 	pTexture->Create(_pTEX, _BindFlag);
 	m_RenderTargetTextureContainer.push_back(pTexture);
 	m_RenderTargetViewContainer.push_back(pTexture->m_pRTV);
@@ -112,10 +112,10 @@ void KRenderTarget::SetDepthStencil(KPTR<KDepthStencilTarget> _depthStencil)
 
 void KRenderTarget::Init()
 {
-	m_MergeRenderPlayer = new KRenderPlayer(L"FULLRECT", L"MERGETARGET");
+	m_MergeRenderPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"MERGETARGET");
 	m_MergeRenderPlayer->SetSampler(L"Smp", L"LWSMP");
 
-	m_AlwaysMergeRenderPlayer = new KRenderPlayer(L"FULLRECT", L"ALWAYSMERGETARGET");
+	m_AlwaysMergeRenderPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"ALWAYSMERGETARGET");
 	m_AlwaysMergeRenderPlayer->SetSampler(L"Smp", L"LWSMP");
 }
 
@@ -125,7 +125,7 @@ void KRenderTarget::End()
 
 void KRenderTarget::CreateDepth()
 {
-	m_Depth = new KDepthStencilTarget();
+	m_Depth = make_KPTR<KDepthStencilTarget>();
 	m_Depth->Create(m_RenderTargetTextureContainer[0]->Size(), 1.0f, 0);
 }
 

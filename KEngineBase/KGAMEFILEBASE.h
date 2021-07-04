@@ -4,7 +4,7 @@
 class KGameFileBase
 {
 private:
-	KPTR<KGameFile> m_File;
+	KGameFile* m_File;
 
 public:
 	void File(const KGameFile& _File)

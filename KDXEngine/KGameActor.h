@@ -34,7 +34,7 @@ protected:
 		m_Scene = _PTR;
 	}
 public:
-	KPTR<KGameScene> Scene()
+	KWeakPTR<KGameScene> Scene() const
 	{
 		return m_Scene;
 	}

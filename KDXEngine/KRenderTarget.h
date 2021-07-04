@@ -52,7 +52,7 @@ public:
 	KPTR<KTexture> Texture(unsigned int _Index);
 
 public:
-	KRenderTarget() : m_Depth(nullptr) {}
+	KRenderTarget() {}
 	~KRenderTarget() {}
 };
 

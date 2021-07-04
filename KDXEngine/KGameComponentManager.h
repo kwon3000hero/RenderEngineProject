@@ -23,7 +23,7 @@ public:
 		NewCom->StartData(_Arg...);
 		NewCom->Init();
 		m_componentList.push_back(NewCom);
-		return NewCom;
+		return KPTR<T>(NewCom);
 	}
 
 	template<typename T>
@@ -37,7 +37,7 @@ public:
 			}
 		}
 
-		return nullptr;
+		return static_cast<KPTR<T>>(0);
 	}
 
 

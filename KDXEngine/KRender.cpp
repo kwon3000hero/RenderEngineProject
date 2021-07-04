@@ -333,7 +333,7 @@ void KRenderPlayer::SetRenderPipeline(const KGameString& _Name)
 			case SHADERRES_TYPE::SR_CBUFFER:
 				m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE].insert(std::map<KGameString, KRenderPlayer::KConstantBufferSetter>::value_type(ShaderData.first, KRenderPlayer::KConstantBufferSetter(ShaderData.first, &ShaderData.second, static_cast<KPTR<KConstantBuffer>>(0))));
 
-				m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE][ShaderData.first].m_ConstantBuffer = new KConstantBuffer();
+				m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE][ShaderData.first].m_ConstantBuffer = make_KPTR<KConstantBuffer>();
 				m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE][ShaderData.first].m_ConstantBuffer->m_DataInfo = ShaderData.second.m_Info;
 				m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE][ShaderData.first].m_ConstantBuffer->CreateCB(
 					m_ConstantBufferContainer[(int)ShaderData.second.SHADERRESTYPE][ShaderData.first].m_pShaderData->m_Size,
@@ -434,7 +434,7 @@ void KRenderPlayer::Render()
 KPTR<KRenderPlayer> KRenderManager::CreateRenderPlayer(const KGameString& _MeshName, const KGameString& _RenderPipeLineName)
 {
 	m_RenderPlayerContainer.resize(m_RenderPlayerContainer.size() + 1);
-	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1] = new KRenderPlayer();
+	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1] = make_KPTR<KRenderPlayer>();
 	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1]->m_Parent = this;
 	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1]->SetMesh(_MeshName);
 	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1]->SetRenderPipeline(_RenderPipeLineName);
@@ -455,7 +455,7 @@ KPTR<KRenderPlayer> KRenderManager::CreateRenderPlayer(const KGameString& _MeshN
 KPTR<KRenderPlayer> KRenderManager::CreateRenderPlayer(const KPTR<KMesh>& _mesh, const KGameString& _RenderPipeLineName)
 {
 	m_RenderPlayerContainer.resize(m_RenderPlayerContainer.size() + 1);
-	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1] = new KRenderPlayer();
+	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1] = make_KPTR<KRenderPlayer>();
 	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1]->m_Parent = this;
 	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1]->SetMesh(_mesh);
 	m_RenderPlayerContainer[m_RenderPlayerContainer.size() - 1]->SetRenderPipeline(_RenderPipeLineName);

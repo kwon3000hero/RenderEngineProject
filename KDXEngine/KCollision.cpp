@@ -28,21 +28,21 @@ void KCollision::ColEnter(KPTR<KCollision> _Other)
 {
 	for (auto& Auto : m_EnterFunc)
 	{
-		Auto(this, _Other);
+		Auto(KPTR<KCollision>(this), _Other);
 	}
 }
 void KCollision::ColStay(KPTR<KCollision> _Other)
 {
 	for (auto& Auto : m_StayFunc)
 	{
-		Auto(this, _Other);
+		Auto(KPTR<KCollision>(this), _Other);
 	}
 }
 void KCollision::ColExit(KPTR<KCollision> _Other)
 {
 	for (auto& Auto : m_ExitFunc)
 	{
-		Auto(this, _Other);
+		Auto(KPTR<KCollision>(this), _Other);
 	}
 
 }
@@ -59,12 +59,12 @@ void KCollision::ColCheck(KPTR<KCollision> _OtherCol)
 			m_OtherCol.insert(_OtherCol.get());
 
 			ColEnter(_OtherCol);
-			_OtherCol->ColEnter(this);
+			_OtherCol->ColEnter(KPTR<KCollision>(this));
 		}
 		else
 		{
 			ColStay(_OtherCol);
-			_OtherCol->ColStay(this);
+			_OtherCol->ColStay(KPTR<KCollision>(this));
 		}
 	}
 	else
@@ -73,7 +73,7 @@ void KCollision::ColCheck(KPTR<KCollision> _OtherCol)
 		if (m_OtherCol.end() != m_OtherCol.find(_OtherCol.get()))
 		{
 			ColExit(_OtherCol);
-			_OtherCol->ColExit(this);
+			_OtherCol->ColExit(KPTR<KCollision>(this));
 
 			m_OtherCol.erase(_OtherCol.get());
 			_OtherCol->m_OtherCol.erase(this);
@@ -85,7 +85,7 @@ void KCollision::ColCheck(KPTR<KCollision> _OtherCol)
 
 void KCollision::DebugRender()
 {
-	SetCameraMatrix(KPTR<KCamera>(KGameScene::MainCam()));
+	SetCameraMatrix(KGameScene::MainCam());
 
 	switch (m_Type)
 	{

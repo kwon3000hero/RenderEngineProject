@@ -87,23 +87,6 @@ public:
 		return *this;
 	}
 
-	//bool operator==(const KPTR& _Ptr) const
-	//{
-	//	return m_pType == _Ptr.m_pType;
-	//}
-
-
-	//bool operator==(void* _Ptr) const
-	//{
-	//	return m_pType == _Ptr;
-	//}
-
-	//bool operator!=(void* _Ptr) const
-	//{
-	//	return m_pType != _Ptr;
-	//}
-
-
 	bool operator!=(const KPTR& _Ptr) const
 	{
 		return m_pType != _Ptr.m_pType;
@@ -135,13 +118,14 @@ public:
 
 	}
 
+	//move 만들어서 없애자..
 	KPTR(const KPTR& _Ptr) : m_pType(_Ptr.m_pType)
 	{
 		CheckAddRef();
 	}
 
-
-	KPTR(PTRTYPE* _Ptr) : m_pType(_Ptr)
+	//수정 필요...
+	/*explicit*/ KPTR(PTRTYPE* _Ptr) : m_pType(_Ptr)
 	{
 		CheckAddRef();
 	}
@@ -151,18 +135,6 @@ public:
 		CheckDecRef();
 	}
 };
-//
-//template<typename PTRTYPE>
-//typename bool operator==(void* _Ptr, const KPTR<PTRTYPE>& _PTR)
-//{
-//	return _PTR == _Ptr;
-//}
-//
-//template<typename PTRTYPE>
-//typename bool operator!=(KPTR<PTRTYPE> _Ptr, void* _PTR)
-//{
-//	return _PTR != _Ptr.m_pType;
-//}
 
 template<typename PTRTYPE>
 class KWeakPTR
@@ -186,17 +158,17 @@ public:
 		return m_Type;
 	}
 
-	KWeakPTR& operator=(const KWeakPTR& _Ptr)
-	{
-		if (_Ptr.get() == m_Type)
-		{
-			return *this;
-		}
+	//KWeakPTR& operator=(const KWeakPTR& _Ptr)
+	//{
+	//	if (_Ptr.m_Type == m_Type)
+	//	{
+	//		return *this;
+	//	}
 
-		m_Type = _Ptr.m_Type;
+	//	m_Type = _Ptr.m_Type;
 
-		return *this;
-	}
+	//	return *this;
+	//}
 
 	KWeakPTR& operator=(const KPTR<PTRTYPE>& _Ptr)
 	{
@@ -236,12 +208,7 @@ public:
 	{
 	}
 
-	KWeakPTR(const KWeakPTR& _Ptr) : m_Type(_Ptr.m_Type)
-	{
-	}
-
-
-	KWeakPTR(PTRTYPE* _Ptr) : m_Type(_Ptr)
+	explicit KWeakPTR(PTRTYPE* _Ptr) : m_Type(_Ptr)
 	{
 	}
 
@@ -261,3 +228,9 @@ public:
 //{
 //	return _PTR != _Ptr;
 //}
+
+template<typename T, typename... Ts>
+KPTR<T> make_KPTR(Ts&&... params)
+{
+	return KPTR<T>(new T(std::forward<Ts>(params)...));
+}

@@ -12,7 +12,7 @@ void KDepthStencilTarget::Create(KVector _Size, float _Depth, int _Stencil)
 	m_Depth = _Depth;
 	m_Stencil = _Stencil;
 
-	m_Texture = new KTexture();
+	m_Texture = make_KPTR<KTexture>();
 	D3D11_TEXTURE2D_DESC DepthDesc = {};
 
 	DepthDesc.ArraySize = 1;

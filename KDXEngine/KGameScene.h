@@ -111,7 +111,7 @@ private:
 		std::list<KPTR<KCollision>> m_AllCol;
 	};
 
-	std::unordered_map<int, KPTR<KColGroup>> m_AllCol;
+	std::unordered_map<int, KPTR<KColGroup>> m_collisionContainer;
 
 public:
 	void LinkCollision(int Left, int Right);

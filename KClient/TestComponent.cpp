@@ -65,7 +65,7 @@ void TestComponent::Init()
 		KLogicValue::MainCam(PCAM);
 
 		{
-			KPTR<KGameActor> SKY(Scene()->CreateActor());
+			KPTR<KGameActor> SKY = Scene()->CreateActor();
 			SKY->Transform()->WorldPosition({ 0.0f, 0.0f, 0.0f });
 			SKY->Transform()->WorldScale({ 10000.0F, 10000.F, 10000.f });
 			SKY->Transform()->WorldRotate({ 0.0f, 0.0f, 0.0f });
@@ -76,7 +76,7 @@ void TestComponent::Init()
 		}
 
 		{
-			KPTR<KGameActor> GRID(Scene()->CreateActor());
+			KPTR<KGameActor> GRID = Scene()->CreateActor();
 			GRID->Transform()->WorldPosition({ 0.0f, 0.0f, 0.0f });
 			GRID->Transform()->WorldScale({ 10000.0F, 1.F, 10000.f });
 			GRID->Transform()->WorldRotate({ 0.0f, 0.0f, 0.0f });
@@ -89,7 +89,7 @@ void TestComponent::Init()
 
 
 	{
-		KPTR<KGameActor> NEWACTOR(Scene()->CreateActor());
+		KPTR<KGameActor> NEWACTOR = Scene()->CreateActor();
 		NEWACTOR->Transform()->WorldScale({ 1.0f, 1.0f, 5.0f });
 
 		KVector Foward = KVector::FORWARD;
@@ -106,7 +106,7 @@ void TestComponent::Init()
 	}
 
 	{
-		KPTR<KGameActor> NEWACTOR(Scene()->CreateActor());
+		KPTR<KGameActor> NEWACTOR = Scene()->CreateActor();
 		NEWACTOR->Transform()->WorldScale({ 1.0f, 1.0f, 5.0f });
 
 		KVector Foward = KVector::FORWARD;
@@ -117,7 +117,7 @@ void TestComponent::Init()
 
 		NEWACTOR->Transform()->WorldPosition(Foward);
 
-		KPTR<KRenderManager> Render(NEWACTOR->CreateComponent<KRenderManager>(L"BOX", L"COLOR", 0));
+		KPTR<KRenderManager> Render = NEWACTOR->CreateComponent<KRenderManager>(L"BOX", L"COLOR", 0);
 
 		TESTLIGHT = NEWACTOR->CreateComponent<KLightManager>(0, 0);
 	}
@@ -128,7 +128,7 @@ void TestComponent::Init()
 		NEWACTOR->Transform()->WorldScale({ 2.0f, 2.0f, 2.0f });
 		NEWACTOR->Transform()->WorldPosition({ 3.0f, 3.0f, 3.0f });
 
-		KPTR<KRenderManager> Render(NEWACTOR->CreateComponent<KRenderManager>(L"SPHERE3D", L"3DCOLORDEFFERD", 0));
+		KPTR<KRenderManager> Render = NEWACTOR->CreateComponent<KRenderManager>(L"SPHERE3D", L"3DCOLORDEFFERD", 0);
 		Render->ShadowOn();
 	}
 
@@ -140,9 +140,9 @@ void TestComponent::Init()
 
 
 	{
-		KPTR<KGameActor> ACTOR(Scene()->CreateActor());
+		KPTR<KGameActor> ACTOR = Scene()->CreateActor();
 		MAINPLAYER = ACTOR;
-		KPTR<KGameActor> PIVOT(Scene()->CreateActor());
+		KPTR<KGameActor> PIVOT = Scene()->CreateActor();
 		PIVOT->Transform()->LocalScale({ 0.1f, 0.1f , 0.1f });
 		PIVOT->Transform()->LocalRotate({ 0.0f, -90.0f , 0.0f });
 		PIVOT->Transform()->Parent(ACTOR->Transform()); // ÇÇº¿ÀÌ 0
@@ -153,7 +153,7 @@ void TestComponent::Init()
 		FCAM->FollowTransform(KPTR<KTransform>(ACTOR->Transform()), KVector(0, 10, -8), KVector(30, 0, 0));
 	}
 	{
-		KPTR<KGameActor> ACTOR(Scene()->CreateActor());
+		KPTR<KGameActor> ACTOR = Scene()->CreateActor();
 		ACTOR->Transform()->LocalPosition({ 0.0f, 0.1f, 0.0f });
 		ACTOR->Transform()->LocalScale({ 1000.0f, 100.0f, 1000.0f });
 		HMAP = ACTOR->CreateComponent<KHeightTerrain>();

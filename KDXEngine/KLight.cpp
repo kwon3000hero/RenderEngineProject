@@ -41,7 +41,7 @@ void KLightManager::Init()
 		assert(false);
 	}
 
-	m_ShadowTarget = new KRenderTarget();
+	m_ShadowTarget = make_KPTR<KRenderTarget>();
 	m_ShadowTarget->Create(m_ShadowTargetSize, { 0,0,0,0 }, DXGI_FORMAT::DXGI_FORMAT_R32_FLOAT, D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE);
 	m_ShadowTarget->CreateDepth();
 

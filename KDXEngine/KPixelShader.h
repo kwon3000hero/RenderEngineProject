@@ -8,7 +8,7 @@ class KPixelShader : public KGameResourceBase<KPixelShader>, public KShader
 public:
 	static KPTR<KPixelShader> Load(const KGameString& _Path, const KGameString& _FuncName, unsigned int _VH, unsigned int _VL)
 	{
-		KPTR<KPixelShader> NewShader = new KPixelShader();
+		KPTR<KPixelShader> NewShader = make_KPTR<KPixelShader>();
 		NewShader->m_Path = _Path;
 		NewShader->SetName(_FuncName);
 		NewShader->Load(_FuncName, _VH, _VL);
@@ -34,7 +34,7 @@ public:
 public:
 	void Setting();
 
-private:
+public:
 	KPixelShader() : m_ShaderPtr(nullptr), m_IsForward(true)
 	{
 		m_Type = SHADER_TYPE::ST_PS;

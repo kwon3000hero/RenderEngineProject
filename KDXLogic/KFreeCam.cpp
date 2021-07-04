@@ -27,7 +27,6 @@ void KFreeCamera::FollowTransform(KPTR<KTransform> _FollowTransform, KVector _Fo
 
 void KFreeCamera::Init()
 {
-	// 트랜드 폼도 있고
 	if (nullptr == Actor()->GetComponent<KCamera>().get())
 	{
 		assert(false);

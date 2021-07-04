@@ -61,7 +61,7 @@ public:
 	KVector Pixel(size_t _x, size_t _y);
 	void SetPixel(void* _pPixelData, int size);
 
-private:
+public:
 	KTexture();
 	~KTexture();
 };

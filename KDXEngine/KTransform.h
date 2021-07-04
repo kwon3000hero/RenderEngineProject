@@ -83,7 +83,7 @@ public:
 	void Parent(KPTR<KTransform> Ptr)
 	{
 		m_Parent = Ptr;
-		m_Parent->m_Child.push_back(KPTR<KTransform>(this));
+		m_Parent->m_Child.push_back(static_cast<KPTR<KTransform>>(this));
 
 		CalculateWorldScale();
 		CalculateWorldRotation();

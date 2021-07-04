@@ -1,7 +1,7 @@
 #include "KGAMEWIN.h"
 
 bool KGameWindow::m_bProgress = true;
-KPTR<KGameWindow> KGameWindow::m_MainWindow = static_cast<KPTR<KGameWindow>>(0);
+KPTR<KGameWindow> KGameWindow::m_MainWindow = static_cast<KWeakPTR<KGameWindow>>(0);
 
 std::set<KGameString> KGameWindow::m_classNameContainer;
 std::map<KGameString, KPTR<KGameWindow>> KGameWindow::m_winContainer;
@@ -91,7 +91,7 @@ KPTR<KGameWindow> KGameWindow::CreateWin(const wchar_t* title, const wchar_t* cl
 		BOOM;
 	}
 
-	KPTR<KGameWindow> pWin = new KGameWindow();
+	KPTR<KGameWindow> pWin = make_KPTR<KGameWindow>();
 
 	pWin->m_HWND = CreateWindow(className, title, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, nullptr, nullptr);
@@ -106,7 +106,7 @@ KPTR<KGameWindow> KGameWindow::CreateWin(const wchar_t* title, const wchar_t* cl
 	pWin->Show();
 	pWin->Update();
 
-	m_winContainer.insert(std::map<std::wstring, KPTR<KGameWindow>>::value_type(title, pWin));
+	m_winContainer.insert(std::map<std::wstring, KPTR<KGameWindow>>::value_type(title, pWin.get()));
 
 	if (nullptr == m_MainWindow.get())
 	{
@@ -133,14 +133,10 @@ void KGameWindow::Progress(void(__stdcall* _ProgressFunc)(), void(__stdcall* _In
 	{
 		if (0 == PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
 		{
-			// 데드타임에서 다 돌아간다.
-			// Rpg
-			// 게임을 돌려야 한다.
 			_ProgressFunc();
 		}
 		else
 		{
-			// TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
 	}

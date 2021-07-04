@@ -21,7 +21,7 @@ KPTR<KGameDevice> KGameDevice::Find(const KGameString& _DeviceName)
 {
 	if (m_AllDevice.end() == m_AllDevice.find(_DeviceName))
 	{
-		return static_cast<KPTR<KGameDevice>>(0);
+		return nullptr;
 	}
 
 	return m_AllDevice[_DeviceName];

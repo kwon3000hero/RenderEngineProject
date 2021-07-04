@@ -167,7 +167,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>..\BIN\$(Platform)\$(Configuration)\$(ProjectName)\Config\</IntDir>
     <OutDir>..\BIN\$(Platform)\$(Configuration)\</OutDir>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\HENGINEBASE\;..\BIN\Include\</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\KEngineBase\;..\TP\Include\</IncludePath>
     <LibraryPath>..\BIN\$(Platform)\$(Configuration)\;..\BIN\Include\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

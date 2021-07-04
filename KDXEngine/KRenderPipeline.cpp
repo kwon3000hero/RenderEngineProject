@@ -6,19 +6,19 @@
 #include "KBlend.h"
 
 
-KPTR<KVertexShader> KRenderPipeline::m_pCurrentVertexShader;
-KPTR<KPixelShader> KRenderPipeline::m_pCurrentPixelShader;
-KPTR<KRasterizer> KRenderPipeline::m_pCurrentRasterizer;
-KPTR<KDepthStencil> KRenderPipeline::m_pCurrentDepthStencil;
-KPTR<KBlend> KRenderPipeline::m_pCurrentBlend;
+KPTR<KVertexShader> KRenderPipeline::m_pCurrentVertexShader = static_cast<KPTR<KVertexShader>>(0);
+KPTR<KPixelShader> KRenderPipeline::m_pCurrentPixelShader = static_cast<KPTR<KPixelShader>>(0);
+KPTR<KRasterizer> KRenderPipeline::m_pCurrentRasterizer = static_cast<KPTR<KRasterizer>>(0);
+KPTR<KDepthStencil> KRenderPipeline::m_pCurrentDepthStencil = static_cast<KPTR<KDepthStencil>>(0);
+KPTR<KBlend> KRenderPipeline::m_pCurrentBlend = static_cast<KPTR<KBlend>>(0);
 
 void KRenderPipeline::Reset()
 {
-	m_pCurrentRasterizer = nullptr;
-	m_pCurrentDepthStencil = nullptr;
-	m_pCurrentBlend = nullptr;
-	m_pCurrentVertexShader = nullptr;
-	m_pCurrentPixelShader = nullptr;
+	m_pCurrentRasterizer = static_cast<KPTR<KRasterizer>>(0);
+	m_pCurrentDepthStencil = static_cast<KPTR<KDepthStencil>>(0);
+	m_pCurrentBlend = static_cast<KPTR<KBlend>>(0);
+	m_pCurrentVertexShader = static_cast<KPTR<KVertexShader>>(0);
+	m_pCurrentPixelShader = static_cast<KPTR<KPixelShader>>(0);
 	KGameDevice::MainContext()->RSSetState(nullptr);
 	KGameDevice::MainContext()->OMSetDepthStencilState(nullptr, 0);
 	KGameDevice::MainContext()->OMSetBlendState(nullptr, nullptr, 0xfffffff);
