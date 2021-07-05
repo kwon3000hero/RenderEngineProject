@@ -45,7 +45,7 @@ void __stdcall Start()
 
 		KGAMEDIR Dir;
 
-		Dir.MoveParent(L"KCM3D");
+		Dir.MoveParent(L"RenderEngineProject-main");
 		Dir.Move(L"RES");
 		Dir.Move(L"TEX");
 

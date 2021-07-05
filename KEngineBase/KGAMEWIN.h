@@ -37,10 +37,10 @@ private:
 	static std::set<KGameString> m_classNameContainer;
 	static std::map<KGameString, KPTR<KGameWindow>> m_winContainer;
 
-	static KPTR<KGameWindow> m_MainWindow;
+	static KWeakPTR<KGameWindow> m_MainWindow;
 
 public:
-	static KPTR<KGameWindow> MainWindow()
+	static KWeakPTR<KGameWindow> MainWindow()
 	{
 		return m_MainWindow;
 	}

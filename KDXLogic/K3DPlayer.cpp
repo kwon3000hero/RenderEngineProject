@@ -6,7 +6,7 @@
 void K3DPlayer::Init()
 {
 	KGAMEDIR Dir;
-	Dir.MoveParent(L"KCM3D");
+	Dir.MoveParent(L"RenderEngineProject-main");
 	Dir.Move(L"RES");
 	Dir.Move(L"Mesh");
 

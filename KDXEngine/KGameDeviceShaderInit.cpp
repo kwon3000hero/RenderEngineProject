@@ -10,7 +10,7 @@ void KGameDevice::InitShader()
 	{
 		KGAMEDIR Dir;
 
-		Dir.MoveParent(L"KCM3D");
+		Dir.MoveParent(L"RenderEngineProject-main");
 		Dir.Move(L"RES");
 		Dir.Move(L"Shader");
 

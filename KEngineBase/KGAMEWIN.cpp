@@ -1,7 +1,7 @@
 #include "KGAMEWIN.h"
 
 bool KGameWindow::m_bProgress = true;
-KPTR<KGameWindow> KGameWindow::m_MainWindow = static_cast<KWeakPTR<KGameWindow>>(0);
+KWeakPTR<KGameWindow> KGameWindow::m_MainWindow = static_cast<KWeakPTR<KGameWindow>>(0);
 
 std::set<KGameString> KGameWindow::m_classNameContainer;
 std::map<KGameString, KPTR<KGameWindow>> KGameWindow::m_winContainer;
@@ -108,7 +108,7 @@ KPTR<KGameWindow> KGameWindow::CreateWin(const wchar_t* title, const wchar_t* cl
 
 	m_winContainer.insert(std::map<std::wstring, KPTR<KGameWindow>>::value_type(title, pWin.get()));
 
-	if (nullptr == m_MainWindow.get())
+	if (nullptr == m_MainWindow)
 	{
 		m_MainWindow = pWin;
 	}
