@@ -87,11 +87,6 @@ public:
 		return *this;
 	}
 
-	bool operator!=(const KPTR& _Ptr) const
-	{
-		return m_pType != _Ptr.m_pType;
-	}
-
 public:
 	void CheckDecRef()
 	{
@@ -204,7 +199,7 @@ public:
 
 	}
 
-	KWeakPTR(const KPTR<PTRTYPE>& _Ptr) : m_Type(_Ptr.m_pType)
+	explicit KWeakPTR(const KPTR<PTRTYPE>& _Ptr) : m_Type(_Ptr.m_pType)
 	{
 	}
 

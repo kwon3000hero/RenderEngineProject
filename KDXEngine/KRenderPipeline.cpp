@@ -122,32 +122,32 @@ KPTR<KPixelShader> KRenderPipeline::PixelShader()
 void KRenderPipeline::Create() {}
 void KRenderPipeline::Setting()
 {
-	if (nullptr != m_vertexShader.get() && m_vertexShader != m_pCurrentVertexShader)
+	if (nullptr != m_vertexShader.get() && m_vertexShader.get() != m_pCurrentVertexShader.get())
 	{
 		m_vertexShader->Setting();
 		m_pCurrentVertexShader = m_vertexShader;
 	}
 
-	if (nullptr != m_pixelShader.get() && m_pixelShader != m_pCurrentPixelShader)
+	if (nullptr != m_pixelShader.get() && m_pixelShader.get() != m_pCurrentPixelShader.get())
 	{
 		m_pixelShader->Setting();
 		m_pCurrentPixelShader = m_pixelShader;
 	}
 
 
-	if (nullptr != m_rasterizer.get() && m_rasterizer != m_pCurrentRasterizer)
+	if (nullptr != m_rasterizer.get() && m_rasterizer.get() != m_pCurrentRasterizer.get())
 	{
 		m_rasterizer->Setting();
 		m_pCurrentRasterizer = m_rasterizer;
 	}
 
-	if (nullptr != m_depthStencil.get() && m_depthStencil != m_pCurrentDepthStencil)
+	if (nullptr != m_depthStencil.get() && m_depthStencil.get() != m_pCurrentDepthStencil.get())
 	{
 		m_depthStencil->Setting();
 		m_pCurrentDepthStencil = m_depthStencil;
 	}
 
-	if (nullptr != m_blend.get() && m_blend != m_pCurrentBlend)
+	if (nullptr != m_blend.get() && m_blend.get() != m_pCurrentBlend.get())
 	{
 		m_blend->Setting();
 		m_pCurrentBlend = m_blend;
