@@ -2,7 +2,7 @@
 #include "KGameDevice.h"
 #include "KGameResource.h"
 
-class KRasterizer : public KGameResourceBase<KRasterizer>
+class KRasterizer : public KGameResource<KRasterizer>
 {
 private:
 	D3D11_RASTERIZER_DESC m_Desc;

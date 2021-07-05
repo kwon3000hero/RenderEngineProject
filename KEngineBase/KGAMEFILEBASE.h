@@ -7,7 +7,7 @@ private:
 	KGameFile* m_File;
 
 public:
-	void File(const KGameFile& _File)
+	void SetFile(const KGameFile& _File)
 	{
 		m_File = new KGameFile(_File);
 	}

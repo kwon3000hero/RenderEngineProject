@@ -6,7 +6,7 @@
 #include <functional>
 #include "KGameResource.h"
 
-class KThread : public KGameResourceBase<KThread>
+class KThread : public KGameResource<KThread>
 {
 private:
 	static std::map<KGameString, KPTR<KThread>> m_ThreadContainer;
@@ -23,8 +23,8 @@ public:
 	template<typename T>
 	static void Start(const KGameString& _name, void(T::* _func)(KThread*), T* _pObject)
 	{
-		m_SyncObject();
-		KPTR<KThread> ptr = Find(_name);
+		KGameResourceManager<T>::Instance().m_SyncObject();
+		KPTR<KThread> ptr = KGameResourceManager<T>::Instance().Find(_name);
 
 		if (nullptr == ptr.get())
 		{
@@ -37,8 +37,8 @@ public:
 	template<typename T>
 	static void Start(const KGameString& _name, void(T::* _func)(KThread*))
 	{
-		m_SyncObject();
-		KPTR<KThread> ptr = Find(_name);
+		KGameResourceManager<T>::Instance().m_SyncObject();
+		KPTR<KThread> ptr = KGameResourceManager<T>::Instance().Find(_name);
 
 		if (nullptr == ptr.get())
 		{
@@ -52,7 +52,7 @@ public:
 	template<typename T>
 	void Start(void(T::* _func)(KThread*), T* _pObject)
 	{
-		m_SyncObject();
+		KGameResourceManager<T>::Instance().SyncObject();
 		if (nullptr == _func)
 		{
 			AssertMsg(L"존재하지 않는 쓰레드로 콜백 진행 불가.1");
@@ -65,7 +65,7 @@ public:
 
 	void Start(void(* _func)(KThread*))
 	{
-		m_SyncObject();
+		KGameResourceManager<KThread>::Instance().SyncObject();
 		if (nullptr == _func)
 		{
 			AssertMsg(L"존재하지 않는 쓰레드로 콜백 진행 불가.2");

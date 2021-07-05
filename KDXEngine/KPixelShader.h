@@ -2,7 +2,7 @@
 #include "KGameResource.h"
 #include "KShader.h"
 
-class KPixelShader : public KGameResourceBase<KPixelShader>, public KShader
+class KPixelShader : public KGameResource<KPixelShader>, public KShader
 {
 	friend KShader;
 public:

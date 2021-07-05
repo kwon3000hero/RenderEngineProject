@@ -28,7 +28,7 @@ KPTR<KGameScene> KGameScene::m_NextScene = static_cast<KPTR<KGameScene>>(0);
 
 void KGameScene::ChangeScene(const KGameString& _Name)
 {
-	m_NextScene = Find(_Name);
+	m_NextScene = KGameResourceManager<KGameScene>::Instance().Find(_Name);
 	if (nullptr == m_NextScene.get())
 	{
 		assert(false);

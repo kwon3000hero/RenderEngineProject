@@ -167,6 +167,7 @@ XCOPY "$(SolutionDir)TP\FBX\vs2015\$(Platform)\$(Configuration)\*.*" "$(Solution
     <ClCompile Include="KGAMEPATH.cpp" />
     <ClCompile Include="KGameReference.cpp" />
     <ClCompile Include="KGameResource.cpp" />
+    <ClCompile Include="KGameResourceManager.cpp" />
     <ClCompile Include="KGAMESTRING.cpp" />
     <ClCompile Include="KGAMETIME.cpp" />
     <ClCompile Include="KGameType.cpp" />
@@ -187,6 +188,7 @@ XCOPY "$(SolutionDir)TP\FBX\vs2015\$(Platform)\$(Configuration)\*.*" "$(Solution
     <ClInclude Include="KGAMEPATH.h" />
     <ClInclude Include="KGameReference.h" />
     <ClInclude Include="KGameResource.h" />
+    <ClInclude Include="KGameResourceManager.h" />
     <ClInclude Include="KGAMESTRING.h" />
     <ClInclude Include="KGAMETIME.h" />
     <ClInclude Include="KGameType.h" />

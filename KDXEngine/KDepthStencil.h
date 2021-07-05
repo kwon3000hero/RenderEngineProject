@@ -2,7 +2,7 @@
 #include "KGameDevice.h"
 #include "KGameResource.h"
 
-class KDepthStencil : public KGameResourceBase<KDepthStencil>
+class KDepthStencil : public KGameResource<KDepthStencil>
 {
 private:
 	D3D11_DEPTH_STENCIL_DESC m_Desc;

@@ -26,7 +26,7 @@ public:
 
 	void Setting();
 
-public:
+private:
 	KBlend();
 	~KBlend();
 

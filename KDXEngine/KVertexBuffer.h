@@ -1,7 +1,7 @@
 #pragma once
 #include "K3DBufferBase.h"
 
-class KVertexBuffer : public KGameResourceBase<KVertexBuffer>, public K3DBufferBase
+class KVertexBuffer : public KGameResource<KVertexBuffer>, public K3DBufferBase
 {
 public:
 	template<typename T>

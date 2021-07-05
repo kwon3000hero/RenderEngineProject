@@ -136,7 +136,7 @@ void KMeshAnimator::ChangeAnimation(const KGameString& _ani)
 
 std::vector<KPTR<KRenderPlayer>> KMeshAnimator::CreateAnimation(const KGAMEDIR& _dir, const KGameString& _fbxName, const KGameString& _takeName, const KGameString& _aniName, int _start, int _end, const KGameString& _materialName, float _speed, bool _loop)
 {
-	KPTR<KFBX> fbx = KFBX::Find(_fbxName);
+	KPTR<KFBX> fbx = KGameResourceManager<KFBX>::Instance().Find(_fbxName);
 
 	if (nullptr == fbx.get())
 	{

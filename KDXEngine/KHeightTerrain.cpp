@@ -6,7 +6,7 @@
 
 void KHeightTerrain::CreateGround(int _x, int _z, const KGameString& _DifTexName, const KGameString& _heightMapName)
 {
-	m_HeightTexture = KTexture::Find(_heightMapName);
+	m_HeightTexture = KGameResourceManager<KTexture>::Instance().Find(_heightMapName);
 
 	m_MapData.x = (float)_x;
 	m_MapData.z = (float)_z;

@@ -1,6 +1,8 @@
 #include "KFBX.h"
 #include "KGameDebug3D.h"
 #include "KMesh.h"
+#include "KGAMEDEBUG.h"
+
 
 KFBX::KFBX() : m_pManager(nullptr), m_pImporter(nullptr), m_pIOSettings(nullptr), m_pScene(nullptr), m_MeshCount(0)
 {

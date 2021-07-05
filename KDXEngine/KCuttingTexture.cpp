@@ -4,7 +4,7 @@
 
 void KCuttingTexture::Create(int _W, int _H)
 {
-	KPTR<KTexture> Ptr = KTexture::Find(m_Path);
+	KPTR<KTexture> Ptr = KGameResourceManager<KTexture>::Instance().Find(m_Path);
 
 	if (nullptr == Ptr.get())
 	{
@@ -16,7 +16,7 @@ void KCuttingTexture::Create(int _W, int _H)
 
 void KCuttingTexture::Create(const KVector& _Start, const KVector& _Size, int _W, int _H)
 {
-	KPTR<KTexture> Ptr = KTexture::Find(m_Path);
+	KPTR<KTexture> Ptr = KGameResourceManager<KTexture>::Instance().Find(m_Path);
 
 	if (nullptr == Ptr.get())
 	{

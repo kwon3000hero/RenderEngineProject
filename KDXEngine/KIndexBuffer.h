@@ -2,7 +2,7 @@
 #include "K3DBufferBase.h"
 #include "KGameResource.h"
 
-class KIndexBuffer : public KGameResourceBase<KIndexBuffer>, public K3DBufferBase
+class KIndexBuffer : public KGameResource<KIndexBuffer>, public K3DBufferBase
 {
 public:
 	template<typename T>

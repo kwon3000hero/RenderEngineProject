@@ -19,6 +19,7 @@
     <ClCompile Include="KThread.cpp" />
     <ClCompile Include="KCriticalSection.cpp" />
     <ClCompile Include="KGameResource.cpp" />
+    <ClCompile Include="KGameResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KGAMEDEBUG.h" />
@@ -45,6 +46,7 @@
     <ClInclude Include="KThread.h" />
     <ClInclude Include="KCriticalSection.h" />
     <ClInclude Include="KGameResource.h" />
+    <ClInclude Include="KGameResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="BASE">

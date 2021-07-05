@@ -28,7 +28,6 @@ public:
 		fwrite(&_value, sizeof(T), 1, m_pFile);
 	}
 
-	//KGameString에 대한 크기를 알 수 없으므로...
 	void operator << (const KGameString& _value)
 	{
 		if (FileOpenMode::Write != m_mode)
@@ -52,7 +51,6 @@ public:
 		fread_s(&_value, sizeof(T), sizeof(T), 1, m_pFile);
 	}
 
-	//KGameString에 대한 크기를 알 수 없으므로...
 	void operator >> (KGameString& _value)
 	{
 		if (FileOpenMode::Read != m_mode)

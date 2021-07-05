@@ -11,7 +11,7 @@ void KMesh::Create(const KGameString& _VBName, const KGameString& _IBName)
 
 void KMesh::AddVertexBuffer(const KGameString& _vertexBufferName)
 {
-	KPTR<KVertexBuffer> VBPTR = KVertexBuffer::Find(_vertexBufferName);
+	KPTR<KVertexBuffer> VBPTR = KGameResourceManager<KVertexBuffer>::Instance().Find(_vertexBufferName);
 
 	if (nullptr == VBPTR.get())
 	{
@@ -33,7 +33,7 @@ void KMesh::AddVertexBuffer(const KPTR<KVertexBuffer>& _vertexBuffer)
 
 void KMesh::AddIndexBuffer(const KGameString& _indexBufferName)
 {
-	KPTR<KIndexBuffer> indexBufferPtr = KIndexBuffer::Find(_indexBufferName);
+	KPTR<KIndexBuffer> indexBufferPtr = KGameResourceManager<KIndexBuffer>::Instance().Find(_indexBufferName);
 
 	if (nullptr == indexBufferPtr.get())
 	{

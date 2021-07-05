@@ -56,7 +56,7 @@ void KRenderPipeline::ResetAll()
 
 void KRenderPipeline::SetVertexShader(const KGameString& _Name)
 {
-	m_vertexShader = KVertexShader::Find(_Name);
+	m_vertexShader = KGameResourceManager<KVertexShader>::Instance().Find(_Name);
 
 	if (nullptr == m_vertexShader.get())
 	{
@@ -68,7 +68,7 @@ void KRenderPipeline::SetVertexShader(const KGameString& _Name)
 }
 void KRenderPipeline::SetPixelShader(const KGameString& _Name)
 {
-	m_pixelShader = KPixelShader::Find(_Name);
+	m_pixelShader = KGameResourceManager<KPixelShader>::Instance().Find(_Name);
 
 	if (nullptr == m_pixelShader.get())
 	{
@@ -82,7 +82,7 @@ void KRenderPipeline::SetPixelShader(const KGameString& _Name)
 
 void KRenderPipeline::SetRasterizer(const KGameString& _Name)
 {
-	m_rasterizer = KRasterizer::Find(_Name);
+	m_rasterizer = KGameResourceManager<KRasterizer>::Instance().Find(_Name);
 
 	if (nullptr == m_rasterizer.get())
 	{
@@ -93,7 +93,7 @@ void KRenderPipeline::SetRasterizer(const KGameString& _Name)
 
 void KRenderPipeline::SetDepthStencil(const KGameString& _Name)
 {
-	m_depthStencil = KDepthStencil::Find(_Name);
+	m_depthStencil = KGameResourceManager<KDepthStencil>::Instance().Find(_Name);
 
 	if (nullptr == m_depthStencil.get())
 	{
@@ -103,7 +103,7 @@ void KRenderPipeline::SetDepthStencil(const KGameString& _Name)
 }
 void KRenderPipeline::SetBlend(const KGameString& _Name)
 {
-	m_blend = KBlend::Find(_Name);
+	m_blend = KGameResourceManager<KBlend>::Instance().Find(_Name);
 
 	if (nullptr == m_blend.get())
 	{

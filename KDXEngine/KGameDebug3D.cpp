@@ -28,7 +28,7 @@ float KGameDebug3D::m_basicSize;
 
 void KGameDebug3D::Init()
 {
-	RectMesh = KMesh::Find(L"RECTDEBUG");
+	RectMesh = KGameResourceManager<KMesh>::Instance().Find(L"RECTDEBUG");
 	RP.SetRenderPipeline(L"HDEBUG");
 	RP.m_MeshRenderType = D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP;
 
@@ -118,7 +118,7 @@ void KGameDebug3D::DebugRender()
 		m_TextureRenderPlayer->Render();
 	}
 
-	KPTR<KGameFont> DefFont = KGameFont::Find(L"±¼¸²");
+	KPTR<KGameFont> DefFont = KGameResourceManager<KGameFont>::Instance().Find(L"±¼¸²");
 
 	for (size_t i = 0; i < m_DebugTextSize; i++)
 	{

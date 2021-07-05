@@ -167,7 +167,7 @@ void KRenderPlayer::SetSampler(const KGameString& _name, const KGameString& _sam
 	{
 		if (m_SamplerContainer[i].end() != m_SamplerContainer[i].find(_name))
 		{
-			KPTR<KSampler> finded = KSampler::Find(_samplerName);
+			KPTR<KSampler> finded = KGameResourceManager<KSampler>::Instance().Find(_samplerName);
 			m_SamplerContainer[i][_name].m_Sampler = finded;
 		}
 		else
@@ -200,7 +200,7 @@ void KRenderPlayer::SetTexture(const KGameString& _name, const KGameString& _tex
 		AssertMsg(L"존재하지 않는 텍스처 세팅입니다 1: " + _name);
 	}
 
-	KPTR<KTexture> Res = KTexture::Find(_textureName);
+	KPTR<KTexture> Res = KGameResourceManager<KTexture>::Instance().Find(_textureName);
 
 	for (size_t i = 0; i < m_TextureContainer.size(); i++)
 	{
@@ -274,13 +274,13 @@ void KRenderPlayer::ShadowRender()
 	SetRenderConstantBuffer(L"TRANSFORMDATA");
 	if (false == m_RenderOption[static_cast<int>(RenderOption::Animation)])
 	{
-		KPTR<KRenderPipeline> RPL = KRenderPipeline::Find(L"SHADOW");
+		KPTR<KRenderPipeline> RPL = KGameResourceManager<KRenderPipeline>::Instance().Find(L"SHADOW");
 		RPL->Setting();
 	}
 	else
 	{
 		SetRenderTexture(L"FrameAnimationTexture");
-		KPTR<KRenderPipeline> RPL = KRenderPipeline::Find(L"SHADOWANI");
+		KPTR<KRenderPipeline> RPL = KGameResourceManager<KRenderPipeline>::Instance().Find(L"SHADOWANI");
 		RPL->Setting();
 	}
 
@@ -289,7 +289,7 @@ void KRenderPlayer::ShadowRender()
 
 void KRenderPlayer::SetMesh(const KGameString& _Name)
 {
-	m_mesh = KMesh::Find(_Name);
+	m_mesh = KGameResourceManager<KMesh>::Instance().Find(_Name);
 	if (nullptr == m_mesh.get())
 	{
 		AssertMsg(L"매쉬가 존재하지 않습니다. =" + _Name);
@@ -309,7 +309,7 @@ void KRenderPlayer::SetMesh(const KPTR<KMesh>& _mesh)
 
 void KRenderPlayer::SetRenderPipeline(const KGameString& _Name)
 {
-	m_CurrentRenderPipeline = KRenderPipeline::Find(_Name);
+	m_CurrentRenderPipeline = KGameResourceManager<KRenderPipeline>::Instance().Find(_Name);
 
 	if (nullptr == m_CurrentRenderPipeline.get())
 	{
@@ -477,7 +477,7 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 {
 	std::vector<KPTR<KRenderPlayer>> renderPlayerList;
 
-	KPTR<KFBX> fbx = KFBX::Find(_FbxName);
+	KPTR<KFBX> fbx = KGameResourceManager<KFBX>::Instance().Find(_FbxName);
 
 	size_t meshFbxSize = fbx->m_MeshContainer.size();
 	for (size_t i = 0; i < meshFbxSize; ++i)
@@ -486,27 +486,27 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 
 		KGameString diffuseTextureName = KGAMEPATH::GetFileName(fbx->m_UserMaterialDataContainer[i].DiffuseTexture);
 
-		KPTR<KTexture> diffuseTexture = KTexture::Find(diffuseTextureName);
+		KPTR<KTexture> diffuseTexture = KGameResourceManager<KTexture>::Instance().Find(diffuseTextureName);
 		if (nullptr == diffuseTexture.get())
 		{
 			KTexture::Load(_dir.m_Path + "\\" + diffuseTextureName);
-			diffuseTexture = KTexture::Find(diffuseTextureName);
+			diffuseTexture = KGameResourceManager<KTexture>::Instance().Find(diffuseTextureName);
 		}
 
 		KGameString specularTextureName = KGAMEPATH::GetFileName(fbx->m_UserMaterialDataContainer[i].SpecularTexture);
-		KPTR<KTexture> specularTexture = KTexture::Find(specularTextureName);
+		KPTR<KTexture> specularTexture = KGameResourceManager<KTexture>::Instance().Find(specularTextureName);
 		if (nullptr == specularTexture.get())
 		{
 			KTexture::Load(_dir.m_Path + "\\" + specularTextureName);
-			specularTexture = KTexture::Find(specularTextureName);
+			specularTexture = KGameResourceManager<KTexture>::Instance().Find(specularTextureName);
 		}
 
 		KGameString normalTextureName = KGAMEPATH::GetFileName(fbx->m_UserMaterialDataContainer[i].NormalTexture);
-		KPTR<KTexture> normalTexture = KTexture::Find(normalTextureName);
+		KPTR<KTexture> normalTexture = KGameResourceManager<KTexture>::Instance().Find(normalTextureName);
 		if (nullptr == normalTexture.get())
 		{
 			KTexture::Load(_dir.m_Path + "\\" + normalTextureName);
-			normalTexture = KTexture::Find(normalTextureName);
+			normalTexture = KGameResourceManager<KTexture>::Instance().Find(normalTextureName);
 		}
 
 		{

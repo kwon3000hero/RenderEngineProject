@@ -44,7 +44,7 @@ void KCuttingRender::SetSamplerMode(SamplerOption _OP)
 void KCuttingRender::CuttingTex(const KGameString& _CuttingTexName, size_t _Index)
 {
 	SetTexture(L"DifTex", _CuttingTexName);
-	m_Tex = KCuttingTexture::Find(_CuttingTexName);
+	m_Tex = KGameResourceManager<KCuttingTexture>::Instance().Find(_CuttingTexName);
 
 	DATA.LINEUV.x = m_Tex->PixelUvSize().x;
 	DATA.LINEUV.y = m_Tex->PixelUvSize().y;

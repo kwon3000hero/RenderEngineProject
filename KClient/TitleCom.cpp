@@ -42,13 +42,13 @@ void UserMeshLoading(KThread* PTR)
 
 void TitleCom::Init()
 {
-	KPTR<KThread> Thread(KThread::Find(L"USERMESHLOADING"));
+	KPTR<KThread> Thread(KGameResourceManager<KThread>::Instance().Find(L"USERMESHLOADING"));
 	if (nullptr != Thread.get())
 	{
 		Thread->Start(UserMeshLoading);
 		return;
 	}
-	Thread = KThread::Create(L"USERMESHLOADING");
+	Thread = KGameResourceManager<KThread>::Instance().Create(L"USERMESHLOADING");
 	Thread->SetData(nullptr);
 	Thread->Start(UserMeshLoading);
 
@@ -61,14 +61,14 @@ void TitleCom::PrevUpdate()
 	if (true == bIsLoadFbx)
 	{
 		KPTR<KFBX> FBX;
-		FBX = KFBX::Find(Str);
+		FBX = KGameResourceManager<KFBX>::Instance().Find(Str);
 
 		if (nullptr == FBX.get())
 		{
 			return;
 		}
 
-		FBX->Create(Str);
+		KGameResourceManager<KThread>::Instance().Create(Str);
 
 		KGAMEDIR Dir;
 		Dir.MoveParent(L"RenderEngineProject-main");

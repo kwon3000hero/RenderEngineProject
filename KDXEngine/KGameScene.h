@@ -18,7 +18,7 @@ class KRenderTarget;
 class KGameActor;
 class KLightManager;
 struct LightDataBuffer;
-class KGameScene : public KGameComponentManager, public KGameResourceBase<KGameScene>
+class KGameScene : public KGameComponentManager, public KGameResource<KGameScene>
 {
 public:
 	friend KTransform;
@@ -42,14 +42,14 @@ private:
 public:
 	static KPTR<KGameScene> Create(const KGameString& _Name = L"")
 	{
-		KPTR<KGameScene> NewT = KGameResourceBase<KGameScene>::Create(_Name);
+		KPTR<KGameScene> NewT = KGameResourceManager<KGameScene>::Instance().Create(_Name);
 		return NewT;
 	}
 
 	template<typename STARTCOM>
 	static KPTR<KGameScene> Create(const KGameString& _Name = L"")
 	{
-		KPTR<KGameScene> NewT = KGameResourceBase<KGameScene>::Create(_Name);
+		KPTR<KGameScene> NewT = KGameResourceManager<KGameScene>::Instance().Create(_Name);
 		NewT->CreateComponent<STARTCOM>();
 		return NewT;
 	}
