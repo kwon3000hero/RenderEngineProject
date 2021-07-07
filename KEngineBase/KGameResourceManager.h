@@ -15,17 +15,13 @@ private:
 	std::unordered_multimap<KGameString, KPTR<T>, KGameStringHash> m_ResourceContainer;
 
 public:
-	static KGameResourceManager* m_instance;
+	static KGameResourceManager m_instance;
 
 public:
 	static KGameResourceManager& Instance()
 	{
-		if (nullptr == m_instance)
-		{
-			m_instance = new KGameResourceManager();
-		}
 
-		return *m_instance;
+		return m_instance;
 	}
 
 private:
@@ -102,7 +98,5 @@ public:
 	}
 };
 
-
-
 template<typename T>
-KGameResourceManager<T>* KGameResourceManager<T>::m_instance = nullptr;
+KGameResourceManager<T> KGameResourceManager<T>::m_instance;

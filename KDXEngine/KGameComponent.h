@@ -8,7 +8,7 @@
 class KGameComponentManager;
 class KGameComponent : public KGameReference, public KGAMENAME, public KGameType, public KUpdateBase
 {
-private:
+protected:
 	int m_Order;
 
 public:
@@ -26,7 +26,7 @@ public:
 		m_Order = _Order;
 	}
 
-	virtual void StartComData(void* Ptr) PURE;	
+	virtual void StartComData(void* Ptr) PURE;
 
 public:
 	KGameComponent() : m_Order(0)

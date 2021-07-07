@@ -5,8 +5,7 @@
 
 class KTransform;
 class KGameScene;
-class KGameComponent;
-class KGameActor : public KGameComponentManager, public KGameReference, public KGAMENAME, public KGameType
+class KGameActor final : public KGameComponentManager, public KGameReference, public KGAMENAME, public KGameType
 {
 public:
 	friend KGameScene;

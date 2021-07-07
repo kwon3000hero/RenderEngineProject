@@ -1,16 +1,13 @@
 #pragma once
 #include <KGAMENAME.h>
 #include <KGameReference.h>
-#include <KGameType.h>
-
 #include <list>
-
 #include "KUpdateBase.h"
 
 class KGameComponent;
 class KGameComponentManager : public KUpdateBase
 {
-protected:
+private:
 	std::list<KPTR<KGameComponent>> m_componentList;
 
 public:
@@ -33,7 +30,7 @@ public:
 		{
 			if (true == Com->Equal<T>())
 			{
-				return Com->VirtualChildConvert<T>();
+				return Com->TryConvertTo<T>();
 			}
 		}
 
@@ -41,15 +38,20 @@ public:
 	}
 
 
-protected:
+protected:	
 	void Init();
+
 	void PrevUpdate() override;
+		
 	void Update() override;
+		
 	void NextUpdate() override;
+		
 	void PrevRender() override;
+		
 	void DebugRender() override;
 
-public:
+protected:
 	KGameComponentManager() {}
 	virtual ~KGameComponentManager() {}
 };

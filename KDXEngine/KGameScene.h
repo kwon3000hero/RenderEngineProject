@@ -7,8 +7,6 @@
 #include <map>
 #include <unordered_map>
 
-#include "KGameComponent.h"
-
 class KCollision;
 class KCamera;
 class KTransform;
@@ -18,6 +16,7 @@ class KRenderTarget;
 class KGameActor;
 class KLightManager;
 struct LightDataBuffer;
+
 class KGameScene : public KGameComponentManager, public KGameResource<KGameScene>
 {
 public:
@@ -46,11 +45,11 @@ public:
 		return NewT;
 	}
 
-	template<typename STARTCOM>
+	template<typename T>
 	static KPTR<KGameScene> Create(const KGameString& _Name = L"")
 	{
 		KPTR<KGameScene> NewT = KGameResourceManager<KGameScene>::Instance().Create(_Name);
-		NewT->CreateComponent<STARTCOM>();
+		NewT->CreateComponent<T>();
 		return NewT;
 	}
 
@@ -87,7 +86,6 @@ private:
 
 	std::map<int, std::list<KPTR<KCamera>>> m_cameraGroupContainer;
 	std::map<int, std::list<KPTR<KRenderManager>>> m_RenderManagerGroupContainer;
-	//std::map<int, std::list<KPTR<KRenderManager>>>::iterator renderGroupIter;
 
 	std::map<int, std::list<KPTR<KLightManager>>> m_LightManagerContainer;
 	std::map<int, LightDataBuffer*> m_LightDataBufferContainer;

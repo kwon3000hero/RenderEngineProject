@@ -36,7 +36,8 @@ public:
 	}
 
 	template<typename T>
-	KPTR<T> VirtualChildConvert() {
+	KPTR<T> TryConvertTo() 
+	{
 		return dynamic_cast<T*>(this);
 	}
 
