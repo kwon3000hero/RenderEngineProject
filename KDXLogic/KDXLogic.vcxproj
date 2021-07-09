@@ -20,22 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="K3DPlayer.cpp" />
-    <ClCompile Include="KFreeCam.cpp" />
+    <ClCompile Include="KFreeCamera.cpp" />
     <ClCompile Include="KFreeObject.cpp" />
     <ClCompile Include="KLogicMath.cpp" />
     <ClCompile Include="KLogicValue.cpp" />
     <ClCompile Include="KPlayer.cpp" />
-    <ClCompile Include="KTest.cpp" />
     <ClCompile Include="KTitleObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="K3DPlayer.h" />
-    <ClInclude Include="KFreeCam.h" />
+    <ClInclude Include="KFreeCamera.h" />
     <ClInclude Include="KFreeObject.h" />
     <ClInclude Include="KLogicMath.h" />
     <ClInclude Include="KLogicValue.h" />
     <ClInclude Include="KPlayer.h" />
-    <ClInclude Include="KTest.h" />
     <ClInclude Include="KTitleObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

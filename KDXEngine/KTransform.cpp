@@ -33,6 +33,11 @@ KTransform::KTransform() : m_localScale({ 1.0f, 1.0f, 1.0f, 1.0f }), m_worldScal
 	m_Matrix.Init();
 }
 
+KTransform::~KTransform()
+{
+
+}
+
 KPTR<KTransform> KTransform::GetChild(int _index)
 {
 	return m_Child[_index];

@@ -154,6 +154,13 @@ private:
 	std::vector<KPTR<KRenderPlayer>> m_ShadowRenderPlayerContainer;
 
 public:
+	KRenderManager();
+	KRenderManager(const KGameString& _MeshName, const KGameString& _RenderPipeLineName, int _Order = 0);
+	KRenderManager(const KGAMEDIR& _dir, const KGameString& _fbxName, const KGameString& _MaterialName, const KGameString& _SamplerName, int _order = 0);
+	KRenderManager(int _Order);
+	virtual ~KRenderManager();
+
+public:
 	void SetTexture(const KGameString& _NAME, const KGameString& _RESNAME, int _PlayerIndex = 0);
 	void SetSampler(const KGameString& _NAME, const KGameString& _RESNAME, int _PlayerIndex = 0);
 
@@ -181,10 +188,6 @@ public:
 	std::vector<KPTR<KRenderPlayer>> CreateRenderPlayerToFbx(const KGAMEDIR& _dir, const KGameString& _FbxName, const KGameString& _MaterialName, const KGameString& _SamplerName);
 
 public:
-	void StartData(int _Order = 0);
-	void StartData(const KGameString& _MeshName, const KGameString& _RenderPipeLineName, int _Order = 0);
-	void StartData(const KGAMEDIR& _dir, const KGameString& _fbxName, const KGameString& _MaterialName, const KGameString& _SamplerName, int _order = 0);
-
 	virtual void Init();
 	virtual void Render(KPTR<KCamera> _ViewCam);
 	virtual void ForwardRender(KPTR<KCamera> _ViewCam);

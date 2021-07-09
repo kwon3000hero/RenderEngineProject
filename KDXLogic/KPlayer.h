@@ -7,14 +7,14 @@
 
 class KFrameAnimator;
 class KPlayer :
-	public KGameLogic
+	public KGameActor
 {
 public:
 	float MoveSpeed;
 	KPTR<KFrameAnimator> ANIPTR;
 
 public:
-	float Speed;
+	float m_speed;
 
 public:
 	void Init() override;

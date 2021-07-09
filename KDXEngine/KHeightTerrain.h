@@ -22,7 +22,7 @@ class KTexture;
 class KMesh;
 class KVertexBuffer;
 class KIndexBuffer;
-class KHeightTerrain : public KActorGameComponent
+class KHeightTerrain : public KGameComponent
 {
 private:
 	KVector m_MapData;

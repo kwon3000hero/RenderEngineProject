@@ -1,21 +1,16 @@
-#include <KGameComponent.h>
+#include <KGameLogic.h>
 
-class KFreeObject : public KActorGameComponent
+class KFreeObject : public KGameComponent
 {
 public:
 	KFreeObject();
-
-
-public:
-	void StartData(float _Value = 1.0f);
+	KFreeObject(float _Value);
 
 public:
-	float Speed;
+	float m_speed;
 
 public:
 	void Init() override;
 	void Update() override;
-
-
 };
 

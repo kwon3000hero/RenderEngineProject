@@ -3,7 +3,7 @@
 #include <KFreeObject.h>
 #include <KRender.h>
 #include <KCamera.h>
-#include <KFreeCam.h>
+#include <KFreeCamera.h>
 #include <KCuttingTexture.h>
 #include <KCuttingRender.h>
 #include <KFrameAnimator.h>

@@ -50,11 +50,16 @@ void KLightManager::Init()
 
 void KLightManager::PrevRender()
 {
-	m_LightData.LightPos = Actor()->Transform()->WorldPosition();
-	m_LightData.LightDir = Actor()->Transform()->WFORWARD();
-	m_LightData.LightDirInv = Actor()->Transform()->WBACK();
+	KWeakPTR<KTransform> transform(Actor()->GetComponent<KTransform>());
 
-	m_LightData.LightView.View(Actor()->Transform()->WorldPosition(), Actor()->Transform()->WFORWARD(), Actor()->Transform()->WUP());
+	m_LightData.LightPos = transform->WorldPosition();
+	m_LightData.LightDir = transform->WFORWARD();
+	m_LightData.LightDirInv = transform->WBACK();
+
+	m_LightData.LightView.View(
+		transform->WorldPosition(),
+		transform->WFORWARD(),
+		transform->WUP());
 
 	float Near = 0.1f;
 	float Far = 10000.0f;

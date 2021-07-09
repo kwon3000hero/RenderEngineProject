@@ -2,7 +2,7 @@
 #include <KGAMEDIR.h>
 #include <KFBX.h>
 #include <KGameInput.h>
-#include <KFreeCam.h>
+#include <KFreeCamera.h>
 #include <KBloomEffect.h>
 #include <KLogicValue.h>
 #include <KHeightTerrain.h>
@@ -51,14 +51,16 @@ void TestComponent::Init()
 
 	Scene()->LinkCollision(0, 1);
 
-	KPTR<KFreeCamera> FCAM;
 
+	KPTR<KFreeCamera> FCAM;
 	{
+
 		KPTR<KGameActor> NEWACTOR = Scene()->CreateActor();
 		NEWACTOR->Transform()->WorldPosition({ 0.0f, 0.0f, -20.0f });
-		KPTR<KCamera> PCAM(NEWACTOR->CreateComponent<KCamera>(0, 0));
-
+		KPTR<KCamera> PCAM = NEWACTOR->CreateComponent<KCamera>(0, 0);
+		
 		FCAM = NEWACTOR->CreateComponent<KFreeCamera>(100.0F);
+		
 		PCAM->SetSize({ 12.8f, 7.2f });
 		PCAM->SetMode(KCamera::CAMMODE::PROJ);
 		PCAM->CreateEffect<KBloomEffect>();

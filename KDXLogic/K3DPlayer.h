@@ -1,7 +1,7 @@
 #pragma once
 #include "KGameLogic.h"
 
-class K3DPlayer : public KGameLogic
+class K3DPlayer : public KGameComponent
 {
 private:
 	KPTR<KMeshAnimator> m_MeshAnimator;

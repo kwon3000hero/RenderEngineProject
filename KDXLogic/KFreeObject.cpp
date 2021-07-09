@@ -1,12 +1,11 @@
 #include "KFreeObject.h"
 
-KFreeObject::KFreeObject() : Speed(1.0f)
+KFreeObject::KFreeObject() : m_speed(1.0f)
 {
 }
 
-void KFreeObject::StartData(float _Value)
+KFreeObject::KFreeObject(float _Value) : m_speed(_Value)
 {
-	Speed = _Value;
 }
 
 void KFreeObject::Init()
@@ -24,10 +23,12 @@ void KFreeObject::Init()
 
 void KFreeObject::Update()
 {
-	if (true == KGAMEINPUT::IsPress(L"L")) { Actor()->Transform()->LMOVE(KVector::LEFT * KGAMETIME::DeltaTime(Speed)); }
-	if (true == KGAMEINPUT::IsPress(L"R")) { Actor()->Transform()->LMOVE(KVector::RIGHT * KGAMETIME::DeltaTime(Speed)); }
-	if (true == KGAMEINPUT::IsPress(L"U")) { Actor()->Transform()->LMOVE(KVector::UP * KGAMETIME::DeltaTime(Speed)); }
-	if (true == KGAMEINPUT::IsPress(L"D")) { Actor()->Transform()->LMOVE(KVector::DOWN * KGAMETIME::DeltaTime(Speed)); }
-	if (true == KGAMEINPUT::IsPress(L"F")) { Actor()->Transform()->LMOVE(KVector::FORWARD * KGAMETIME::DeltaTime(Speed)); }
-	if (true == KGAMEINPUT::IsPress(L"B")) { Actor()->Transform()->LMOVE(KVector::BACK * KGAMETIME::DeltaTime(Speed)); }
+	KWeakPTR<KTransform> transform(Actor()->Transform());
+
+	if (true == KGAMEINPUT::IsPress(L"L")) { transform->LMOVE(KVector::LEFT * KGAMETIME::DeltaTime(m_speed)); }
+	if (true == KGAMEINPUT::IsPress(L"R")) { transform->LMOVE(KVector::RIGHT * KGAMETIME::DeltaTime(m_speed)); }
+	if (true == KGAMEINPUT::IsPress(L"U")) { transform->LMOVE(KVector::UP * KGAMETIME::DeltaTime(m_speed)); }
+	if (true == KGAMEINPUT::IsPress(L"D")) { transform->LMOVE(KVector::DOWN * KGAMETIME::DeltaTime(m_speed)); }
+	if (true == KGAMEINPUT::IsPress(L"F")) { transform->LMOVE(KVector::FORWARD * KGAMETIME::DeltaTime(m_speed)); }
+	if (true == KGAMEINPUT::IsPress(L"B")) { transform->LMOVE(KVector::BACK * KGAMETIME::DeltaTime(m_speed)); }
 }

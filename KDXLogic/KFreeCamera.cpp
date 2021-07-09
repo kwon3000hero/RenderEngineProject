@@ -1,28 +1,29 @@
-#include "KFreeCam.h"
+#include "KFreeCamera.h"
 #include <KGAMEWIN.h>
 
 KFreeCamera::KFreeCamera() : m_translateSpeed(1.0f), m_rotateSpeed(180.0f), m_ZoomSpeed(1.0F)
 {
 }
 
-void KFreeCamera::StartData(float _Value)
-{
-	m_translateSpeed = _Value;
+KFreeCamera::KFreeCamera(float _Value) : m_translateSpeed(_Value)
+{	
 }
 
 void KFreeCamera::FollowTransform(KPTR<KTransform> _FollowTransform, KVector _FollowPosition, KVector _FollowRotation)
 {
-	m_FollowTransform = _FollowTransform;
-	Transform()->Parent(m_FollowTransform);
+	KWeakPTR<KTransform> transform(Actor()->GetComponent<KTransform>());
 
-	Transform()->LocalPosition(KVector::ZERO);
-	Transform()->WorldPosition(KVector::ZERO);
+	m_FollowTransform = _FollowTransform;
+	transform->Parent(m_FollowTransform);
+
+	transform->LocalPosition(KVector::ZERO);
+	transform->WorldPosition(KVector::ZERO);
 
 	m_FollowRotation = _FollowRotation;
-	Transform()->LocalRotate(m_FollowRotation);
+	transform->LocalRotate(m_FollowRotation);
 
 	m_FollowPosition = _FollowPosition;
-	Transform()->LocalPosition(m_FollowPosition);
+	transform->LocalPosition(m_FollowPosition);
 }
 
 void KFreeCamera::Init()
@@ -73,41 +74,43 @@ void KFreeCamera::FreeUpdate()
 	//	// CurRSpeed = RSpeed * 10.0f;
 	//}
 
+	KPTR<KTransform> transform = Actor()->GetComponent<KTransform>();
+
 	if (true == KGAMEINPUT::IsPress(L"CAML"))
 	{
-		Actor()->Transform()->LMOVE(Transform()->WLEFT() * KGAMETIME::DeltaTime(CurSpeed));
+		transform->LMOVE(transform->WLEFT() * KGAMETIME::DeltaTime(CurSpeed));
 	}
 
 	if (true == KGAMEINPUT::IsPress(L"CAMR"))
 	{
-		Actor()->Transform()->LMOVE(Transform()->WRIGHT() * KGAMETIME::DeltaTime(CurSpeed));
+		transform->LMOVE(transform->WRIGHT() * KGAMETIME::DeltaTime(CurSpeed));
 	}
 
 	if (true == KGAMEINPUT::IsPress(L"CAMF"))
 	{
 		if (KCamera::CAMMODE::ORTH == m_Camera->Mode())
 		{
-			Actor()->Transform()->LMOVE(Transform()->WUP() * KGAMETIME::DeltaTime(CurSpeed));
+			transform->LMOVE(transform->WUP() * KGAMETIME::DeltaTime(CurSpeed));
 		}
 		else
 		{
-			Actor()->Transform()->LMOVE(Transform()->WFORWARD() * KGAMETIME::DeltaTime(CurSpeed));
+			transform->LMOVE(transform->WFORWARD() * KGAMETIME::DeltaTime(CurSpeed));
 		}
 	}
 	if (true == KGAMEINPUT::IsPress(L"CAMB")) {
 		if (KCamera::CAMMODE::ORTH == m_Camera->Mode())
 		{
-			Actor()->Transform()->LMOVE(Transform()->WDOWN() * KGAMETIME::DeltaTime(CurSpeed));
+			transform->LMOVE(transform->WDOWN() * KGAMETIME::DeltaTime(CurSpeed));
 		}
 		else {
-			Actor()->Transform()->LMOVE(Transform()->WBACK() * KGAMETIME::DeltaTime(CurSpeed));
+			transform->LMOVE(transform->WBACK() * KGAMETIME::DeltaTime(CurSpeed));
 		}
 	}
 
 	//if (true == KGAMEINPUT::IsPress(L"ZOOMIN")) { m_Cam->ZoomIn(KGAMETIME::DeltaTime(ZOOMSpeed)); }// m_Cam->ZoomIn(KGAMETIME::DeltaTime(ZOOMSpeed)); }
 	//if (true == KGAMEINPUT::IsPress(L"ZOOMOUT")) { m_Cam->ZoomOut(KGAMETIME::DeltaTime(ZOOMSpeed)); }
 	//if (true == KGAMEINPUT::IsPress(L"ZOOMORI")) { m_Cam->ZoomOri(); }
-	if (true == KGAMEINPUT::IsPress(L"CAMROTRESET")) { Transform()->WorldRotate({0.0F, 0.0F, 0.0F}); }
+	if (true == KGAMEINPUT::IsPress(L"CAMROTRESET")) { transform->WorldRotate({0.0F, 0.0F, 0.0F}); }
 
 
 	//if (true == KGAMEINPUT::IsDown(L"MODECHANGE"))
@@ -126,10 +129,10 @@ void KFreeCamera::FreeUpdate()
 	if (true == KGAMEINPUT::IsPress(L"CAMROT"))
 	{
 		float y = KGAMEINPUT::MouseDir().x * KGAMETIME::DeltaTime(CurRSpeed);
-		Transform()->WROTADDY(y);
+		transform->WROTADDY(y);
 
 		float x = -KGAMEINPUT::MouseDir().y * KGAMETIME::DeltaTime(CurRSpeed);
-		Transform()->WROTADDX(x);
+		transform->WROTADDX(x);
 	}
 
 }

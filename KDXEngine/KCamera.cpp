@@ -116,14 +116,15 @@ void KCamera::Init()
 
 void KCamera::UpdateViewAndProjection()
 {
-	m_ViewMat.View(Actor()->Transform()->WorldPosition(), Actor()->Transform()->WFORWARD(), Actor()->Transform()->WUP());
+	KWeakPTR<KTransform> transform(Actor()->GetComponent<KTransform>());
+	m_ViewMat.View(transform->WorldPosition(), transform->WFORWARD(), transform->WUP());
 
 	switch (m_eMode)
 	{
-	case KCamera::ORTH:
+	case CAMMODE::ORTH:
 		m_ProjMat.Orth(m_CurSize.x, m_CurSize.y, m_Near, m_Far);
 		break;
-	case KCamera::PROJ:
+	case CAMMODE::PROJ:
 		m_ProjMat.ProjDeg(m_CurFov, m_CurSize.x, m_CurSize.y, m_Near, m_Far);
 		break;
 	default:

@@ -580,21 +580,31 @@ std::vector<KPTR<KRenderPlayer>> KRenderManager::CreateRenderPlayerToFbx(const K
 	return renderPlayerList;
 }
 
-void KRenderManager::StartData(const KGameString& _MeshName, const KGameString& _RenderPipeLineName, int _Order/* = 0*/)
+
+KRenderManager::KRenderManager(const KGameString& _MeshName, const KGameString& _RenderPipeLineName, int _Order/* = 0*/)
 {
 	SetOrder(_Order);
 	CreateRenderPlayer(_MeshName, _RenderPipeLineName);
 }
 
-void KRenderManager::StartData(const KGAMEDIR& _dir, const KGameString& _fbxName, const KGameString& _MaterialName, const KGameString& _SamplerName, int _order/*=0*/)
+KRenderManager::KRenderManager(const KGAMEDIR& _dir, const KGameString& _fbxName, const KGameString& _MaterialName, const KGameString& _SamplerName, int _order/*=0*/)
 {
 	SetOrder(_order);
 	CreateRenderPlayerToFbx(_dir, _fbxName, _MaterialName, _SamplerName);
 }
 
-void KRenderManager::StartData(int _Order)
+KRenderManager::KRenderManager(int _Order)
 {
 	SetOrder(_Order);
+}
+
+KRenderManager::KRenderManager()
+{
+}
+
+KRenderManager::~KRenderManager()
+{
+
 }
 
 void KRenderManager::Init()

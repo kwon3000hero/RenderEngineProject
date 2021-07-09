@@ -65,7 +65,7 @@ public:
 	virtual void LightNextEffect() {}
 };
 
-class KCamera : public KActorGameComponent, public KObjectManager<KPostEffect>
+class KCamera : public KGameComponent, public KObjectManager<KPostEffect>
 {
 public:
 
@@ -73,7 +73,7 @@ public:
 	friend KGameScene;
 	friend KFxaa;
 
-	enum CAMMODE
+	enum class CAMMODE
 	{
 		ORTH,
 		PROJ,
@@ -99,8 +99,17 @@ private:
 	CAMMODE m_eMode;
 
 public:
-	KCamera();
+	KCamera();	
 	virtual ~KCamera();
+
+public:
+	template<typename ... STARTDATA>
+	KCamera(int _Order, STARTDATA ... _Arg) : KCamera()
+	{
+		SetOrder(_Order);
+		PushViewGroup(_Arg...);
+	}
+
 
 public:
 	void SetFov(const float& _Value) { m_CurFov = _Value; m_OriFov = _Value; };
@@ -133,19 +142,15 @@ private:
 	std::set<int> m_ViewList;
 
 
-public:
-	template<typename ... STARTDATA>
-	void StartData(int _Order, STARTDATA ... _Arg)
-	{
-		SetOrder(_Order);
-		PushViewGroup(_Arg...);
-	}
-
 private:
 	template<typename ... STARTDATA>
 	void PushViewGroup(int _GroupOrder, STARTDATA ... _Arg)
 	{
 		m_ViewList.insert(_GroupOrder);
+	}
+
+	void PushViewGroup()
+	{
 	}
 
 public:

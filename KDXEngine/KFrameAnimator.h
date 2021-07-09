@@ -5,7 +5,7 @@
 class KFBX;
 struct KFBXAnimationData;
 class KCuttingRender;
-class KFrameAnimator : public KActorGameComponent
+class KFrameAnimator : public KGameComponent
 {
 private:
 	class FrameAni

@@ -2,16 +2,16 @@
 
 #include "KGameComponentManager.h"
 #include <list>
+#include <KGameType.h>
 
 class KTransform;
 class KGameScene;
-class KGameActor final : public KGameComponentManager, public KGameReference, public KGAMENAME, public KGameType
+class KGameActor : public KGameComponentManager, public KGameReference, public KGAMENAME
 {
-public:
 	friend KGameScene;
 	friend KTransform;
 
-private:
+protected:
 	KPTR<KTransform> m_pTransform;
 	void SetTransform(KPTR<KTransform> _pTrans)
 	{
@@ -40,6 +40,6 @@ public:
 
 public:
 	KGameActor();
-	~KGameActor();
+	virtual ~KGameActor();
 };
 

@@ -46,13 +46,12 @@ public:
 	void LineColor(const KVector& _Vector);
 
 public:
-	void StartData(int _Order = 0);
-	void StartData(const KGameString& _CuttingTexName, int _Order = 0);
-
 	void Update();
 
 public:
 	KCuttingRender();
+	KCuttingRender(int _Order);
+	KCuttingRender(const KGameString& _CuttingTexName, int _Order = 0);
 	~KCuttingRender();
 };
 

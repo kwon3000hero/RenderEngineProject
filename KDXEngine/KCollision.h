@@ -19,12 +19,12 @@ public:
 
 	bool IsDeath() override
 	{
-		return KUpdateBase::IsDeath() || Actor()->IsDeath();
+		return KUpdateBase::IsDeath() || IsDeath();
 	}
 
 	bool IsUpdate() override
 	{
-		return KUpdateBase::IsUpdate() && Actor()->IsUpdate();
+		return KUpdateBase::IsUpdate() && IsUpdate();
 	}
 
 

@@ -5,7 +5,7 @@
 
 class KFBX;
 struct KFBXAnimationData;
-class KMeshAnimator : public KActorGameComponent
+class KMeshAnimator : public KGameComponent
 {
 public:
 	struct BoneFrameData

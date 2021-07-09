@@ -738,7 +738,7 @@ public:
 		return DXMatrix;
 	}
 
-	KMatrix& operator=(KMatrix&& _Other)
+	KMatrix& operator=(KMatrix&& _Other) noexcept
 	{
 		DXMatrix = _Other.DXMatrix;
 		return *this;

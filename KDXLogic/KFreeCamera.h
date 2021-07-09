@@ -2,13 +2,11 @@
 #include <KGameLogic.h>
 #include <KCamera.h>
 
-class KFreeCamera : public KGameLogic
+class KFreeCamera : public KGameComponent
 {
 public:
 	KFreeCamera();
-
-public:
-	void StartData(float _Value = 1.0f);
+	KFreeCamera(float _Value);
 
 private:
 	KPTR<KCamera> m_Camera;

@@ -1,28 +1,33 @@
 #include "KGameComponent.h"
 #include <assert.h>
 
-void KSceneGameComponent::StartComData(void* Ptr)
+void KGameComponent::SetComponentData(KGameComponentManager*  _ptr/*const KPTR<KGameActor>& _actor*/)
 {
-	KGameScene* PTR = reinterpret_cast<KGameScene*>(Ptr);
 
-	if (false == PTR->Equal<KGameScene>())
+
+	if (true == _ptr->Equal<KGameActor>())
 	{
-		assert(false);
+		KGameActor* ptr = _ptr->TryConvertTo<KGameActor>().get();
+		SetActor(ptr);
+		SetScene(ptr->Scene());
 	}
-
-	SetScene(PTR);
+	else if (true == _ptr->Equal<KGameScene>())
+	{
+		KGameScene* ptr = _ptr->TryConvertTo<KGameScene>().get();
+		SetScene(ptr);
+	}
 }
 
-
-void KActorGameComponent::StartComData(void* Ptr)
-{
-	KGameActor* PTR = reinterpret_cast<KGameActor*>(Ptr);
-
-	if (false == PTR->Equal<KGameActor>())
-	{
-		assert(false);
-	}
-
-	SetActor(PTR);
-	SetScene(PTR->Scene());
-}
+//
+//void KActorGameComponent::SetComponentData(void* Ptr)
+//{
+//	KGameActor* PTR = reinterpret_cast<KGameActor*>(Ptr);
+//
+//	if (false == PTR->Equal<KGameActor>())
+//	{
+//		assert(false);
+//	}
+//
+//	SetActor(PTR);
+//	SetScene(PTR->Scene());
+//}

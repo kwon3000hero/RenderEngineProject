@@ -3,8 +3,8 @@
 KGameActor::KGameActor()
 {
 	TypeSetting();
-
 }
+
 KGameActor::~KGameActor()
 {
 }

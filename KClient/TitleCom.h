@@ -2,7 +2,7 @@
 #include <KGameComponent.h>
 
 class KCuttingRender;
-class TitleCom : public KSceneGameComponent
+class TitleCom : public KGameComponent
 {
 private:
 	float m_progress;

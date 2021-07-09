@@ -35,7 +35,7 @@ struct LightDataBuffer
 };
 
 class KGameScene;
-class KLightManager : public KActorGameComponent
+class KLightManager : public KGameComponent
 {
 public:
 	friend KGameScene;
@@ -56,14 +56,6 @@ public:
 		return true;
 	}
 
-public:
-	template<typename ... STARTDATA>
-	void StartData(int _Order, STARTDATA ... _Arg)
-	{
-		SetOrder(_Order);
-		PushViewGroup(_Arg...);
-	}
-
 private:
 	template<typename ... STARTDATA>
 	void PushViewGroup(int _GroupOrder, STARTDATA ... _Arg) {
@@ -77,6 +69,13 @@ public:
 
 public:
 	KLightManager();
+	
+	template<typename ... STARTDATA>
+	KLightManager(int _Order, STARTDATA ... _Arg) : KLightManager()
+	{
+		SetOrder(_Order);
+		PushViewGroup(_Arg...);
+	}
 	virtual ~KLightManager();
 
 public:

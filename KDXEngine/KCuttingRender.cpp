@@ -7,12 +7,9 @@ KCuttingRender::KCuttingRender() : m_Tex(nullptr), m_fadeProgress({ 0,0,0,0 })
 {
 	DATA.MULCOLOR.a = 1.0f;
 }
-KCuttingRender::~KCuttingRender()
-{
 
-}
 
-void KCuttingRender::StartData(int _Order)
+KCuttingRender::KCuttingRender(int _Order)
 {
 	KCuttingRender::SetOrder(_Order);
 	m_RD = KCuttingRender::CreateRenderPlayer(L"RECT", L"2DSPRITE");
@@ -20,10 +17,15 @@ void KCuttingRender::StartData(int _Order)
 	SetConstantBuffer(L"CUTDATA", m_CutData, ConstantBufferMode::Link);
 	SetConstantBuffer(L"TEXDATA", DATA, ConstantBufferMode::Link);
 }
-void KCuttingRender::StartData(const KGameString& _CuttingTexName, int _Order /*= 0*/)
+
+KCuttingRender::KCuttingRender(const KGameString& _CuttingTexName, int _Order /*= 0*/): KCuttingRender(_Order)
 {
-	StartData(_Order);
 	CuttingTex(_CuttingTexName);
+}
+
+KCuttingRender::~KCuttingRender()
+{
+
 }
 
 void KCuttingRender::SetSamplerMode(SamplerOption _OP)

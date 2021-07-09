@@ -10,7 +10,7 @@ class KGameActor;
 class KHeightTerrain;
 
 class TestComponent :
-	public KSceneGameComponent
+	public KGameComponent
 {
 
 	KPTR<KRenderManager> SkyRender;

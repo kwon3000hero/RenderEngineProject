@@ -113,8 +113,10 @@ void KHeightTerrain::CreateGround(int _x, int _z, const KGameString& _DifTexName
 
 float KHeightTerrain::MapY(KVector _pos)
 {
-	float X = (_pos.x * m_MapData.x / Actor()->Transform()->WorldScale().x);
-	float Z = (_pos.z * m_MapData.z / Actor()->Transform()->WorldScale().z);
+	KWeakPTR<KTransform> transform(Actor()->GetComponent<KTransform>());
+
+	float X = (_pos.x * m_MapData.x / transform->WorldScale().x);
+	float Z = (_pos.z * m_MapData.z / transform->WorldScale().z);
 
 	int MapX = (int)X;
 	int MapZ = (int)Z;
@@ -144,16 +146,15 @@ float KHeightTerrain::MapY(KVector _pos)
 		AssertMsg(L"맵 바깥 범위입니다.");
 	}
 
-	KVector temp = m_MapTile[CalKey.Key].TriangleVertex[0];
 	// 위
-	KVector UpTri0 = m_MapTile[CalKey.Key].TriangleVertex[0] * Actor()->Transform()->WorldScale();
-	KVector UpTri1 = m_MapTile[CalKey.Key].TriangleVertex[1] * Actor()->Transform()->WorldScale();
-	KVector UpTri2 = m_MapTile[CalKey.Key].TriangleVertex[2] * Actor()->Transform()->WorldScale();
+	KVector UpTri0 = m_MapTile[CalKey.Key].TriangleVertex[0] * transform->WorldScale();
+	KVector UpTri1 = m_MapTile[CalKey.Key].TriangleVertex[1] * transform->WorldScale();
+	KVector UpTri2 = m_MapTile[CalKey.Key].TriangleVertex[2] * transform->WorldScale();
 
 	// 아래
-	KVector DownTri0 = m_MapTile[CalKey.Key].TriangleVertex[0] * Actor()->Transform()->WorldScale();
-	KVector DownTri1 = m_MapTile[CalKey.Key].TriangleVertex[2] * Actor()->Transform()->WorldScale();
-	KVector DownTri2 = m_MapTile[CalKey.Key].TriangleVertex[3] * Actor()->Transform()->WorldScale();
+	KVector DownTri0 = m_MapTile[CalKey.Key].TriangleVertex[0] * transform->WorldScale();
+	KVector DownTri1 = m_MapTile[CalKey.Key].TriangleVertex[2] * transform->WorldScale();
+	KVector DownTri2 = m_MapTile[CalKey.Key].TriangleVertex[3] * transform->WorldScale();
 
 	KVector pos = _pos;
 

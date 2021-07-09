@@ -19,7 +19,7 @@ enum class KCollisionType
 class KCamera;
 class KRenderManager;
 class KRenderPlayer;
-class KTransform : public KActorGameComponent
+class KTransform : public KGameComponent
 {
 private:
 	class Starter
@@ -374,4 +374,5 @@ public:
 
 public:
 	KTransform();
+	virtual ~KTransform();
 };
