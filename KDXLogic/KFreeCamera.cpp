@@ -1,12 +1,12 @@
 #include "KFreeCamera.h"
 #include <KGAMEWIN.h>
 
-KFreeCamera::KFreeCamera() : m_translateSpeed(1.0f), m_rotateSpeed(180.0f), m_ZoomSpeed(1.0F)
+KFreeCamera::KFreeCamera(KPTR< KCamera> _camera) : m_translateSpeed(1.0f), m_rotateSpeed(180.0f), m_ZoomSpeed(1.0F), m_Camera(_camera)
 {
 }
 
-KFreeCamera::KFreeCamera(float _Value) : m_translateSpeed(_Value)
-{	
+KFreeCamera::KFreeCamera(KPTR< KCamera> _camera, float _Value) : m_translateSpeed(_Value), m_Camera(_camera)
+{
 }
 
 void KFreeCamera::FollowTransform(KPTR<KTransform> _FollowTransform, KVector _FollowPosition, KVector _FollowRotation)
@@ -28,13 +28,6 @@ void KFreeCamera::FollowTransform(KPTR<KTransform> _FollowTransform, KVector _Fo
 
 void KFreeCamera::Init()
 {
-	if (nullptr == Actor()->GetComponent<KCamera>().get())
-	{
-		assert(false);
-	}
-
-	m_Camera = Actor()->GetComponent<KCamera>();
-
 	if (false == KGAMEINPUT::IsExistKey(L"CAML"))
 	{
 		KGAMEINPUT::CreateKey(L"CAML", 'A');
@@ -110,7 +103,7 @@ void KFreeCamera::FreeUpdate()
 	//if (true == KGAMEINPUT::IsPress(L"ZOOMIN")) { m_Cam->ZoomIn(KGAMETIME::DeltaTime(ZOOMSpeed)); }// m_Cam->ZoomIn(KGAMETIME::DeltaTime(ZOOMSpeed)); }
 	//if (true == KGAMEINPUT::IsPress(L"ZOOMOUT")) { m_Cam->ZoomOut(KGAMETIME::DeltaTime(ZOOMSpeed)); }
 	//if (true == KGAMEINPUT::IsPress(L"ZOOMORI")) { m_Cam->ZoomOri(); }
-	if (true == KGAMEINPUT::IsPress(L"CAMROTRESET")) { transform->WorldRotate({0.0F, 0.0F, 0.0F}); }
+	if (true == KGAMEINPUT::IsPress(L"CAMROTRESET")) { transform->WorldRotate({ 0.0F, 0.0F, 0.0F }); }
 
 
 	//if (true == KGAMEINPUT::IsDown(L"MODECHANGE"))

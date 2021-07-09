@@ -5,8 +5,8 @@
 class KFreeCamera : public KGameComponent
 {
 public:
-	KFreeCamera();
-	KFreeCamera(float _Value);
+	KFreeCamera(KPTR< KCamera> _camera);
+	KFreeCamera(KPTR< KCamera> _camera, float _Value);
 
 private:
 	KPTR<KCamera> m_Camera;

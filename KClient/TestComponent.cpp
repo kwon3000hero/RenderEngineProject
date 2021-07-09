@@ -52,15 +52,13 @@ void TestComponent::Init()
 	Scene()->LinkCollision(0, 1);
 
 
-	KPTR<KFreeCamera> FCAM;
+	KPTR<KGameActor> cameraActor = Scene()->CreateActor();
+	KPTR<KCamera> PCAM = cameraActor->CreateComponent<KCamera>(0, 0);
+	KPTR<KFreeCamera> FCAM = cameraActor->CreateComponent<KFreeCamera>(PCAM, 100.0f);
 	{
-
 		KPTR<KGameActor> NEWACTOR = Scene()->CreateActor();
 		NEWACTOR->Transform()->WorldPosition({ 0.0f, 0.0f, -20.0f });
-		KPTR<KCamera> PCAM = NEWACTOR->CreateComponent<KCamera>(0, 0);
-		
-		FCAM = NEWACTOR->CreateComponent<KFreeCamera>(100.0F);
-		
+
 		PCAM->SetSize({ 12.8f, 7.2f });
 		PCAM->SetMode(KCamera::CAMMODE::PROJ);
 		PCAM->CreateEffect<KBloomEffect>();
@@ -102,7 +100,7 @@ void TestComponent::Init()
 
 		NEWACTOR->Transform()->WorldPosition(Foward);
 
-		KPTR<KRenderManager> Render(NEWACTOR->CreateComponent<KRenderManager>(L"BOX", L"COLOR", 0));
+		KPTR<KRenderManager> Render = NEWACTOR->CreateComponent<KRenderManager>(L"BOX", L"COLOR", 0);
 
 		TESTLIGHT = NEWACTOR->CreateComponent<KLightManager>(0, 0);
 	}
@@ -119,7 +117,7 @@ void TestComponent::Init()
 
 		NEWACTOR->Transform()->WorldPosition(Foward);
 
-		KPTR<KRenderManager> Render = NEWACTOR->CreateComponent<KRenderManager>(L"BOX", L"COLOR", 0);
+		KPTR<KRenderManager> Render = NEWACTOR->CreateComponent<KRenderManager>(L"BOX", L"COLOR", 0);		
 
 		TESTLIGHT = NEWACTOR->CreateComponent<KLightManager>(0, 0);
 	}
