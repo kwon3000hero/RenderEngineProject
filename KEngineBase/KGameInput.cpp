@@ -46,10 +46,10 @@ bool KGAMEINPUT::KKey::CheckKeyState()
 
 KGAMEINPUT::KKey::KKey() : m_pressTime(0.0f), m_freeTime(0.0f)
 {
-	m_keyState[0] = false;
-	m_keyState[1] = false;
-	m_keyState[2] = false;
-	m_keyState[3] = true;
+	m_keyState[(size_t)KEY_STATE::KEY_DOWN] = false;
+	m_keyState[(size_t)KEY_STATE::KEY_PRESS] = false;
+	m_keyState[(size_t)KEY_STATE::KEY_UP] = false;
+	m_keyState[(size_t)KEY_STATE::KEY_FREE] = true;
 }
 KGAMEINPUT::KKey::~KKey()
 {

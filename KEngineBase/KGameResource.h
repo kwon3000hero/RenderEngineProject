@@ -34,7 +34,7 @@ protected:
 #ifdef _DEBUG
 		KGameString name = Name();
 		KGameResourceManager<T>::Instance().m_ResourceContainer.insert(std::unordered_multimap<KGameString, KPTR<T>, KGameStringHash>::value_type(name, (T*)this));
-#elif
+#else
 		KGameResourceManager<T>::Instance().m_ResourceContainer.insert(std::unordered_multimap<KGameString, KPTR<T>, KGameStringHash>::value_type(Name(), (T*)this));
 
 #endif

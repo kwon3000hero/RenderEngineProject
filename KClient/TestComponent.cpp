@@ -62,8 +62,6 @@ void TestComponent::Init()
 		PCAM->SetSize({ 12.8f, 7.2f });
 		PCAM->SetMode(KCamera::CAMMODE::PROJ);
 		PCAM->CreateEffect<KBloomEffect>();
-		KLogicValue::MainCam(PCAM);
-
 		{
 			KPTR<KGameActor> SKY = Scene()->CreateActor();
 			SKY->Transform()->WorldPosition({ 0.0f, 0.0f, 0.0f });
@@ -205,6 +203,8 @@ void TestComponent::PrevUpdate()
 	KGameDebug3D::DebugTexture(Scene()->MainCam()->LightTarget()->Texture(1), { 1280 - 512, -144 * 1 }, KVector{ 128, 72 } *2.0f, KVector::ZERO);
 	KGameDebug3D::DebugTexture(Scene()->MainCam()->LightTarget()->Texture(2), { 1280 - 512, -144 * 2 }, KVector{ 128, 72 } *2.0f, KVector::ZERO);
 	KGameDebug3D::DebugTexture(Scene()->MainCam()->DefferdCameraTarget(), { 1280 - 512, -144 * 3 }, KVector{ 128, 72 } *2.0f, KVector::ZERO);
+
+	KGameDebug3D::DebugText({ 0,140.0f }, 20.f, KVector::BLUE, L"%f %f", KGAMEINPUT::ScreenMousePos().x, KGAMEINPUT::ScreenMousePos().y);
 
 	KGameDebug3D::DebugTexture(TESTLIGHT->ShadowTarget(), { 1280 - 512, -144 * 4 }, KVector{ 128, 72 } *2.0f, KVector::ZERO);
 }

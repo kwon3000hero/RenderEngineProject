@@ -102,9 +102,11 @@ public:
 	template<typename ... Args>
 	static void DebugText(const KVector& _pos, float _size, const KVector& _color, const KGameString& _str, Args ... _arg)
 	{
+#ifdef _DEBUG
 		wchar_t text[256];
 		swprintf_s(text, _str, _arg...);
 		KGameDebug3D::DebugText(text, _size, _pos, _color);
+#endif
 	}
 	template<typename ... Args>
 	static void ConsoleText(const KGameString& _str, Args ... _arg)

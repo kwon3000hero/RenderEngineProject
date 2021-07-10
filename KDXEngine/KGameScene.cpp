@@ -76,6 +76,11 @@ KPTR<KCamera> KGameScene::MainCam()
 	return m_CurrentScene->m_MainCam;
 }
 
+void KGameScene::SetMainCam(KPTR<KCamera> _cam)
+{
+	m_CurrentScene->m_MainCam = _cam;
+}
+
 KGameScene::KGameScene()
 {
 }

@@ -29,6 +29,7 @@ private:
 
 public:
 	static KPTR<KGameScene> CurrentScene();
+	void SetMainCam(KPTR<KCamera> _cam);
 	static KPTR<KCamera> MainCam();
 	static void ChangeScene(const KGameString& _Name);
 	static void Progress();

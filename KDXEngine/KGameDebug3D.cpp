@@ -28,6 +28,7 @@ float KGameDebug3D::m_basicSize;
 
 void KGameDebug3D::Init()
 {
+#ifdef _DEBUG
 	RectMesh = KGameResourceManager<KMesh>::Instance().Find(L"RECTDEBUG");
 	RP.SetRenderPipeline(L"HDEBUG");
 	RP.m_MeshRenderType = D3D11_PRIMITIVE_TOPOLOGY_LINESTRIP;
@@ -47,7 +48,7 @@ void KGameDebug3D::Init()
 	m_BackbufferRenderPlayer = make_KPTR <KRenderPlayer>(L"DEBUGTEXRECT", L"DEBUGBACK");
 	m_BackbufferRenderPlayer->SetConstantBuffer(L"TRANSFORMDATA", &m_DebugTextureMatrix, ConstantBufferMode::Link);
 	m_BackbufferRenderPlayer->SetConstantBuffer(L"BACKCOLOR", &m_BackColor, ConstantBufferMode::Link);
-
+#endif
 }
 
 KGameDebug3D::STATICINIT::STATICINIT()
@@ -57,6 +58,7 @@ KGameDebug3D::STATICINIT::STATICINIT()
 
 void KGameDebug3D::DebugRender()
 {
+#ifdef _DEBUG
 	for (size_t i = 0; i < DebugSize; i++)
 	{
 		switch (m_Info[i].m_Type)
@@ -128,15 +130,19 @@ void KGameDebug3D::DebugRender()
 	m_DebugTextureSize = 0;
 	m_DebugTextSize = 0;
 	DebugSize = 0;
+#endif
 }
 
 void KGameDebug3D::DebugRect(KPTR<KTransform> _Ptr, KPTR<KCamera> _Cam)
 {
+#ifdef _DEBUG
 	DebugDraw(KDEBUG_DRAW_TYPE::KDT_RECT, _Ptr, _Cam);
+#endif
 }
 
 void KGameDebug3D::DebugDraw(KDEBUG_DRAW_TYPE _Type, KPTR<KTransform> _Ptr, KPTR<KCamera> _Cam)
 {
+#ifdef _DEBUG
 	m_Info[DebugSize].m_Type = _Type;
 	m_Info[DebugSize].Trans = _Ptr;
 
@@ -149,6 +155,7 @@ void KGameDebug3D::DebugDraw(KDEBUG_DRAW_TYPE _Type, KPTR<KTransform> _Ptr, KPTR
 	}
 	m_Info[DebugSize].Color = KVector::RED;
 	++DebugSize;
+#endif
 }
 
 void KGameDebug3D::DebugTexture(KPTR<KRenderTarget> _renderTarget, const KVector& _pos, const KVector& _size, const KVector& _color)
@@ -158,6 +165,7 @@ void KGameDebug3D::DebugTexture(KPTR<KRenderTarget> _renderTarget, const KVector
 
 void KGameDebug3D::DebugTexture(KPTR<KTexture> _texture, const KVector& _pos, const KVector& _size, const KVector& _color)
 {
+#ifdef _DEBUG
 	if (-1 == m_DebugTextureSize)
 	{
 		return;
@@ -169,23 +177,28 @@ void KGameDebug3D::DebugTexture(KPTR<KTexture> _texture, const KVector& _pos, co
 	m_TextureInfo[m_DebugTextureSize].BackColor = _color;
 
 	++m_DebugTextureSize;
+#endif
 }
 
 void KGameDebug3D::DebugFullTexture(KPTR<KTexture> _texture, const KVector& _pos, const KVector& _size, const KVector& _color)
 {
+#ifdef _DEBUG
 	m_FullInfo.Texture = _texture;
 	m_FullInfo.Pos = KVector::ZERO;
 	m_FullInfo.Size = KGameWindow::MainWindow()->Size();
 	m_FullInfo.BackColor = _color;
 	m_DebugTextureSize = -1;
+#endif
 }
 
 void KGameDebug3D::DebugText(const KGameString& _str, float _size, const KVector& _pos, const KVector& _color)
 {
+#ifdef _DEBUG
 	m_textInfo[m_DebugTextSize].Text = _str;
 	m_textInfo[m_DebugTextSize].Size = _size;
 	m_textInfo[m_DebugTextSize].Pos = _pos;
 	m_textInfo[m_DebugTextSize].Color = _color;
 
 	++m_DebugTextSize;
+#endif
 }

@@ -1,6 +1,7 @@
 #include "KBloomEffect.h"
 #include <KGameInput.h>
 #include "KRenderPipeline.h"
+#include "KGameDebug3D.h"
 
 void KBloomEffect::Init()
 {
@@ -47,10 +48,4 @@ void KBloomEffect::MergeNextEffect()
 	m_BloomEffectTarget2->Effect(m_BloomPlayer);
 	KRenderPipeline::Reset();
 	CameraPtr()->LightTarget()->Effect(0, m_LightBloomPlayer, false, false);
-
-	//if (true == KGAMEINPUT::IsPress("TESTFULLTARGET"))
-	{
-		// HGAMEDEBUG3D::DebugTexture(m_BloomEffectTarget->TEX(0), { 0, 0 }, HVECTOR{ 1280, 720 });
-	//	// HGAMEINPUT::CreateKey("TESTFULLTARGET", 'K');
-	}
 }

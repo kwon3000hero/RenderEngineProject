@@ -24,7 +24,7 @@ public:
 #ifdef _DEBUG
 		KGameString fileName = KGAMEPATH::GetFileName(_Path);
 		pTexture->SetName(fileName);
-#elif
+#else
 		pTexture->SetName(KGAMEPATH::GetFileName(_Path));
 #endif
 		pTexture->Load();

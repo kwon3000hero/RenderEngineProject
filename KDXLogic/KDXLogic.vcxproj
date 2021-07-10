@@ -23,7 +23,9 @@
     <ClCompile Include="KFreeCamera.cpp" />
     <ClCompile Include="KFreeObject.cpp" />
     <ClCompile Include="KLogicMath.cpp" />
-    <ClCompile Include="KLogicValue.cpp" />
+    <ClCompile Include="KLogicValue.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="KPlayer.cpp" />
     <ClCompile Include="KTitleObject.cpp" />
   </ItemGroup>
@@ -32,7 +34,9 @@
     <ClInclude Include="KFreeCamera.h" />
     <ClInclude Include="KFreeObject.h" />
     <ClInclude Include="KLogicMath.h" />
-    <ClInclude Include="KLogicValue.h" />
+    <ClInclude Include="KLogicValue.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="KPlayer.h" />
     <ClInclude Include="KTitleObject.h" />
   </ItemGroup>
