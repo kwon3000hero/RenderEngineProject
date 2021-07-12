@@ -75,7 +75,7 @@
     <ClCompile Include="KGameComponent.cpp">
       <Filter>Obj\Component</Filter>
     </ClCompile>
-    <ClCompile Include="KRender.cpp">
+    <ClCompile Include="KRenderer.cpp">
       <Filter>Obj\Component\DefinedComponent\Render</Filter>
     </ClCompile>
     <ClCompile Include="KVertexBuffer.cpp">
@@ -191,6 +191,9 @@
     <ClCompile Include="KFxaa.cpp">
       <Filter>Obj\Component\DefinedComponent\RenderEffect</Filter>
     </ClCompile>
+    <ClCompile Include="KRendererManager.cpp">
+      <Filter>Obj\Component\DefinedComponent\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KGameDevice.h">
@@ -208,7 +211,7 @@
     <ClInclude Include="KGameComponent.h">
       <Filter>Obj\Component</Filter>
     </ClInclude>
-    <ClInclude Include="KRender.h">
+    <ClInclude Include="KRenderer.h">
       <Filter>Obj\Component\DefinedComponent\Render</Filter>
     </ClInclude>
     <ClInclude Include="KVertexBuffer.h">
@@ -302,6 +305,9 @@
     </ClInclude>
     <ClInclude Include="KFxaa.h">
       <Filter>Obj\Component\DefinedComponent\RenderEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="KRendererManager.h">
+      <Filter>Obj\Component\DefinedComponent\Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

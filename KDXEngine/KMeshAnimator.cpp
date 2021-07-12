@@ -134,7 +134,7 @@ void KMeshAnimator::ChangeAnimation(const KGameString& _ani)
 	m_CurrentAnimation->Reset();
 }
 
-std::vector<KPTR<KRenderPlayer>> KMeshAnimator::CreateAnimation(const KGAMEDIR& _dir, const KGameString& _fbxName, const KGameString& _takeName, const KGameString& _aniName, int _start, int _end, const KGameString& _materialName, float _speed, bool _loop)
+std::vector<KPTR<KRenderer>> KMeshAnimator::CreateAnimation(const KGAMEDIR& _dir, const KGameString& _fbxName, const KGameString& _takeName, const KGameString& _aniName, int _start, int _end, const KGameString& _materialName, float _speed, bool _loop)
 {
 	KPTR<KFBX> fbx = KGameResourceManager<KFBX>::Instance().Find(_fbxName);
 
@@ -170,7 +170,7 @@ std::vector<KPTR<KRenderPlayer>> KMeshAnimator::CreateAnimation(const KGAMEDIR& 
 	newAnimation->m_FrameBoneData.resize(fbx->m_UserBoneContainer.size());
 	newAnimation->m_FrameMatrixData.resize(fbx->m_UserBoneContainer.size());
 
-	std::map<KGameString, std::vector<KPTR<KRenderPlayer>>>::iterator FindRenderPlayer = m_RenderPlayerGroupContainer.find(_fbxName);
+	std::map<KGameString, std::vector<KPTR<KRenderer>>>::iterator FindRenderPlayer = m_RenderPlayerGroupContainer.find(_fbxName);
 	if (FindRenderPlayer == m_RenderPlayerGroupContainer.end())
 	{
 		m_AnimationBoneDataTextureContainer[_fbxName] = new KTexture();

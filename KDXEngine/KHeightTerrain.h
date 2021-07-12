@@ -31,7 +31,7 @@ private:
 	KPTR<KIndexBuffer> m_IB;
 	KPTR<KMesh> m_MESH;
 	KPTR<KTexture> m_HeightTexture;
-	KPTR<KRenderPlayer> m_renderPlayer;
+	KPTR<KRenderer> m_renderPlayer;
 
 	std::map<__int64, KHeight3DTile> m_MapTile;
 

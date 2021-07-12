@@ -5,7 +5,8 @@
 #include "KTransform.h"
 #include <assert.h>
 #include "KGAMEDEVICE.h"
-#include "KRENDER.h"
+#include "KRendererManager.h"
+#include "KRenderer.h"
 #include "KCamera.h"
 #include "KCollision.h"
 #include "KGameDebug3D.h"
@@ -253,9 +254,9 @@ void KGameScene::Render()
 
 			for (int RenderGroupOrder : cam->m_ViewList)
 			{
-				std::map<int, std::list<KPTR<KRenderManager>>>::iterator renderGroupIter = m_RenderManagerGroupContainer.find(RenderGroupOrder);
+				std::map<int, std::list<KPTR<KRenderManager>>>::iterator renderManagerGroup = m_RenderManagerGroupContainer.find(RenderGroupOrder);
 
-				if (m_RenderManagerGroupContainer.end() == renderGroupIter)
+				if (m_RenderManagerGroupContainer.end() == renderManagerGroup)
 				{
 					continue;
 				}
@@ -270,19 +271,19 @@ void KGameScene::Render()
 					m_LightDataBufferContainer[RenderGroupOrder]->LightDataArray[i].LightDirInv.Normalize();
 				}
 
-				if (0 >= renderGroupIter->second.size())
+				if (0 >= renderManagerGroup->second.size())
 				{
 					continue;
 				}
 
-				for (auto& Renderer : renderGroupIter->second)
+				for (auto& rendererManager : renderManagerGroup->second)
 				{
-					if (false == Renderer->IsUpdate())
+					if (false == rendererManager->IsUpdate())
 					{
 						continue;
 					}
 
-					Renderer->ForwardRender(cam);
+					rendererManager->ForwardRender(cam);
 				}
 			}
 		}
@@ -306,14 +307,14 @@ void KGameScene::Render()
 			camera->SetGlobalCameraTarget();
 			for (int RenderGroupOrder : camera->m_ViewList)
 			{
-				std::map<int, std::list<KPTR<KRenderManager>>>::iterator renderGroupIter = m_RenderManagerGroupContainer.find(RenderGroupOrder);
+				std::map<int, std::list<KPTR<KRenderManager>>>::iterator renderManagerGroup = m_RenderManagerGroupContainer.find(RenderGroupOrder);
 
-				if (m_RenderManagerGroupContainer.end() == renderGroupIter)
+				if (m_RenderManagerGroupContainer.end() == renderManagerGroup)
 				{
 					continue;
 				}
 
-				if (0 >= renderGroupIter->second.size())
+				if (0 >= renderManagerGroup->second.size())
 				{
 					continue;
 				}
@@ -328,14 +329,14 @@ void KGameScene::Render()
 					m_LightDataBufferContainer[RenderGroupOrder]->LightDataArray[i].LightDirInv.Normalize();
 				}
 
-				for (auto& Renderer : renderGroupIter->second)
+				for (auto& rendererManager : renderManagerGroup->second)
 				{
-					if (false == Renderer->IsUpdate())
+					if (false == rendererManager->IsUpdate())
 					{
 						continue;
 					}
 
-					Renderer->DefferdRender(camera);
+					rendererManager->DefferdRender(camera);
 				}
 			}
 		}
@@ -347,10 +348,10 @@ void KGameScene::Render()
 		{
 			light->SetShadowTarget();
 
-			std::map<int, std::list<KPTR<KRenderManager>>>::iterator renderGroupIter = m_RenderManagerGroupContainer.find(lightGroup.first);
-			for (auto& renderer : renderGroupIter->second)
+			std::map<int, std::list<KPTR<KRenderManager>>>::iterator renderManagerGroup = m_RenderManagerGroupContainer.find(lightGroup.first);
+			for (auto& rendererManager : renderManagerGroup->second)
 			{
-				renderer->ShadowRender(light);
+				rendererManager->ShadowRender(light);
 			}
 		}
 	}
@@ -374,14 +375,14 @@ void KGameScene::Render()
 			camera->LightPrevEffect();
 			for (int RenderGroupOrder : camera->m_ViewList)
 			{
-				std::map<int, std::list<KPTR<KRenderManager>>>::iterator renderGroupIter = m_RenderManagerGroupContainer.find(RenderGroupOrder);
+				std::map<int, std::list<KPTR<KRenderManager>>>::iterator renderManagerGroup = m_RenderManagerGroupContainer.find(RenderGroupOrder);
 
-				if (m_RenderManagerGroupContainer.end() == renderGroupIter)
+				if (m_RenderManagerGroupContainer.end() == renderManagerGroup)
 				{
 					continue;
 				}
 
-				if (0 >= renderGroupIter->second.size())
+				if (0 >= renderManagerGroup->second.size())
 				{
 					continue;
 				}

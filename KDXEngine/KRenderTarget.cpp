@@ -1,11 +1,11 @@
 #include "KRenderTarget.h"
 #include "KDepthStencilTarget.h"
-#include "KRender.h"
+#include "KRenderer.h"
 #include "KTexture.h"
 #include "KRenderPipeline.h"
 
-KPTR<KRenderPlayer> KRenderTarget::m_MergeRenderPlayer;
-KPTR<KRenderPlayer> KRenderTarget::m_AlwaysMergeRenderPlayer;
+KPTR<KRenderer> KRenderTarget::m_MergeRenderPlayer;
+KPTR<KRenderer> KRenderTarget::m_AlwaysMergeRenderPlayer;
 
 void KRenderTarget::Create(KVector _Size, KVector _Color, DXGI_FORMAT _Fmt, UINT _BindFlag)
 {
@@ -112,10 +112,10 @@ void KRenderTarget::SetDepthStencil(KPTR<KDepthStencilTarget> _depthStencil)
 
 void KRenderTarget::Init()
 {
-	m_MergeRenderPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"MERGETARGET");
+	m_MergeRenderPlayer = make_KPTR<KRenderer>(L"FULLRECT", L"MERGETARGET");
 	m_MergeRenderPlayer->SetSampler(L"Smp", L"LWSMP");
 
-	m_AlwaysMergeRenderPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"ALWAYSMERGETARGET");
+	m_AlwaysMergeRenderPlayer = make_KPTR<KRenderer>(L"FULLRECT", L"ALWAYSMERGETARGET");
 	m_AlwaysMergeRenderPlayer->SetSampler(L"Smp", L"LWSMP");
 }
 
@@ -176,7 +176,7 @@ void KRenderTarget::AlwaysCopy(KPTR<KRenderTarget> _dest)
 	AlwaysMerge(0, 0, _dest);
 }
 
-void KRenderTarget::Effect(int _index, KPTR<KRenderPlayer> _renderPlayer, bool _IsClear, bool _IsDepthClear)
+void KRenderTarget::Effect(int _index, KPTR<KRenderer> _renderPlayer, bool _IsClear, bool _IsDepthClear)
 {
 	if (true == _IsClear)
 	{
@@ -187,7 +187,7 @@ void KRenderTarget::Effect(int _index, KPTR<KRenderPlayer> _renderPlayer, bool _
 	_renderPlayer->Render();
 }
 
-void KRenderTarget::Effect(KPTR<KRenderPlayer> _renderPlayer, bool _IsClear, bool _IsDepthClear)
+void KRenderTarget::Effect(KPTR<KRenderer> _renderPlayer, bool _IsClear, bool _IsDepthClear)
 {
 	if (true == _IsClear)
 	{

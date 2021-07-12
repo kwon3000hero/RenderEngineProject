@@ -4,7 +4,7 @@ class KFxaa :
     public KPostEffect
 {
 public:
-	KPTR<KRenderPlayer> m_FXAAPlayer;
+	KPTR<KRenderer> m_FXAAPlayer;
 	KPTR<KRenderTarget> m_FXAATarget;
 
 

@@ -2,12 +2,12 @@
 #include "KTexture.h"
 #include "KDepthStencilTarget.h"
 
-class KRenderPlayer;
+class KRenderer;
 class KRenderTarget : public KGameResource<KRenderTarget>
 {
 public:
-	static KPTR<KRenderPlayer> m_MergeRenderPlayer;
-	static KPTR<KRenderPlayer> m_AlwaysMergeRenderPlayer;
+	static KPTR<KRenderer> m_MergeRenderPlayer;
+	static KPTR<KRenderer> m_AlwaysMergeRenderPlayer;
 
 public:
 	static void Init();
@@ -46,8 +46,8 @@ public:
 	void AlwaysCopy(KPTR<KRenderTarget> _dest);
 	void AlwaysCopy(KPTR<KTexture> _dest);
 
-	void Effect(KPTR<KRenderPlayer> _renderPlayer, bool _IsClear = true, bool _IsDepthClear = false);
-	void Effect(int _index, KPTR<KRenderPlayer> _renderPlayer, bool _IsClear = true, bool _IsDepthClear = false);
+	void Effect(KPTR<KRenderer> _renderPlayer, bool _IsClear = true, bool _IsDepthClear = false);
+	void Effect(int _index, KPTR<KRenderer> _renderPlayer, bool _IsClear = true, bool _IsDepthClear = false);
 
 	KPTR<KTexture> Texture(unsigned int _Index);
 

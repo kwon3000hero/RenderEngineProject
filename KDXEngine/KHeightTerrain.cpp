@@ -1,5 +1,5 @@
 #include "KHeightTerrain.h"
-#include "KRender.h"
+#include "KRenderer.h"
 #include "KVertexBuffer.h"
 #include "KIndexBuffer.h"
 #include "KGameDebug3D.h"

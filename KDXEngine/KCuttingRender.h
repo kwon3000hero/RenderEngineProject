@@ -1,5 +1,5 @@
 #pragma once
-#include "KRender.h"
+#include "KRendererManager.h"
 
 enum class SamplerOption
 {
@@ -28,7 +28,7 @@ public:
 
 private:
 	KVector m_CutData;
-	KPTR<KRenderPlayer> m_RD;
+	KPTR<KRenderer> m_RD;
 	KPTR<KCuttingTexture> m_Tex;
 	TextureRenderData DATA;
 	KVector m_fadeProgress;

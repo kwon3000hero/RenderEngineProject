@@ -24,7 +24,8 @@
     <ClCompile Include="KFreeObject.cpp" />
     <ClCompile Include="KLogicMath.cpp" />
     <ClCompile Include="KLogicValue.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="KPlayer.cpp" />
     <ClCompile Include="KTitleObject.cpp" />
@@ -35,7 +36,8 @@
     <ClInclude Include="KFreeObject.h" />
     <ClInclude Include="KLogicMath.h" />
     <ClInclude Include="KLogicValue.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="KPlayer.h" />
     <ClInclude Include="KTitleObject.h" />

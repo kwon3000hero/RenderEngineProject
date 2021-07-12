@@ -2,7 +2,7 @@
 #include "KTransform.h"
 #include "KCamera.h"
 #include <vector>
-#include "KRender.h"
+#include "KRenderer.h"
 
 enum class KDEBUG_DRAW_TYPE
 {
@@ -72,7 +72,7 @@ private:
 public:
 
 	static KPTR<KMesh> RectMesh;
-	static KRenderPlayer RP;
+	static KRenderer RP;
 	static int DebugSize;
 	static std::vector<KDebugInfo> m_Info;
 
@@ -80,8 +80,8 @@ public:
 	static std::vector<KDebugTextInfo> m_textInfo;
 
 private:
-	static KPTR<KRenderPlayer> m_TextureRenderPlayer;
-	static KPTR<KRenderPlayer> m_BackbufferRenderPlayer;
+	static KPTR<KRenderer> m_TextureRenderPlayer;
+	static KPTR<KRenderer> m_BackbufferRenderPlayer;
 	static int m_DebugTextureSize;
 	static TransformMatrix m_DebugTextureMatrix;
 	static std::vector<KTextureInfo> m_TextureInfo;

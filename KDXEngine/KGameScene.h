@@ -11,7 +11,7 @@ class KCollision;
 class KCamera;
 class KTransform;
 class KRenderManager;
-class KRenderPlayer;
+class KRenderer;
 class KRenderTarget;
 class KGameActor;
 class KLightManager;
@@ -21,7 +21,7 @@ class KGameScene : public KGameComponentManager, public KGameResource<KGameScene
 {
 public:
 	friend KTransform;
-	friend KRenderPlayer;
+	friend KRenderer;
 
 private:
 	static KPTR<KGameScene> m_CurrentScene;

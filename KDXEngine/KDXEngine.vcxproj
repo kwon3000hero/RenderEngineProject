@@ -55,7 +55,7 @@
     <ClCompile Include="KMeshAnimator.cpp" />
     <ClCompile Include="KPixelShader.cpp" />
     <ClCompile Include="KRasterizer.cpp" />
-    <ClCompile Include="KRender.cpp" />
+    <ClCompile Include="KRenderer.cpp" />
     <ClCompile Include="KRenderPipeline.cpp" />
     <ClCompile Include="KRenderTarget.cpp" />
     <ClCompile Include="KSampler.cpp" />
@@ -66,6 +66,7 @@
     <ClCompile Include="KUpdateBase.cpp" />
     <ClCompile Include="KVertexBuffer.cpp" />
     <ClCompile Include="KVertexShader.cpp" />
+    <ClCompile Include="KRendererManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="K3DBufferBase.h" />
@@ -97,7 +98,7 @@
     <ClInclude Include="KMeshAnimator.h" />
     <ClInclude Include="KPixelShader.h" />
     <ClInclude Include="KRasterizer.h" />
-    <ClInclude Include="KRender.h" />
+    <ClInclude Include="KRenderer.h" />
     <ClInclude Include="KRenderPipeline.h" />
     <ClInclude Include="KRenderTarget.h" />
     <ClInclude Include="KSampler.h" />
@@ -108,6 +109,7 @@
     <ClInclude Include="KVertexHeader.h" />
     <ClInclude Include="KVertexBuffer.h" />
     <ClInclude Include="KVertexShader.h" />
+    <ClInclude Include="KRendererManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

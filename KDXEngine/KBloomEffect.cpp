@@ -22,17 +22,17 @@ void KBloomEffect::Init()
 		BloomSize,
 		KVector::ZERO);
 
-	m_CheckPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"EMISSIONBLOOMCHECK");
+	m_CheckPlayer = make_KPTR<KRenderer>(L"FULLRECT", L"EMISSIONBLOOMCHECK");
 	m_CheckPlayer->SetTexture(L"LightTex", CameraPtr()->LightTarget()->Texture(3));
 	m_CheckPlayer->SetTexture(L"DepthTex", CameraPtr()->GlobalBufferTarget()->Texture(3));
 	m_CheckPlayer->SetSampler(L"Smp", L"LWSMP");
 
-	m_BloomPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"EMISSIONBLOOM");
+	m_BloomPlayer = make_KPTR<KRenderer>(L"FULLRECT", L"EMISSIONBLOOM");
 	m_BloomPlayer->SetTexture(L"CheckTex", m_SmallTarget->Texture(0));
 	m_BloomPlayer->SetSampler(L"Smp", L"LWSMP");
 	m_BloomPlayer->SetConstantBuffer(L"ScreenSize", &BloomSize, ConstantBufferMode::New);
 
-	m_LightBloomPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"LIGHTBLOOM");
+	m_LightBloomPlayer = make_KPTR<KRenderer>(L"FULLRECT", L"LIGHTBLOOM");
 	m_LightBloomPlayer->SetTexture(L"BloomTarget", m_BloomEffectTarget2->Texture(0));
 	m_LightBloomPlayer->SetSampler(L"Smp", L"LWSMP");
 

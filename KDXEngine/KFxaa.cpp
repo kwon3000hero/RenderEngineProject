@@ -6,7 +6,7 @@
 
 void KFxaa::Init()
 {
-	m_FXAAPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"FXAA");
+	m_FXAAPlayer = make_KPTR<KRenderer>(L"FULLRECT", L"FXAA");
 	m_FXAAPlayer->SetTexture(L"inputTexture", CameraPtr()->CurrentCameraTarget()->Texture(0));
 	m_FXAAPlayer->SetSampler(L"anisotropicSampler", L"LWSMP");
 

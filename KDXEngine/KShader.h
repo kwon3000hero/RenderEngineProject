@@ -39,12 +39,12 @@ public:
 };
 
 class KRenderManager;
-class KRenderPlayer;
+class KRenderer;
 class KShader//: public KGameReference
 {
 public:
 	friend KRenderManager;
-	friend KRenderPlayer;
+	friend KRenderer;
 
 protected:
 	std::map<KGameString, KShaderData> m_ShaderData;

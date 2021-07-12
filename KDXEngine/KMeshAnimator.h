@@ -1,5 +1,5 @@
 #pragma once
-#include "KRender.h"
+#include "KRenderer.h"
 #include <map>
 #include <KGAMEDIR.h>
 
@@ -50,7 +50,7 @@ private:
 		std::vector<KMatrix> m_FrameMatrixData;
 		KPTR<KTexture> m_BoneDataTexture;
 
-		std::vector<KPTR<KRenderPlayer>> m_RenderPlayerContainer;
+		std::vector<KPTR<KRenderer>> m_RenderPlayerContainer;
 
 	public:
 		void RenderPlayerOff();
@@ -70,7 +70,7 @@ private:
 
 
 	std::map<KGameString, KPTR<KTexture>> m_AnimationBoneDataTextureContainer;
-	std::map<KGameString, std::vector<KPTR<KRenderPlayer>>> m_RenderPlayerGroupContainer;
+	std::map<KGameString, std::vector<KPTR<KRenderer>>> m_RenderPlayerGroupContainer;
 	std::map<KGameString, KPTR<KMeshAnimation>> m_AnimationContainer;
 
 	KPTR<KMeshAnimation> FindAnimation(const KGameString& _AniName)
@@ -108,7 +108,7 @@ public:
 	}
 
 	void ChangeAnimation(const KGameString& _ani);
-	std::vector<KPTR<KRenderPlayer>> CreateAnimation(const KGAMEDIR& _dir, const KGameString& _fbxName, const KGameString& _takeName,
+	std::vector<KPTR<KRenderer>> CreateAnimation(const KGAMEDIR& _dir, const KGameString& _fbxName, const KGameString& _takeName,
 		const KGameString& _aniName, int _start, int _end,
 		const KGameString& _materialName = L"3DMESHFORWARD", float _speed = 1.0f, bool _loop = true);
 

@@ -1,7 +1,7 @@
 #include "TitleCom.h"
 #include "KTransform.h"
 #include <KFreeObject.h>
-#include <KRender.h>
+#include <KRenderer.h>
 #include <KCamera.h>
 #include <KFreeCamera.h>
 #include <KCuttingTexture.h>

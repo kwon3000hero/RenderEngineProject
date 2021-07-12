@@ -2,7 +2,7 @@
 #include "KGameScene.h"
 #include "KGameFont.h"
 
-KRenderPlayer KGameDebug3D::RP;
+KRenderer KGameDebug3D::RP;
 KPTR<KMesh> KGameDebug3D::RectMesh;
 
 int KGameDebug3D::DebugSize = 0;
@@ -14,8 +14,8 @@ std::vector<KGameDebug3D::KDebugTextInfo> KGameDebug3D::m_textInfo = std::vector
 int KGameDebug3D::m_DebugTextureSize = 0;
 std::vector<KGameDebug3D::KTextureInfo> KGameDebug3D::m_TextureInfo = std::vector<KGameDebug3D::KTextureInfo>(100);
 
-KPTR<KRenderPlayer> KGameDebug3D::m_TextureRenderPlayer;
-KPTR<KRenderPlayer> KGameDebug3D::m_BackbufferRenderPlayer;
+KPTR<KRenderer> KGameDebug3D::m_TextureRenderPlayer;
+KPTR<KRenderer> KGameDebug3D::m_BackbufferRenderPlayer;
 
 TransformMatrix KGameDebug3D::m_DebugTextureMatrix;
 
@@ -41,11 +41,11 @@ void KGameDebug3D::Init()
 
 	m_CenterVector = KGameWindow::MainWindow()->Size().HalfVector2D();
 	m_CenterVector.x *= -1.0f;
-	m_TextureRenderPlayer = make_KPTR<KRenderPlayer>(L"DEBUGTEXRECT", L"DEBUGIMAGE");
+	m_TextureRenderPlayer = make_KPTR<KRenderer>(L"DEBUGTEXRECT", L"DEBUGIMAGE");
 	m_TextureRenderPlayer->SetSampler(L"Smp", L"PCSMP");
 	m_TextureRenderPlayer->SetConstantBuffer(L"TRANSFORMDATA", &m_DebugTextureMatrix, ConstantBufferMode::Link);
 
-	m_BackbufferRenderPlayer = make_KPTR <KRenderPlayer>(L"DEBUGTEXRECT", L"DEBUGBACK");
+	m_BackbufferRenderPlayer = make_KPTR <KRenderer>(L"DEBUGTEXRECT", L"DEBUGBACK");
 	m_BackbufferRenderPlayer->SetConstantBuffer(L"TRANSFORMDATA", &m_DebugTextureMatrix, ConstantBufferMode::Link);
 	m_BackbufferRenderPlayer->SetConstantBuffer(L"BACKCOLOR", &m_BackColor, ConstantBufferMode::Link);
 #endif

@@ -3,10 +3,10 @@
 #include <KGAMEMATH.h>
 #include <KObjectManager.h>
 #include "KRenderTarget.h"
-#include "KRender.h"
+#include "KRenderer.h"
 
 class KCamera;
-class KRenderPlayer;
+class KRenderer;
 class KRenderTarget;
 class KTransform;
 class KRenderTarget;
@@ -18,7 +18,7 @@ private:
 	KPTR<KCamera> m_pCamera;
 
 protected:
-	KPTR<KRenderPlayer> m_RenderPlayer;
+	KPTR<KRenderer> m_RenderPlayer;
 	KPTR<KRenderTarget> m_EffectTarget;
 
 public:
@@ -166,8 +166,8 @@ private:
 	KPTR<KRenderTarget> m_globalBufferCameraTarget;
 	KPTR<KRenderTarget> m_lightCameraTarget;
 
-	KPTR<KRenderPlayer> m_defferdLightPlayer;
-	KPTR<KRenderPlayer> m_defferdMergePlayer;
+	KPTR<KRenderer> m_defferdLightPlayer;
+	KPTR<KRenderer> m_defferdMergePlayer;
 
 public:
 	KPTR<KRenderTarget> CurrentCameraTarget();

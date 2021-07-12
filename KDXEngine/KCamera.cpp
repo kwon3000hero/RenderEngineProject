@@ -100,13 +100,13 @@ void KCamera::Init()
 		KVector::ZERO);
 	m_lightCameraTarget->CreateDepth();
 
-	m_defferdLightPlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"DEFFERDCALCULATEDLIGHT");
+	m_defferdLightPlayer = make_KPTR<KRenderer>(L"FULLRECT", L"DEFFERDCALCULATEDLIGHT");
 	m_defferdLightPlayer->SetSampler(L"Smp", L"LCSMP");
 	m_defferdLightPlayer->SetTexture(L"POSTEX", m_globalBufferCameraTarget->Texture(1));
 	m_defferdLightPlayer->SetTexture(L"NORMALTEX", m_globalBufferCameraTarget->Texture(2));
 	m_defferdLightPlayer->SetTexture(L"DEPTHTEX", m_globalBufferCameraTarget->Texture(3));
 
-	m_defferdMergePlayer = make_KPTR<KRenderPlayer>(L"FULLRECT", L"DEFFERDMERGE");
+	m_defferdMergePlayer = make_KPTR<KRenderer>(L"FULLRECT", L"DEFFERDMERGE");
 	m_defferdMergePlayer->SetSampler(L"Smp", L"PCSMP");
 	m_defferdMergePlayer->SetTexture(L"ColorTex", m_globalBufferCameraTarget->Texture(0));
 	m_defferdMergePlayer->SetTexture(L"LightTex", m_lightCameraTarget->Texture(3));

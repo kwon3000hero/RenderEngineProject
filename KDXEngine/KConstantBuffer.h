@@ -20,7 +20,7 @@ public:
 
 public:
 	friend KRenderManager;
-	friend KRenderPlayer;
+	friend KRenderer;
 
 private:
 	unsigned int uiReg;

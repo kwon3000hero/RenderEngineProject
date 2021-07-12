@@ -18,7 +18,7 @@ enum class KCollisionType
 
 class KCamera;
 class KRenderManager;
-class KRenderPlayer;
+class KRenderer;
 class KTransform : public KGameComponent
 {
 private:
@@ -33,7 +33,7 @@ private:
 
 public:
 	friend KRenderManager;
-	friend KRenderPlayer;
+	friend KRenderer;
 
 private:
 	KWeakPTR<KTransform> m_Parent;
