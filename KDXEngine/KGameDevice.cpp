@@ -42,13 +42,12 @@ void KGameDevice::Create(const KGameString& _WindowName, KVector _ClearColor)
 }
 
 KGameDevice::KGameDevice() : m_GameWindow(nullptr), m_MultiQualityLevel(0)
-, m_MultiSamplerCounter(0), m_pDevice(nullptr), m_pContext(nullptr), m_pSwapChain(nullptr), m_ViewPort{ 0 }
+, m_MultiSamplerCounter(0), m_pDevice(nullptr), m_pContext(nullptr), m_ViewPort{ 0 }
 {
 }
 KGameDevice::~KGameDevice()
 {
 	KGameFont::End();
-	SafeRelease(m_pSwapChain);
 	SafeRelease(m_pContext);
 	SafeRelease(m_pDevice);
 }
@@ -112,7 +111,7 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 	}
 
 
-	if (false == CreateSwapChain())
+	if (false == m_swapChain.CreateSwapChain(m_pDevice, m_GameWindow))
 	{
 		assert(false);
 	}
@@ -125,76 +124,12 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 }
 
 
-bool KGameDevice::CreateSwapChain()
-{
-	DXGI_SWAP_CHAIN_DESC SCDECS;
-	memset(&SCDECS, 0, sizeof(DXGI_SWAP_CHAIN_DESC));
-
-
-	SCDECS.BufferDesc.Width = m_GameWindow->Size().UIX();
-	SCDECS.BufferDesc.Height = m_GameWindow->Size().UIY();
-
-	SCDECS.BufferDesc.RefreshRate.Numerator = 60;
-	SCDECS.BufferDesc.RefreshRate.Denominator = 1;
-
-	SCDECS.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	SCDECS.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-	SCDECS.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-
-	SCDECS.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	SCDECS.SampleDesc.Quality = 0;
-	SCDECS.SampleDesc.Count = 1;
-	SCDECS.OutputWindow = m_GameWindow->WINHWND();
-
-	// 이걸 2개로 만들어서 처리
-	SCDECS.BufferCount = 2;
-	SCDECS.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
-	SCDECS.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
-	SCDECS.Windowed = true;
-	IDXGIDevice* pDXGIDevice = nullptr;
-	IDXGIAdapter* pAdapter = nullptr;
-	IDXGIFactory* pFactory = nullptr;
-
-	m_pDevice->QueryInterface(__uuidof(IDXGIDevice), (void**)&pDXGIDevice);
-	if (nullptr == pDXGIDevice)
-	{
-		assert(false);
-		return false;
-	}
-
-	pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&pAdapter);
-	if (nullptr == pAdapter)
-	{
-		assert(false);
-		return false;
-	}
-
-	pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&pFactory);
-	if (nullptr == pFactory)
-	{
-		assert(false);
-		return false;
-	}
-
-	if (S_OK != pFactory->CreateSwapChain(m_pDevice, &SCDECS, &m_pSwapChain))
-	{
-		assert(false);
-		return false;
-	}
-
-
-	SafeRelease(pDXGIDevice);
-	SafeRelease(pAdapter);
-	SafeRelease(pFactory);
-
-	return true;
-}
 
 bool KGameDevice::CreateBackBuffer(KVector _ClearColor)
 {
 	ID3D11Texture2D* BackTex = nullptr;
 
-	if (S_OK != m_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&BackTex))
+	if (S_OK != m_swapChain.SwapChain().GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&BackTex))
 	{
 		assert(false);
 		return false;
@@ -210,7 +145,7 @@ bool KGameDevice::CreateBackBuffer(KVector _ClearColor)
 
 void KGameDevice::DeviceRenderEnd()
 {
-	m_pSwapChain->Present(0, 0);
+	m_swapChain.SwapChain().Present(0, 0);
 	KRenderPipeline::ResetAll();
 }
 

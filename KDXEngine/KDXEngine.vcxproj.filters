@@ -194,6 +194,9 @@
     <ClCompile Include="KRendererManager.cpp">
       <Filter>Obj\Component\DefinedComponent\Render</Filter>
     </ClCompile>
+    <ClCompile Include="KSwapChain.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KGameDevice.h">
@@ -308,6 +311,9 @@
     </ClInclude>
     <ClInclude Include="KRendererManager.h">
       <Filter>Obj\Component\DefinedComponent\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="KSwapChain.h">
+      <Filter>Device</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

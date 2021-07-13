@@ -55,6 +55,7 @@ void TestComponent::Init()
 	KPTR<KGameActor> cameraActor = Scene()->CreateActor();
 	KPTR<KCamera> PCAM = cameraActor->CreateComponent<KCamera>(0, 0);
 	KPTR<KFreeCamera> FCAM = cameraActor->CreateComponent<KFreeCamera>(PCAM, 100.0f);
+	
 	{
 		KPTR<KGameActor> NEWACTOR = Scene()->CreateActor();
 		NEWACTOR->Transform()->WorldPosition({ 0.0f, 0.0f, -20.0f });

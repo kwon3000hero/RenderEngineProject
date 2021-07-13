@@ -3,12 +3,10 @@
 #include <KGAMEWIN.h>
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
+#include "KSwapChain.h"
 
-#pragma comment(lib, "d3d11")
-#pragma comment(lib, "d3dcompiler")
-#pragma comment(lib, "dxguid")
 
-#pragma comment(lib, "KEngineBase.lib")
+//#pragma comment(lib, "KEngineBase.lib")
 
 class KRenderTarget;
 class KGameDevice : public KGameReference
@@ -28,6 +26,7 @@ public:
 private:
 	KPTR<KGameWindow> m_GameWindow;
 
+	KSwapChain m_swapChain;
 
 private:
 	static std::map<KGameString, KPTR<KGameDevice>> m_AllDevice;
@@ -42,7 +41,6 @@ private:
 
 	ID3D11Device* m_pDevice;
 	ID3D11DeviceContext* m_pContext;
-	IDXGISwapChain* m_pSwapChain;
 
 	D3D11_VIEWPORT m_ViewPort;
 
@@ -55,7 +53,6 @@ public:
 
 private:
 	void Create(KPTR<KGameWindow> _Window, KVector _ClearColor);
-	bool CreateSwapChain(); // 스왑체인 만들기
 	bool CreateBackBuffer(KVector _ClearColor); // 백버퍼 얻어오기
 
 public:
