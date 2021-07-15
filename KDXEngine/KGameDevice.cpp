@@ -9,7 +9,7 @@ ID3D11Device* KGameDevice::m_pMainDevice = nullptr;
 ID3D11DeviceContext* KGameDevice::m_pMainContext = nullptr;
 KGameDevice* KGameDevice::m_pMainGameDevice = nullptr;
 
-std::map<KGameString, KPTR<KGameDevice>> KGameDevice::m_AllDevice;
+std::map<KGameString, KPTR<KGameDevice>> KGameDevice::m_deviceContainer;
 
 void KGameDevice::SetMainRenderTarget()
 {
@@ -19,12 +19,12 @@ void KGameDevice::SetMainRenderTarget()
 
 KPTR<KGameDevice> KGameDevice::Find(const KGameString& _DeviceName)
 {
-	if (m_AllDevice.end() == m_AllDevice.find(_DeviceName))
+	if (m_deviceContainer.end() == m_deviceContainer.find(_DeviceName))
 	{
 		return nullptr;
 	}
 
-	return m_AllDevice[_DeviceName];
+	return m_deviceContainer[_DeviceName];
 }
 
 void KGameDevice::Create(const KGameString& _WindowName, KVector _ClearColor)
@@ -38,7 +38,7 @@ void KGameDevice::Create(const KGameString& _WindowName, KVector _ClearColor)
 
 	NewDevice->Create(KGameWindow::FindWin(_WindowName), _ClearColor);
 
-	m_AllDevice.insert(std::map<KGameString, KPTR<KGameDevice>>::value_type(_WindowName, NewDevice));
+	m_deviceContainer.insert(std::map<KGameString, KPTR<KGameDevice>>::value_type(_WindowName, NewDevice));
 }
 
 KGameDevice::KGameDevice() : m_GameWindow(nullptr), m_MultiQualityLevel(0)

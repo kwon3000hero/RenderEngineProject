@@ -1,8 +1,8 @@
 #include "KSwapChain.h"
 #include <d3d11_4.h>
 #include <assert.h>
-#include <KGAMEWIN.h>
 #include "KGameMacros.h"
+#include <KGAMEWIN.h>
 
 
 
@@ -79,5 +79,4 @@ bool KSwapChain::CreateSwapChain(ID3D11Device* _pDevice, KPTR<KGameWindow> _wind
 
 KSwapChain::~KSwapChain()
 {
-	SafeRelease(m_pSwapChain);
 }

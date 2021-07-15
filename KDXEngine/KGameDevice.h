@@ -29,7 +29,7 @@ private:
 	KSwapChain m_swapChain;
 
 private:
-	static std::map<KGameString, KPTR<KGameDevice>> m_AllDevice;
+	static std::map<KGameString, KPTR<KGameDevice>> m_deviceContainer;
 
 public:
 	static KPTR<KGameDevice> Find(const KGameString& _DeviceName);

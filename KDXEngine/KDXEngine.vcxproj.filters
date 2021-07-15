@@ -197,6 +197,9 @@
     <ClCompile Include="KSwapChain.cpp">
       <Filter>Device</Filter>
     </ClCompile>
+    <ClCompile Include="KSwapChainManager.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KGameDevice.h">
@@ -313,6 +316,9 @@
       <Filter>Obj\Component\DefinedComponent\Render</Filter>
     </ClInclude>
     <ClInclude Include="KSwapChain.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="KSwapChainManager.h">
       <Filter>Device</Filter>
     </ClInclude>
   </ItemGroup>

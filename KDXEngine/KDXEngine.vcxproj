@@ -61,6 +61,7 @@
     <ClCompile Include="KSampler.cpp" />
     <ClCompile Include="KShader.cpp" />
     <ClCompile Include="KSwapChain.cpp" />
+    <ClCompile Include="KSwapChainManager.cpp" />
     <ClCompile Include="KTexture.cpp" />
     <ClCompile Include="KTransform.cpp" />
     <ClCompile Include="KTransformCollisionCheck.cpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="KSampler.h" />
     <ClInclude Include="KShader.h" />
     <ClInclude Include="KSwapChain.h" />
+    <ClInclude Include="KSwapChainManager.h" />
     <ClInclude Include="KTexture.h" />
     <ClInclude Include="KTransform.h" />
     <ClInclude Include="KUpdateBase.h" />
