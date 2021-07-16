@@ -1,5 +1,5 @@
 #include <Windows.h>
-#include <KGAMEWIN.h>
+#include <KGameWindow.h>
 #include <KGameType.h>
 #include <KGAMEDEBUG.h>
 #include <KGameReference.h>
@@ -82,7 +82,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
 	KGameDebug::LeakCheck();
 	KGameWindow::CreateWin(L"MainWindow");
-	KGameWindow::MainWindow()->Size({ 1280, 720 });
+	KGameWindow::MainWindow()->SetSize({ 1280, 720 });
 
 	KGameWindow::Progress(Progress, Start);
 

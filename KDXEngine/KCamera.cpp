@@ -1,7 +1,7 @@
 #include "KCamera.h"
 #include <assert.h>
 #include "KTransform.h"
-#include <KGAMEWIN.h>
+#include <KGameWindow.h>
 #include "KRenderTarget.h"
 #include "KLight.h"
 

@@ -1,5 +1,5 @@
 #include "KGameInput.h"
-#include "KGAMEWIN.h"
+#include "KGameWindow.h"
 
 KVector KGAMEINPUT::m_MouseDir;
 KVector KGAMEINPUT::m_PrevPos;

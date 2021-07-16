@@ -7,7 +7,7 @@
     <ClCompile Include="KGAMEMATH.cpp" />
     <ClCompile Include="KGAMEPATH.cpp" />
     <ClCompile Include="KGAMETIME.cpp" />
-    <ClCompile Include="KGAMEWIN.cpp" />
+    <ClCompile Include="KGameWindow.cpp" />
     <ClCompile Include="KGameType.cpp">
       <Filter>BASE</Filter>
     </ClCompile>
@@ -29,7 +29,7 @@
     <ClInclude Include="KGAMEMATH.h" />
     <ClInclude Include="KGAMEPATH.h" />
     <ClInclude Include="KGAMETIME.h" />
-    <ClInclude Include="KGAMEWIN.h" />
+    <ClInclude Include="KGameWindow.h" />
     <ClInclude Include="KGameType.h">
       <Filter>BASE</Filter>
     </ClInclude>

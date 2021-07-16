@@ -15,7 +15,7 @@ class KGameWindow;
 class KSwapChain
 {
 private:
-	Microsoft::WRL::ComPtr<IDXGISwapChain> m_pSwapChain;
+	IDXGISwapChain* m_pSwapChain;
 
 public:
 	KSwapChain();
@@ -26,7 +26,7 @@ public:
 public:
 	IDXGISwapChain& SwapChain()
 	{
-		return *m_pSwapChain.Get();
+		return *m_pSwapChain;
 	}
 };
 

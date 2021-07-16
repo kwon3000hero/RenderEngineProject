@@ -1,24 +1,24 @@
-#include "KGAMEWIN.h"
+#include "KGameWindow.h"
 
 bool KGameWindow::m_bProgress = true;
 KWeakPTR<KGameWindow> KGameWindow::m_MainWindow = static_cast<KWeakPTR<KGameWindow>>(0);
 
 std::set<KGameString> KGameWindow::m_classNameContainer;
 std::map<KGameString, KPTR<KGameWindow>> KGameWindow::m_winContainer;
-KGameWindow::KGAMEWINCREATER KGameWindow::instance = KGameWindow::KGAMEWINCREATER();
+KGameWindow::KGameWindowCreater KGameWindow::instance = KGameWindow::KGameWindowCreater();
 
-KGameWindow::KGAMEWINCREATER::KGAMEWINCREATER()
+KGameWindow::KGameWindowCreater::KGameWindowCreater()
 {
 	RegWinClass(L"DefWin");
 }
 
-KGameWindow::KGAMEWINCREATER::~KGAMEWINCREATER()
+KGameWindow::KGameWindowCreater::~KGameWindowCreater()
 {
 	DeleteAllWin();
 }
 
 LRESULT CALLBACK KGameWindow::WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
+{	
 	switch (msg)
 	{
 	case WM_PAINT:
@@ -157,7 +157,7 @@ void KGameWindow::Update()
 	UpdateWindow(m_HWND);
 }
 
-void KGameWindow::Size(const KVector& size)
+void KGameWindow::SetSize(const KVector& size)
 {
 	m_size = size;
 

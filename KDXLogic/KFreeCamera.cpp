@@ -1,5 +1,5 @@
 #include "KFreeCamera.h"
-#include <KGAMEWIN.h>
+#include <KGameWindow.h>
 
 KFreeCamera::KFreeCamera(KPTR< KCamera> _camera) : m_translateSpeed(1.0f), m_rotateSpeed(180.0f), m_ZoomSpeed(1.0F), m_Camera(_camera)
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include <KGAMEMATH.h>
-#include <KGAMEWIN.h>
+#include <KGameWindow.h>
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
 #include "KSwapChain.h"

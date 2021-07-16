@@ -14,20 +14,20 @@ private:
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 private:
-	class KGAMEWINCREATER
+	class KGameWindowCreater
 	{
 	private:
 		friend KGameWindow;
 
 	public:
-		KGAMEWINCREATER();
-		~KGAMEWINCREATER();
+		KGameWindowCreater();
+		~KGameWindowCreater();
 	};
 
-	friend KGAMEWINCREATER;
+	friend KGameWindowCreater;
 
 private:
-	static KGAMEWINCREATER instance;
+	static KGameWindowCreater instance;
 
 
 private:
@@ -87,7 +87,8 @@ public:
 	void Update();
 
 public:
-	void Size(int width, int height);
+	void SetSize(int width, int height);
+	void SetSize(const KVector& _Size);
 
 public:
 	KVector Size()
@@ -95,6 +96,5 @@ public:
 		return m_size;
 	}
 
-	void Size(const KVector& _Size);
 };
 
