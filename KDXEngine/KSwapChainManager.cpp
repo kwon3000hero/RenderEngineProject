@@ -1,19 +1,21 @@
-#include "KSwapChainManager.h"
 #include <vector>
+#include "KSwapChainManager.h"
+
+#pragma comment(lib, "dxgi.lib")
 
 void KSwapChainManager::CreateOutputs()
 {
 
-	/*UINT i = 0;
+	UINT i = 0;
 	IDXGIFactory* pFactory;
-	CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)(&pFactory));
+	CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&pFactory);
 	IDXGIAdapter* pAdapter;
-	std::vector <IDXGIAdapter*> vAdapters;*/
-	/*while (pFactory->EnumAdapters(i, &pAdapter) != DXGI_ERROR_NOT_FOUND)
+	std::vector <IDXGIAdapter*> vAdapters;
+	while (pFactory->EnumAdapters(i, &pAdapter) != DXGI_ERROR_NOT_FOUND)
 	{
 		vAdapters.push_back(pAdapter);
 		++i;
-	}*/
+	}
 
 }
 

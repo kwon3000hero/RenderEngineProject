@@ -3,7 +3,7 @@
 #include <KGameWindow.h>
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
-#include "KSwapChain.h"
+#include "KSwapChainManager.h"
 
 
 //#pragma comment(lib, "KEngineBase.lib")
@@ -26,6 +26,7 @@ public:
 private:
 	KPTR<KGameWindow> m_GameWindow;
 
+	KSwapChainManager m_swapChainManager;
 	KSwapChain m_swapChain;
 
 private:

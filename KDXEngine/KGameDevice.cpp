@@ -35,7 +35,6 @@ void KGameDevice::Create(const KGameString& _WindowName, KVector _ClearColor)
 	}
 
 	KPTR<KGameDevice> NewDevice = new KGameDevice();
-
 	NewDevice->Create(KGameWindow::FindWin(_WindowName), _ClearColor);
 
 	m_deviceContainer.insert(std::map<KGameString, KPTR<KGameDevice>>::value_type(_WindowName, NewDevice));
@@ -60,6 +59,8 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 	}
 
 	m_GameWindow = _Window;
+
+	m_swapChainManager.CreateOutputs();
 
 	unsigned int iFlag = 0;
 #ifdef _DEBUG

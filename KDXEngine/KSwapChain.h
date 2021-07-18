@@ -1,7 +1,5 @@
 #pragma once
 #include <dxgi.h>
-#include <wrl.h>
-
 
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler")
@@ -11,6 +9,7 @@
 
 class ID3D11Device;
 class KGameWindow;
+class IDXGISwapChain;
 
 class KSwapChain
 {
