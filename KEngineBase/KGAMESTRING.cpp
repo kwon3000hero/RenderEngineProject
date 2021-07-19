@@ -207,7 +207,7 @@ std::list<StringParsingData> KGameString::FindAllPosition(const KGameString& _Te
 
 
 
-void KGameString::AppendfInternal(const char* fmt, ...)
+void KGameString::AppendInternal(const char* fmt, ...)
 {
 	int BufferSize = 512;
 	char StartingBuffer[512];
@@ -248,7 +248,7 @@ void KGameString::AppendfInternal(const char* fmt, ...)
 	}
 }
 
-void KGameString::AppendfInternal(const wchar_t* fmt, ...)
+void KGameString::AppendInternal(const wchar_t* fmt, ...)
 {
 	int BufferSize = 512;
 	wchar_t	StartingBuffer[512];

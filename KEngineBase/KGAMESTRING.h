@@ -35,13 +35,13 @@ public:
 	}
 
 	template<typename FmtType, typename... TemplateTypes>
-	void Appendf(const FmtType& Fmt, TemplateTypes... Args)
+	void Append(const FmtType& Fmt, TemplateTypes... Args)
 	{
-		AppendfInternal(Fmt, Args...);
+		AppendInternal(Fmt, Args...);
 	}
 
-	void AppendfInternal(const char* fmt, ...);
-	void AppendfInternal(const wchar_t* fmt, ...);
+	void AppendInternal(const char* fmt, ...);
+	void AppendInternal(const wchar_t* fmt, ...);
 
 	size_t IsExist(const wchar_t _Str) const { return m_String.find(_Str) != MAXSIZE_T; }
 	size_t IsExist(const KGameString& _Str) const { return m_String.find(_Str.m_String) != MAXSIZE_T; }
