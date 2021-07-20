@@ -6,7 +6,7 @@
 
 
 
-KSwapChain::KSwapChain() :m_pSwapChain(nullptr)
+KSwapChain::KSwapChain() :m_pSwapChain(nullptr), pAdapter(nullptr)
 {
 
 }
@@ -33,7 +33,6 @@ bool KSwapChain::CreateSwapChain(ID3D11Device* _pDevice, KPTR<KGameWindow> _wind
 	SCDECS.SampleDesc.Count = 1;
 	SCDECS.OutputWindow = _window->WINHWND();
 
-	// 이걸 2개로 만들어서 처리
 	SCDECS.BufferCount = 2;
 	SCDECS.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	SCDECS.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
@@ -76,7 +75,13 @@ bool KSwapChain::CreateSwapChain(ID3D11Device* _pDevice, KPTR<KGameWindow> _wind
 	return true;
 }
 
+void KSwapChain::Release()
+{
+	SafeRelease(m_pSwapChain);
+}
+
 
 KSwapChain::~KSwapChain()
 {
+	Release();
 }

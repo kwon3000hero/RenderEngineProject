@@ -2,7 +2,6 @@
 
 #include <comdef.h>
 #include <KGAMEDEBUG.h>
-//#include <KGAMESTRING.h>
 
 struct IUnknown;
 

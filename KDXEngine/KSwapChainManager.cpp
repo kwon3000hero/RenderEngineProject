@@ -5,9 +5,18 @@
 
 #pragma comment(lib, "dxgi.lib")
 
-void KSwapChainManager::CreateOutputs()
+KSwapChainManager::KSwapChainManager()
 {
 
+}
+
+KSwapChainManager::~KSwapChainManager()
+{
+
+}
+
+void KSwapChainManager::SearchAdapterAndOutput()
+{
 	UINT adapterNumber = 0;
 	IDXGIFactory* pFactory = nullptr;
 	CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&pFactory);
@@ -32,6 +41,7 @@ void KSwapChainManager::CreateOutputs()
 
 KSwapChain* KSwapChainManager::SearchOutput(KPTR<KGameWindow> _window)
 {
-	swapChainKey key(_window->Size().IX(), _window->Size().IY(), _window->Size().IX(), _window->Size().IY());
-	return m_swapchainContainer.find(key)->second;
+	swapChainKey findedKey(_window->Size().IX(), _window->Size().IY(), _window->Size().IX(), _window->Size().IY());
+
+	return m_swapchainContainer.find(findedKey)->second;
 }

@@ -60,7 +60,7 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 
 	m_GameWindow = _Window;
 
-	m_swapChainManager.CreateOutputs();
+	m_swapChainManager.SearchAdapterAndOutput();
 
 	unsigned int iFlag = 0;
 #ifdef _DEBUG
