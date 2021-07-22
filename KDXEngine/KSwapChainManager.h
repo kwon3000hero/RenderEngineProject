@@ -7,8 +7,15 @@
 class KSwapChainManager final
 {
 private:
-	typedef std::tuple<int, int, int, int> swapChainKey;
+	IDXGIFactory* m_pFactory;
+
+	typedef std::pair<int, int> swapChainKey;
 	std::map<swapChainKey, KSwapChain*> m_swapchainContainer;
+
+	typedef std::pair<int, int> outputKey;
+	std::map<outputKey, IDXGIOutput*> m_OutputContainer;
+
+	std::map<int, IDXGIAdapter*> m_pAdapterContainer;
 
 public:
 	KSwapChainManager();

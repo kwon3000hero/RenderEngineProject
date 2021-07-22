@@ -5,7 +5,7 @@
 
 #pragma comment(lib, "dxgi.lib")
 
-KSwapChainManager::KSwapChainManager()
+KSwapChainManager::KSwapChainManager() :m_pFactory(nullptr)
 {
 
 }
@@ -17,22 +17,30 @@ KSwapChainManager::~KSwapChainManager()
 
 void KSwapChainManager::SearchAdapterAndOutput()
 {
-	UINT adapterNumber = 0;
-	IDXGIFactory* pFactory = nullptr;
-	CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&pFactory);
+	HRESULT factoryResult = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&m_pFactory);
 
-	IDXGIAdapter* pAdapter = nullptr;
-	std::vector<IDXGIOutput*> vOutputs;
-
-	while (DXGI_ERROR_NOT_FOUND != pFactory->EnumAdapters(adapterNumber, &pAdapter))
+	if (FAILED(factoryResult))
 	{
+		ShowHResultString(factoryResult, "KSwapChainManager::SearchAdapterAndOutput");
+	}
+
+	UINT adapterNumber = 0;
+	IDXGIAdapter* pAdapter = nullptr;
+
+	while (DXGI_ERROR_NOT_FOUND != m_pFactory->EnumAdapters(adapterNumber, &pAdapter))
+	{
+		m_pAdapterContainer[adapterNumber] = pAdapter;
+
 		UINT outputNumber = 0;
 		IDXGIOutput* pOutput;
 
 		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, &pOutput))
 		{
-			vOutputs.push_back(pOutput);
+			outputKey key(adapterNumber, outputNumber);
+			m_OutputContainer[key] = pOutput;
 			++outputNumber;
+
+			m_swapchainContainer[key] = new KSwapChain(adapterNumber, pAdapter, outputNumber, pOutput);
 		}
 
 		++adapterNumber;
@@ -41,7 +49,7 @@ void KSwapChainManager::SearchAdapterAndOutput()
 
 KSwapChain* KSwapChainManager::SearchOutput(KPTR<KGameWindow> _window)
 {
-	swapChainKey findedKey(_window->Size().IX(), _window->Size().IY(), _window->Size().IX(), _window->Size().IY());
+	swapChainKey findedKey(_window->Size().IX(), _window->Size().IY());
 
 	return m_swapchainContainer.find(findedKey)->second;
 }

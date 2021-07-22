@@ -15,11 +15,22 @@ class KSwapChain
 {
 private:
 	IDXGISwapChain* m_pSwapChain;
-	IDXGIAdapter* pAdapter;
-	std::vector<IDXGIOutput*> vOutputs;
-	
+
+	struct
+	{
+		int m_adpaterIndex;
+		IDXGIAdapter* m_pAdapter;
+	};
+
+	struct
+	{
+		int m_outputIndex;
+		IDXGIOutput* m_pOutput;
+	};
+
 public:
-	KSwapChain();
+	KSwapChain();//юс╫ц
+	KSwapChain(int _adapterIndex, IDXGIAdapter* _pAdapter, int _outputIndex, IDXGIOutput* _pOutput);
 	~KSwapChain();
 
 	bool CreateSwapChain(ID3D11Device* _pDevice, KPTR<KGameWindow> _window);

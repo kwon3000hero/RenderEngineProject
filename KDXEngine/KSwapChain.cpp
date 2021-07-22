@@ -6,7 +6,12 @@
 
 
 
-KSwapChain::KSwapChain() :m_pSwapChain(nullptr), pAdapter(nullptr)
+KSwapChain::KSwapChain() :m_pSwapChain(nullptr), m_adpaterIndex(0), m_pAdapter(nullptr), m_outputIndex(0), m_pOutput(nullptr)
+{
+}
+
+KSwapChain::KSwapChain(int _adapterIndex, IDXGIAdapter* _pAdapter, int _outputIndex, IDXGIOutput* _pOutput)
+	: m_pSwapChain(nullptr), m_adpaterIndex(_adapterIndex), m_pAdapter(_pAdapter), m_outputIndex(_outputIndex), m_pOutput(_pOutput)
 {
 
 }
@@ -37,6 +42,7 @@ bool KSwapChain::CreateSwapChain(ID3D11Device* _pDevice, KPTR<KGameWindow> _wind
 	SCDECS.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 	SCDECS.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 	SCDECS.Windowed = true;
+
 	IDXGIDevice* pDXGIDevice = nullptr;
 	IDXGIAdapter* pAdapter = nullptr;
 	IDXGIFactory* pFactory = nullptr;
@@ -79,7 +85,6 @@ void KSwapChain::Release()
 {
 	SafeRelease(m_pSwapChain);
 }
-
 
 KSwapChain::~KSwapChain()
 {
