@@ -1,5 +1,4 @@
 #include "KCriticalSection.h"
-#include "KCriticalSection.h"
 
 KAutoCriticalSection KCriticalSection::operator()()
 {

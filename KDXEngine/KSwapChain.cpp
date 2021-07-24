@@ -6,9 +6,9 @@
 
 
 
-KSwapChain::KSwapChain() :m_pSwapChain(nullptr), m_adpaterIndex(0), m_pAdapter(nullptr), m_outputIndex(0), m_pOutput(nullptr)
-{
-}
+//KSwapChain::KSwapChain() :m_pSwapChain(nullptr), m_adpaterIndex(0), m_pAdapter(nullptr), m_outputIndex(0), m_pOutput(nullptr)
+//{
+//}
 
 KSwapChain::KSwapChain(int _adapterIndex, IDXGIAdapter* _pAdapter, int _outputIndex, IDXGIOutput* _pOutput)
 	: m_pSwapChain(nullptr), m_adpaterIndex(_adapterIndex), m_pAdapter(_pAdapter), m_outputIndex(_outputIndex), m_pOutput(_pOutput)
@@ -45,23 +45,23 @@ bool KSwapChain::CreateSwapChain(ID3D11Device* _pDevice, KPTR<KGameWindow> _wind
 
 	IDXGIDevice* pDXGIDevice = nullptr;
 	IDXGIAdapter* pAdapter = nullptr;
-	IDXGIFactory* pFactory = nullptr;
+	IDXGIFactory2* pFactory = nullptr;
 
-	_pDevice->QueryInterface(__uuidof(IDXGIDevice), (void**)&pDXGIDevice);
-	if (nullptr == pDXGIDevice)
-	{
-		assert(false);
-		return false;
-	}
+	//_pDevice->QueryInterface(__uuidof(IDXGIDevice), (void**)&pDXGIDevice);
+	//if (nullptr == pDXGIDevice)
+	//{
+	//	assert(false);
+	//	return false;
+	//}
 
-	pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&pAdapter);
-	if (nullptr == pAdapter)
-	{
-		assert(false);
-		return false;
-	}
+	//pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&pAdapter);
+	//if (nullptr == pAdapter)
+	//{
+	//	assert(false);
+	//	return false;
+	//}
 
-	pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&pFactory);
+	m_pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&pFactory);
 	if (nullptr == pFactory)
 	{
 		assert(false);

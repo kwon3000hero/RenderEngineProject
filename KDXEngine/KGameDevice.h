@@ -27,7 +27,7 @@ private:
 	KPTR<KGameWindow> m_GameWindow;
 
 	KSwapChainManager m_swapChainManager;
-	KSwapChain m_swapChain;
+	KSwapChain* m_pSwapChain;
 
 private:
 	static std::map<KGameString, KPTR<KGameDevice>> m_deviceContainer;

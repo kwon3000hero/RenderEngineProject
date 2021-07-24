@@ -47,9 +47,9 @@ void KSwapChainManager::SearchAdapterAndOutput()
 	}
 }
 
-KSwapChain* KSwapChainManager::SearchOutput(KPTR<KGameWindow> _window)
+KSwapChain* KSwapChainManager::GetOutput(int _adapterIndex, int _outputIndex)
 {
-	swapChainKey findedKey(_window->Size().IX(), _window->Size().IY());
+	swapChainKey findedKey(_adapterIndex, _outputIndex);
 
 	return m_swapchainContainer.find(findedKey)->second;
 }

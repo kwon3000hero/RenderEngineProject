@@ -22,5 +22,7 @@ public:
 	~KSwapChainManager();
 
 	void SearchAdapterAndOutput();
-	KSwapChain* SearchOutput(KPTR<KGameWindow> _window);
+	
+	//임시.. output의 영역으로 찾게 수정해야...
+	KSwapChain* GetOutput(int _adapterIndex, int _outputIndex);
 };

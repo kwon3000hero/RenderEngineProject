@@ -67,14 +67,19 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 	iFlag = D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
+	KSwapChain* pSwapChain = m_swapChainManager.GetOutput(0, 0);
+	m_pSwapChain = pSwapChain;
+
 	D3D_FEATURE_LEVEL ReturneLv = D3D_FEATURE_LEVEL_9_1;
 
-	HRESULT HR = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_HARDWARE,
+
+	IDXGIAdapter* pAdapter = m_pSwapChain->Adpater();
+	HRESULT HR = D3D11CreateDevice(pAdapter, D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
 		nullptr, iFlag, nullptr, 0, D3D11_SDK_VERSION, &m_pDevice, &ReturneLv, &m_pContext);
 
 	if (S_OK != HR || nullptr == m_pDevice || nullptr == m_pContext)
 	{
-		assert(false);
+		ShowHResultString(HR, "CreateDevcie");
 	}
 
 	m_MultiSamplerCounter = 4;
@@ -112,7 +117,7 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 	}
 
 
-	if (false == m_swapChain.CreateSwapChain(m_pDevice, m_GameWindow))
+	if (false == m_pSwapChain->CreateSwapChain(m_pDevice, m_GameWindow))
 	{
 		assert(false);
 	}
@@ -130,7 +135,7 @@ bool KGameDevice::CreateBackBuffer(KVector _ClearColor)
 {
 	ID3D11Texture2D* BackTex = nullptr;
 
-	if (S_OK != m_swapChain.SwapChain().GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&BackTex))
+	if (S_OK != m_pSwapChain->SwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&BackTex))
 	{
 		assert(false);
 		return false;
@@ -146,7 +151,7 @@ bool KGameDevice::CreateBackBuffer(KVector _ClearColor)
 
 void KGameDevice::DeviceRenderEnd()
 {
-	m_swapChain.SwapChain().Present(0, 0);
+	m_pSwapChain->SwapChain()->Present(0, 0);
 	KRenderPipeline::ResetAll();
 }
 

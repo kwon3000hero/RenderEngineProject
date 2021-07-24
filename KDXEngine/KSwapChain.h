@@ -29,17 +29,33 @@ private:
 	};
 
 public:
-	KSwapChain();//임시
+	//KSwapChain();//임시
 	KSwapChain(int _adapterIndex, IDXGIAdapter* _pAdapter, int _outputIndex, IDXGIOutput* _pOutput);
 	~KSwapChain();
 
 	bool CreateSwapChain(ID3D11Device* _pDevice, KPTR<KGameWindow> _window);
 	void Release();
 
-public:
-	IDXGISwapChain& SwapChain()
+	IDXGIOutput* Output()
 	{
-		return *m_pSwapChain;
+		return m_pOutput;
+	}
+
+	IDXGIAdapter* Adpater()
+	{
+		return m_pAdapter;
+	}
+
+public:
+	IDXGISwapChain* SwapChain()
+	{
+		return m_pSwapChain;
+	}
+
+public:
+	operator IDXGISwapChain* ()
+	{
+		return m_pSwapChain;
 	}
 };
 
