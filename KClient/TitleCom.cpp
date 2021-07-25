@@ -21,7 +21,7 @@ KGameString UserStr = L"Monster3.userFbx";
 void UserMeshLoading(KThread* PTR)
 {
 	KGAMEDIR Dir;
-	Dir.MoveParent(L"RenderEngineProject-main");
+	Dir.MoveParent(L"RenderEngineProject");
 	Dir.Move(L"RES");
 	Dir.Move(L"Mesh");
 
@@ -71,7 +71,7 @@ void TitleCom::PrevUpdate()
 		KGameResourceManager<KThread>::Instance().Create(Str);
 
 		KGAMEDIR Dir;
-		Dir.MoveParent(L"RenderEngineProject-main");
+		Dir.MoveParent(L"RenderEngineProject");
 		Dir.Move(L"RES");
 		Dir.Move(L"Mesh");
 

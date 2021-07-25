@@ -13,14 +13,14 @@
 void TestComponent::Init()
 {
 	KGAMEDIR Dir;
-	Dir.MoveParent(L"RenderEngineProject-main");
+	Dir.MoveParent(L"RenderEngineProject");
 	Dir.Move(L"RES");
 	Dir.Move(L"Mesh");
 	KFBX::LoadFromUserFormat(Dir.FilePath(L"Monster3.FBX"), Dir.FilePath(L"Monster3.UserFbx"));
 
 	{
 		KGAMEDIR Dir;
-		Dir.MoveParent(L"RenderEngineProject-main");
+		Dir.MoveParent(L"RenderEngineProject");
 		Dir.Move(L"RES");
 		Dir.Move(L"TEX");
 

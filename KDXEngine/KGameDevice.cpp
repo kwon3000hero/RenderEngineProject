@@ -93,7 +93,7 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 		HR = m_pDevice->CheckMultisampleQualityLevels(DXGI_FORMAT_R8G8B8A8_UNORM, m_MultiSamplerCounter, &m_MultiQualityLevel);
 		if (S_OK != HR)
 		{
-			assert(false);
+			ShowHResultString(HR, "CheckMultisampleQualityLevels");
 		}
 	}
 
