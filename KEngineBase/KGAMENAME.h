@@ -20,5 +20,5 @@ public:
 
 public:
 	KGAMENAME() {}
-	~KGAMENAME() {}
+	virtual ~KGAMENAME() {}
 };
