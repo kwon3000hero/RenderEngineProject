@@ -19,7 +19,7 @@ public:
 
 private:
 	bool m_IsForward;
-	ID3D11PixelShader* m_ShaderPtr;
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> m_ShaderPtr;
 	std::string m_Name;
 
 public:

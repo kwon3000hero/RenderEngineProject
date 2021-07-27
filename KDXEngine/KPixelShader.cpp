@@ -44,5 +44,5 @@ void KPixelShader::Load(const KGameString& _FuncName, unsigned int _VH, unsigned
 
 void KPixelShader::Setting()
 {
-	KGameDevice::MainContext()->PSSetShader(m_ShaderPtr, nullptr, 0);
+	KGameDevice::MainContext()->PSSetShader(m_ShaderPtr.Get(), nullptr, 0);
 }
