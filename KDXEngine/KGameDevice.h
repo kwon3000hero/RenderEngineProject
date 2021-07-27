@@ -5,20 +5,17 @@
 #include <d3dcompiler.h>
 #include "KSwapChainManager.h"
 
-
-//#pragma comment(lib, "KEngineBase.lib")
-
 class KRenderTarget;
-class KGameDevice : public KGameReference
+class KGameDevice final : public KGameReference
 {
 private:
-	static ID3D11Device* m_pMainDevice;
-	static ID3D11DeviceContext* m_pMainContext;
+	static Microsoft::WRL::ComPtr<ID3D11Device> m_pMainDevice;
+	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pMainContext;
 	static KGameDevice* m_pMainGameDevice;
 
 public:
-	static ID3D11Device* MainDevice();
-	static ID3D11DeviceContext* MainContext();
+	static Microsoft::WRL::ComPtr<ID3D11Device> MainDevice();
+	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> MainContext();
 	static KGameDevice* MainGameDevice();
 
 	static void SetMainRenderTarget();
@@ -37,11 +34,11 @@ public:
 	static void Create(const KGameString& _WindowName, KVector _ClearColor);
 
 private:
-	UINT m_MultiQualityLevel; // 멀티샘플링 퀄리티
-	UINT m_MultiSamplerCounter; // 멀티샘플링 카운트
+	UINT m_MultiQualityLevel;
+	UINT m_MultiSamplerCounter;
 
-	ID3D11Device* m_pDevice;
-	ID3D11DeviceContext* m_pContext;
+	Microsoft::WRL::ComPtr<ID3D11Device> m_pDevice;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pContext;
 
 	D3D11_VIEWPORT m_ViewPort;
 

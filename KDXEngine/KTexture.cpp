@@ -70,7 +70,7 @@ void KTexture::Load()
 	m_Desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
 
 	HRESULT Return = DirectX::CreateShaderResourceView(
-		KGameDevice::MainDevice(),
+		KGameDevice::MainDevice().Get(),
 		m_Image.GetImages(),
 		m_Image.GetImageCount(),
 		m_Image.GetMetadata(),
