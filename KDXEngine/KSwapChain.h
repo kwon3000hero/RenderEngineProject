@@ -1,4 +1,5 @@
 #pragma once
+#include <wrl.h>
 #include <dxgi.h>
 
 #pragma comment(lib, "d3d11")
@@ -14,40 +15,39 @@ class IDXGISwapChain;
 class KSwapChain
 {
 private:
-	IDXGISwapChain* m_pSwapChain;
+	Microsoft::WRL::ComPtr<IDXGISwapChain> m_pSwapChain;
 
 	struct
 	{
 		int m_adpaterIndex;
-		IDXGIAdapter* m_pAdapter;
+		Microsoft::WRL::ComPtr<IDXGIAdapter> m_pAdapter;
 	};
 
 	struct
 	{
 		int m_outputIndex;
-		IDXGIOutput* m_pOutput;
+		Microsoft::WRL::ComPtr<IDXGIOutput> m_pOutput;
 	};
 
 public:
 	//KSwapChain();//юс╫ц
-	KSwapChain(int _adapterIndex, IDXGIAdapter* _pAdapter, int _outputIndex, IDXGIOutput* _pOutput);
+	KSwapChain(int _adapterIndex, Microsoft::WRL::ComPtr<IDXGIAdapter> _pAdapter, int _outputIndex, Microsoft::WRL::ComPtr<IDXGIOutput> _pOutput);
 	~KSwapChain();
 
-	bool CreateSwapChain(ID3D11Device* _pDevice, KPTR<KGameWindow> _window);
-	void Release();
+	bool CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, KPTR<KGameWindow> _window);
 
-	IDXGIOutput* Output()
+	Microsoft::WRL::ComPtr<IDXGIOutput> Output()
 	{
 		return m_pOutput;
 	}
 
-	IDXGIAdapter* Adpater()
+	Microsoft::WRL::ComPtr<IDXGIAdapter> Adpater()
 	{
 		return m_pAdapter;
 	}
 
 public:
-	IDXGISwapChain* SwapChain()
+	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain()
 	{
 		return m_pSwapChain;
 	}
@@ -55,7 +55,7 @@ public:
 public:
 	operator IDXGISwapChain* ()
 	{
-		return m_pSwapChain;
+		return m_pSwapChain.Get();
 	}
 };
 
