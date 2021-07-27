@@ -215,5 +215,5 @@ void KVertexShader::CheckInputLayout(const KGameString& _shaderName)
 void KVertexShader::Setting()
 {
 	KGameDevice::MainContext()->IASetInputLayout(InputLayOut.m_LayOut);
-	KGameDevice::MainContext()->VSSetShader(m_ShaderPtr, nullptr, 0);
+	KGameDevice::MainContext()->VSSetShader(m_ShaderPtr.Get(), nullptr, 0);
 }

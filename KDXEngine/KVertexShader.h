@@ -74,7 +74,7 @@ public:
 
 
 private:
-	ID3D11VertexShader* m_ShaderPtr;
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> m_ShaderPtr;
 
 public:
 	KInputLayout InputLayOut;
@@ -93,12 +93,7 @@ public:
 	}
 
 	~KVertexShader()
-	{
-		if (nullptr != m_ShaderPtr)
-		{
-			m_ShaderPtr->Release();
-			m_ShaderPtr = nullptr;
-		}
+	{		
 	}
 
 };

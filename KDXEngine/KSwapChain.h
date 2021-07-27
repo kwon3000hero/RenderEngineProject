@@ -12,7 +12,7 @@ class ID3D11Device;
 class KGameWindow;
 class IDXGISwapChain;
 
-class KSwapChain
+class KSwapChain final
 {
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain> m_pSwapChain;
@@ -30,7 +30,6 @@ private:
 	};
 
 public:
-	//KSwapChain();//юс╫ц
 	KSwapChain(int _adapterIndex, Microsoft::WRL::ComPtr<IDXGIAdapter> _pAdapter, int _outputIndex, Microsoft::WRL::ComPtr<IDXGIOutput> _pOutput);
 	~KSwapChain();
 
