@@ -49,7 +49,7 @@ void TestComponent::Init()
 		KGAMEINPUT::CreateKey(L"TEST9", '9');
 	}
 
-	//Scene()->LinkCollision(0, 1);
+	Scene()->LinkCollision(0, 1);
 
 
 	KPTR<KGameActor> cameraActor = Scene()->CreateActor();

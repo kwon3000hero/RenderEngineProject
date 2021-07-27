@@ -4,14 +4,20 @@
 #include "KGameMacros.h"
 #include <KGameWindow.h>
 
-KSwapChain::KSwapChain(int _adapterIndex, Microsoft::WRL::ComPtr<IDXGIAdapter> _pAdapter, int _outputIndex, Microsoft::WRL::ComPtr<IDXGIOutput> _pOutput)
+
+
+//KSwapChain::KSwapChain() :m_pSwapChain(nullptr), m_adpaterIndex(0), m_pAdapter(nullptr), m_outputIndex(0), m_pOutput(nullptr)
+//{
+//}
+
+KSwapChain::KSwapChain(int _adapterIndex, IDXGIAdapter* _pAdapter, int _outputIndex, IDXGIOutput* _pOutput)
 	: m_pSwapChain(nullptr), m_adpaterIndex(_adapterIndex), m_pAdapter(_pAdapter), m_outputIndex(_outputIndex), m_pOutput(_pOutput)
 {
 
 }
 
 
-bool KSwapChain::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, KPTR<KGameWindow> _window)
+bool KSwapChain::CreateSwapChain(ID3D11Device* _pDevice, KPTR<KGameWindow> _window)
 {
 	DXGI_SWAP_CHAIN_DESC SCDECS;
 	memset(&SCDECS, 0, sizeof(DXGI_SWAP_CHAIN_DESC));
@@ -62,7 +68,7 @@ bool KSwapChain::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, 
 		return false;
 	}
 
-	if (S_OK != pFactory->CreateSwapChain(_pDevice.Get(), &SCDECS, &m_pSwapChain))
+	if (S_OK != pFactory->CreateSwapChain(_pDevice, &SCDECS, &m_pSwapChain))
 	{
 		assert(false);
 		return false;
@@ -75,6 +81,12 @@ bool KSwapChain::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, 
 	return true;
 }
 
+void KSwapChain::Release()
+{
+	SafeRelease(m_pSwapChain);
+}
+
 KSwapChain::~KSwapChain()
 {
+	Release();
 }

@@ -178,7 +178,7 @@ XCOPY "$(SolutionDir)TP\FBX\vs2015\$(Platform)\$(Configuration)\*.*" "$(Solution
   <ItemGroup>
     <ClInclude Include="KCriticalSection.h" />
     <ClInclude Include="KGAMEFILEBASE.h" />
-    <ClInclude Include="KGameName.h" />
+    <ClInclude Include="KGAMENAME.h" />
     <ClInclude Include="KGAMERANDOM.h" />
     <ClInclude Include="KGAMEDEBUG.h" />
     <ClInclude Include="KGAMEDIR.h" />

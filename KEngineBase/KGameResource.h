@@ -10,7 +10,7 @@ template<typename Ts>
 class KGameResourceManager;
 
 template<typename T>
-class KGameResource : public KGameReference, public KGameName, public KGameType
+class KGameResource : public KGameReference, public KGAMENAME, public KGameType
 {
 	friend KGameResourceManager<T>;
 

@@ -5,8 +5,8 @@
 #include "KGameMacros.h"
 #include "KRenderPipeline.h"
 
-Microsoft::WRL::ComPtr<ID3D11Device> KGameDevice::m_pMainDevice = nullptr;
-Microsoft::WRL::ComPtr<ID3D11DeviceContext> KGameDevice::m_pMainContext = nullptr;
+ID3D11Device* KGameDevice::m_pMainDevice = nullptr;
+ID3D11DeviceContext* KGameDevice::m_pMainContext = nullptr;
 KGameDevice* KGameDevice::m_pMainGameDevice = nullptr;
 
 std::map<KGameString, KPTR<KGameDevice>> KGameDevice::m_deviceContainer;
@@ -47,6 +47,8 @@ KGameDevice::KGameDevice() : m_GameWindow(nullptr), m_MultiQualityLevel(0)
 KGameDevice::~KGameDevice()
 {
 	KGameFont::End();
+	SafeRelease(m_pContext);
+	SafeRelease(m_pDevice);
 }
 
 void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
@@ -71,8 +73,8 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 	D3D_FEATURE_LEVEL ReturneLv = D3D_FEATURE_LEVEL_9_1;
 
 
-	Microsoft::WRL::ComPtr<IDXGIAdapter> pAdapter = m_pSwapChain->Adpater();
-	HRESULT HR = D3D11CreateDevice(pAdapter.Get(), D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
+	IDXGIAdapter* pAdapter = m_pSwapChain->Adpater();
+	HRESULT HR = D3D11CreateDevice(pAdapter, D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
 		nullptr, iFlag, nullptr, 0, D3D11_SDK_VERSION, &m_pDevice, &ReturneLv, &m_pContext);
 
 	if (S_OK != HR || nullptr == m_pDevice || nullptr == m_pContext)
@@ -95,7 +97,7 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 		}
 	}
 
-	if (nullptr == m_pMainDevice.Get())
+	if (nullptr == m_pMainDevice)
 	{
 		m_pMainDevice = m_pDevice;
 		m_pMainContext = m_pContext;
@@ -153,12 +155,12 @@ void KGameDevice::DeviceRenderEnd()
 	KRenderPipeline::ResetAll();
 }
 
-Microsoft::WRL::ComPtr<ID3D11Device> KGameDevice::MainDevice()
+ID3D11Device* KGameDevice::MainDevice()
 {
 	return m_pMainDevice;
 }
 
-Microsoft::WRL::ComPtr<ID3D11DeviceContext> KGameDevice::MainContext()
+ID3D11DeviceContext* KGameDevice::MainContext()
 {
 	return m_pMainContext;
 }

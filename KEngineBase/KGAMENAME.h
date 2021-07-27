@@ -1,7 +1,7 @@
 #pragma once
 #include "KGAMESTRING.h"
 
-class KGameName
+class KGAMENAME
 {
 protected:
 	KGameString m_Name;
@@ -19,6 +19,6 @@ public:
 
 
 public:
-	KGameName() {}
-	virtual ~KGameName() {}
+	KGAMENAME() {}
+	virtual ~KGAMENAME() {}
 };

@@ -33,7 +33,7 @@
     <ClInclude Include="KGameType.h">
       <Filter>BASE</Filter>
     </ClInclude>
-    <ClInclude Include="KGameName.h">
+    <ClInclude Include="KGAMENAME.h">
       <Filter>BASE</Filter>
     </ClInclude>
     <ClInclude Include="KGAMEFILEBASE.h">

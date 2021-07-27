@@ -9,7 +9,7 @@
 class KGameComponentManager;
 class KGameScene;
 class KGameActor;
-class KGameComponent : public KGameReference, public KGameName, public KGameType, public KUpdateBase
+class KGameComponent : public KGameReference, public KGAMENAME, public KGameType, public KUpdateBase
 {
 protected:
 	int m_Order;

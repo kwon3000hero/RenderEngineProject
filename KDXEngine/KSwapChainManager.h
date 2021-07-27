@@ -7,7 +7,7 @@
 class KSwapChainManager final
 {
 private:
-	Microsoft::WRL::ComPtr<IDXGIFactory> m_pFactory;
+	IDXGIFactory* m_pFactory;
 
 	typedef std::pair<int, int> swapChainKey;
 	std::map<swapChainKey, KSwapChain*> m_swapchainContainer;
