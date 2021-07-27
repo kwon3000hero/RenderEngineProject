@@ -40,12 +40,12 @@ KGameFont::~KGameFont()
 
 void KGameFont::Create()
 {
-	if (S_OK != m_pFontFactory->CreateFontWrapper(KGameDevice::MainDevice(), Name(), &m_pFontWrapper))
+	if (S_OK != m_pFontFactory->CreateFontWrapper(KGameDevice::MainDevice().Get(), Name(), &m_pFontWrapper))
 	{
 		AssertMsg(Name() + "폰트 팩토리 생성에 실패했습니다.");
 	}
 }
 void KGameFont::DrawString(const KGameString& _str, float _size, const KVector& _pos, const KVector& _color, FW1_TEXT_FLAG _flag/* = FW1_TEXT_FLAG::FW1_TOP*/)
 {
-	m_pFontWrapper->DrawString(KGameDevice::MainContext(), _str, _size, _pos.x, _pos.y, _color.ColorToUint(), _flag);
+	m_pFontWrapper->DrawString(KGameDevice::MainContext().Get(), _str, _size, _pos.x, _pos.y, _color.ColorToUint(), _flag);
 }
