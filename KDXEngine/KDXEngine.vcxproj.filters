@@ -194,7 +194,7 @@
     <ClCompile Include="KRendererManager.cpp">
       <Filter>Obj\Component\DefinedComponent\Render</Filter>
     </ClCompile>
-    <ClCompile Include="KSwapChain.cpp">
+    <ClCompile Include="KSwapChain.hpp">
       <Filter>Device</Filter>
     </ClCompile>
     <ClCompile Include="KSwapChainManager.cpp">
@@ -319,6 +319,9 @@
       <Filter>Device</Filter>
     </ClInclude>
     <ClInclude Include="KSwapChainManager.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="KSwapChainWrapper.h">
       <Filter>Device</Filter>
     </ClInclude>
   </ItemGroup>

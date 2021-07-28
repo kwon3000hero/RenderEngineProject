@@ -65,13 +65,13 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 	iFlag = D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
-	KSwapChain* pSwapChain = m_swapChainManager.GetOutput(0, 0);
+	KSwapChain<SwapChainVersion>* pSwapChain = m_swapChainManager.GetOutput(0, 0);
 	m_pSwapChain = pSwapChain;
 
 	D3D_FEATURE_LEVEL ReturneLv = D3D_FEATURE_LEVEL_9_1;
 
 
-	Microsoft::WRL::ComPtr<IDXGIAdapter> pAdapter = m_pSwapChain->Adpater();
+	Microsoft::WRL::ComPtr<IDXGIAdapter> pAdapter = m_pSwapChain->Adapter();
 	HRESULT HR = D3D11CreateDevice(pAdapter.Get(), D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
 		nullptr, iFlag, nullptr, 0, D3D11_SDK_VERSION, &m_pDevice, &ReturneLv, &m_pContext);
 
