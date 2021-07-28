@@ -24,7 +24,7 @@ private:
 	KPTR<KGameWindow> m_GameWindow;
 
 	KSwapChainManager m_swapChainManager;
-	KSwapChain* m_pSwapChain;
+	KSwapChain<SwapChainBuildVersion>* m_pSwapChain;
 
 private:
 	static std::map<KGameString, KPTR<KGameDevice>> m_deviceContainer;
@@ -51,7 +51,7 @@ public:
 
 private:
 	void Create(KPTR<KGameWindow> _Window, KVector _ClearColor);
-	bool CreateBackBuffer(KVector _ClearColor); // 백버퍼 얻어오기
+	bool CreateBackBuffer(KVector _ClearColor);
 
 public:
 	void InitBlendState();

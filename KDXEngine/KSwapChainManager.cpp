@@ -40,14 +40,14 @@ void KSwapChainManager::SearchAdapterAndOutput()
 			m_OutputContainer[key] = pOutput;
 			++outputNumber;
 
-			m_swapchainContainer[key] = new KSwapChain(adapterNumber, pAdapter, outputNumber, pOutput);
+			m_swapchainContainer[key] = new KSwapChain<SwapChainVersion>(adapterNumber, pAdapter, outputNumber, pOutput);
 		}
 
 		++adapterNumber;
 	}
 }
 
-KSwapChain* KSwapChainManager::GetOutput(int _adapterIndex, int _outputIndex)
+KSwapChain<SwapChainVersion>* KSwapChainManager::GetOutput(int _adapterIndex, int _outputIndex)
 {
 	swapChainKey findedKey(_adapterIndex, _outputIndex);
 

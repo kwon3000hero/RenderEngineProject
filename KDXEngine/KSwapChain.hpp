@@ -1,17 +1,9 @@
+#pragma once
 #include "KSwapChain.h"
-#include <d3d11_4.h>
-#include <assert.h>
-#include "KGameMacros.h"
-#include <KGameWindow.h>
-
-KSwapChain::KSwapChain(int _adapterIndex, Microsoft::WRL::ComPtr<IDXGIAdapter> _pAdapter, int _outputIndex, Microsoft::WRL::ComPtr<IDXGIOutput> _pOutput)
-	: m_pSwapChain(nullptr), m_adpaterIndex(_adapterIndex), m_pAdapter(_pAdapter), m_outputIndex(_outputIndex), m_pOutput(_pOutput)
-{
-
-}
 
 
-bool KSwapChain::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, KPTR<KGameWindow> _window)
+template<>
+bool KSwapChain<KSwapChainWrapper0>::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, KPTR<KGameWindow> _window)
 {
 	DXGI_SWAP_CHAIN_DESC SCDECS;
 	memset(&SCDECS, 0, sizeof(DXGI_SWAP_CHAIN_DESC));
@@ -37,23 +29,7 @@ bool KSwapChain::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, 
 	SCDECS.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 	SCDECS.Windowed = true;
 
-	IDXGIDevice* pDXGIDevice = nullptr;
-	IDXGIAdapter* pAdapter = nullptr;
-	IDXGIFactory2* pFactory = nullptr;
-
-	//_pDevice->QueryInterface(__uuidof(IDXGIDevice), (void**)&pDXGIDevice);
-	//if (nullptr == pDXGIDevice)
-	//{
-	//	assert(false);
-	//	return false;
-	//}
-
-	//pDXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&pAdapter);
-	//if (nullptr == pAdapter)
-	//{
-	//	assert(false);
-	//	return false;
-	//}
+	Microsoft::WRL::ComPtr<IDXGIFactory> pFactory(nullptr);
 
 	m_pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&pFactory);
 	if (nullptr == pFactory)
@@ -68,13 +44,5 @@ bool KSwapChain::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, 
 		return false;
 	}
 
-	SafeRelease(pDXGIDevice);
-	SafeRelease(pAdapter);
-	SafeRelease(pFactory);
-
 	return true;
-}
-
-KSwapChain::~KSwapChain()
-{
 }

@@ -10,7 +10,7 @@ private:
 	Microsoft::WRL::ComPtr<IDXGIFactory> m_pFactory;
 
 	typedef std::pair<int, int> swapChainKey;
-	std::map<swapChainKey, KSwapChain*> m_swapchainContainer;
+	std::map<swapChainKey, KSwapChain<SwapChainVersion>*> m_swapchainContainer;
 
 	typedef std::pair<int, int> outputKey;
 	std::map<outputKey, IDXGIOutput*> m_OutputContainer;
@@ -24,5 +24,5 @@ public:
 	void SearchAdapterAndOutput();
 	
 	//임시.. output의 영역으로 찾게 수정해야...
-	KSwapChain* GetOutput(int _adapterIndex, int _outputIndex);
+	KSwapChain<SwapChainVersion>* GetOutput(int _adapterIndex, int _outputIndex);
 };
