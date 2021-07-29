@@ -65,7 +65,7 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 	iFlag = D3D11_CREATE_DEVICE_DEBUG;
 #endif
 
-	KSwapChain<SwapChainVersion>* pSwapChain = m_swapChainManager.GetOutput(0, 0);
+	KSwapChain<SwapChainBuildVersion>* pSwapChain = m_swapChainManager.GetOutput(0, 0);
 	m_pSwapChain = pSwapChain;
 
 	D3D_FEATURE_LEVEL ReturneLv = D3D_FEATURE_LEVEL_9_1;
