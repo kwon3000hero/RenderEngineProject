@@ -1,7 +1,7 @@
 #pragma once
 #include "KSwapChain.h"
 
-
+#if WDK_NTDDI_VERSION >= NTDDI_WIN10
 template<>
 bool KSwapChain<KSwapChainWrapper0>::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, KPTR<KGameWindow> _window)
 {
@@ -46,3 +46,4 @@ bool KSwapChain<KSwapChainWrapper0>::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D
 
 	return true;
 }
+#endif

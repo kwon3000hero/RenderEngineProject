@@ -3,7 +3,6 @@
 #include "KSwapChainManager.h"
 #include "KGameMacros.h"
 
-#pragma comment(lib, "dxgi.lib")
 
 KSwapChainManager::KSwapChainManager() :m_pFactory(nullptr)
 {
@@ -40,14 +39,14 @@ void KSwapChainManager::SearchAdapterAndOutput()
 			m_OutputContainer[key] = pOutput;
 			++outputNumber;
 
-			m_swapchainContainer[key] = new KSwapChain<SwapChainVersion>(adapterNumber, pAdapter, outputNumber, pOutput);
+			m_swapchainContainer[key] = new KSwapChain<SwapChainBuildVersion>(adapterNumber, pAdapter, outputNumber, pOutput);
 		}
 
 		++adapterNumber;
 	}
 }
 
-KSwapChain<SwapChainVersion>* KSwapChainManager::GetOutput(int _adapterIndex, int _outputIndex)
+KSwapChain<SwapChainBuildVersion>* KSwapChainManager::GetOutput(int _adapterIndex, int _outputIndex)
 {
 	swapChainKey findedKey(_adapterIndex, _outputIndex);
 
