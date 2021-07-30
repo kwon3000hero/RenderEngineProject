@@ -61,7 +61,7 @@
     <ClCompile Include="KSampler.cpp" />
     <ClCompile Include="KShader.cpp" />
     <ClCompile Include="KSwapChain.hpp" />
-    <ClCompile Include="KSwapChainManager.cpp" />
+    <ClCompile Include="KSwapChainManager.hpp" />
     <ClCompile Include="KTexture.cpp" />
     <ClCompile Include="KTransform.cpp" />
     <ClCompile Include="KTransformCollisionCheck.cpp" />

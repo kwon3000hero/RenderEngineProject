@@ -7,6 +7,7 @@
 class KSwapChainWrapper6
 {
 public:
+	typedef IDXGIFactory7 FactoryType;
 	typedef IDXGISwapChain4 SwapChainType;
 	typedef IDXGIAdapter3 AdapterType;
 	typedef IDXGIOutput5 OutputType;
@@ -19,6 +20,7 @@ public:
 class KSwapChainWrapper5
 {
 public:
+	typedef IDXGIFactory5 FactoryType;
 	typedef IDXGISwapChain4 SwapChainType;
 	typedef IDXGIAdapter3 AdapterType;
 	typedef IDXGIOutput5 OutputType;
@@ -37,12 +39,11 @@ public:
 };
 #endif
 
-/*#if WDK_NTDDI_VERSION >= NTDDI_WIN10_19H1
+#if WDK_NTDDI_VERSION >= NTDDI_WIN10_19H1
 #define SwapChainBuildVersion KSwapChainWrapper6
 #elif WDK_NTDDI_VERSION >= NTDDI_WIN10_RS5
 #define SwapChainBuildVersion KSwapChainWrapper5
-#elif WDK_NTDDI_VERSION >= NTDDI_WIN10*/
-#if WDK_NTDDI_VERSION >= NTDDI_WIN10
+#elif WDK_NTDDI_VERSION >= NTDDI_WIN10
 #define SwapChainBuildVersion KSwapChainWrapper0
 #endif
 

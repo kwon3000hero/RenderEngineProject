@@ -197,7 +197,7 @@
     <ClCompile Include="KSwapChain.hpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="KSwapChainManager.cpp">
+    <ClCompile Include="KSwapChainManager.hpp">
       <Filter>Device</Filter>
     </ClCompile>
   </ItemGroup>

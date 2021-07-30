@@ -1,6 +1,49 @@
 #pragma once
 #include "KSwapChain.h"
 
+#if WDK_NTDDI_VERSION >= NTDDI_WIN10_19H1
+template<>
+bool KSwapChain<KSwapChainWrapper6>::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, KPTR<KGameWindow> _window)
+{
+	DXGI_SWAP_CHAIN_DESC1 SCDECS;
+	memset(&SCDECS, 0, sizeof(DXGI_SWAP_CHAIN_DESC1));
+
+
+	SCDECS.Width = _window->Size().UIX();
+	SCDECS.Height = _window->Size().UIY();
+
+	SCDECS.Stereo = true;
+	SCDECS.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+
+	SCDECS.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	SCDECS.Scaling = DXGI_SCALING::DXGI_SCALING_ASPECT_RATIO_STRETCH;
+
+	SCDECS.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	SCDECS.SampleDesc.Quality = 0;
+	SCDECS.SampleDesc.Count = 1;
+
+	SCDECS.BufferCount = 2;
+	SCDECS.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+	SCDECS.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+
+	Microsoft::WRL::ComPtr<IDXGIFactory2> pFactory(nullptr);
+	m_pAdapter->GetParent(__uuidof(IDXGIFactory2), (void**)&pFactory);
+	if (nullptr == pFactory)
+	{
+		assert(false);
+		return false;
+	}
+
+	if (S_OK != pFactory->CreateSwapChainForHwnd(_pDevice.Get(), _window->WINHWND(), &SCDECS, NULL, NULL, reinterpret_cast<IDXGISwapChain1**>(m_pSwapChain.Get())))
+	{
+		assert(false);
+		return false;
+	}
+
+	return true;
+}
+#endif
+
 #if WDK_NTDDI_VERSION >= NTDDI_WIN10
 template<>
 bool KSwapChain<KSwapChainWrapper0>::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, KPTR<KGameWindow> _window)
