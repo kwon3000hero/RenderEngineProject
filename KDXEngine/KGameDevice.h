@@ -23,7 +23,7 @@ public:
 private:
 	KPTR<KGameWindow> m_GameWindow;
 
-	KSwapChainManager m_swapChainManager;
+	KSwapChainManager<SwapChainBuildVersion> m_swapChainManager;
 	KSwapChain<SwapChainBuildVersion>* m_pSwapChain;
 
 private:

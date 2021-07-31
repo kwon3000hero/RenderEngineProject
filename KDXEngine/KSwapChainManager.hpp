@@ -17,17 +17,51 @@ void KSwapChainManager<KSwapChainWrapper6>::SearchAdapterAndOutput()
 		ShowHResultString(factoryResult, "KSwapChainManager::SearchAdapterAndOutput");
 	}
 
-	UINT adapterNumber = 0;
-	IDXGIAdapter* pAdapter = nullptr;
+	Microsoft::WRL::ComPtr<IDXGIFactory3> factory3(nullptr);
+	factoryResult = factory2->QueryInterface(IID_PPV_ARGS(&factory3));
+	if (FAILED(factoryResult))
+	{
+		ShowHResultString(factoryResult, "KSwapChainManager::SearchAdapterAndOutput1");
+	}
 
-	while (DXGI_ERROR_NOT_FOUND != m_pFactory->EnumAdapters(adapterNumber, &pAdapter))
+	Microsoft::WRL::ComPtr<IDXGIFactory4> factory4(nullptr);
+	factoryResult = factory3->QueryInterface(IID_PPV_ARGS(&factory4));
+	if (FAILED(factoryResult))
+	{
+		ShowHResultString(factoryResult, "KSwapChainManager::SearchAdapterAndOutput2");
+	}
+
+	Microsoft::WRL::ComPtr<IDXGIFactory5> factory5(nullptr);
+	factoryResult = factory4->QueryInterface(IID_PPV_ARGS(&factory5));
+	if (FAILED(factoryResult))
+	{
+		ShowHResultString(factoryResult, "KSwapChainManager::SearchAdapterAndOutput3");
+	}
+
+	Microsoft::WRL::ComPtr<IDXGIFactory6> factory6(nullptr);
+	factoryResult = factory5->QueryInterface(IID_PPV_ARGS(&factory6));
+	if (FAILED(factoryResult))
+	{
+		ShowHResultString(factoryResult, "KSwapChainManager::SearchAdapterAndOutput4");
+	}
+
+	factoryResult = factory6->QueryInterface(IID_PPV_ARGS(&m_pFactory));
+	if (FAILED(factoryResult))
+	{
+		ShowHResultString(factoryResult, "KSwapChainManager::SearchAdapterAndOutput5");
+	}
+
+	UINT adapterNumber = 0;
+	IDXGIAdapter4* pAdapter = nullptr;
+
+	while (DXGI_ERROR_NOT_FOUND != m_pFactory->EnumAdapters1(adapterNumber, reinterpret_cast<IDXGIAdapter1**>(&pAdapter)))
 	{
 		m_pAdapterContainer[adapterNumber] = pAdapter;
 
 		UINT outputNumber = 0;
-		IDXGIOutput* pOutput;
+		IDXGIOutput6* pOutput;
 
-		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, &pOutput))
+		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, reinterpret_cast<IDXGIOutput**>(&pOutput)))
 		{
 			outputKey key(adapterNumber, outputNumber);
 			m_OutputContainer[key] = pOutput;
@@ -39,8 +73,7 @@ void KSwapChainManager<KSwapChainWrapper6>::SearchAdapterAndOutput()
 		++adapterNumber;
 	}
 }
-#endif
-#if WDK_NTDDI_VERSION >= NTDDI_WIN10
+#elif WDK_NTDDI_VERSION >= NTDDI_WIN10
 template<>
 void KSwapChainManager<KSwapChainWrapper0>::SearchAdapterAndOutput()
 {

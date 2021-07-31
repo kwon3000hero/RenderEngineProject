@@ -34,17 +34,18 @@ bool KSwapChain<KSwapChainWrapper6>::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D
 		return false;
 	}
 
-	if (S_OK != pFactory->CreateSwapChainForHwnd(_pDevice.Get(), _window->WINHWND(), &SCDECS, NULL, NULL, reinterpret_cast<IDXGISwapChain1**>(m_pSwapChain.Get())))
+	HRESULT result = S_OK;
+	IDXGISwapChain1* tempSW = m_pSwapChain.Get();
+	result = pFactory->CreateSwapChainForHwnd(_pDevice.Get(), _window->WINHWND(), &SCDECS, NULL, NULL, &tempSW);
+	if (FAILED(result))
 	{
-		assert(false);
+		ShowHResultString(result, "KSwapChain::CreateSwapChain6");
 		return false;
 	}
 
 	return true;
 }
-#endif
-
-#if WDK_NTDDI_VERSION >= NTDDI_WIN10
+#elif WDK_NTDDI_VERSION >= NTDDI_WIN10
 template<>
 bool KSwapChain<KSwapChainWrapper0>::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, KPTR<KGameWindow> _window)
 {
@@ -81,9 +82,12 @@ bool KSwapChain<KSwapChainWrapper0>::CreateSwapChain(Microsoft::WRL::ComPtr<ID3D
 		return false;
 	}
 
-	if (S_OK != pFactory->CreateSwapChain(_pDevice.Get(), &SCDECS, &m_pSwapChain))
+	HRESULT result = S_OK;
+	result = pFactory->CreateSwapChain(_pDevice.Get(), &SCDECS, &m_pSwapChain);
+
+	if (FAILED(result))
 	{
-		assert(false);
+		ShowHResultString(result, "KSwapChain::CreateSwapChain0");
 		return false;
 	}
 
