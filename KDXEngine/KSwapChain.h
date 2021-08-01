@@ -51,7 +51,7 @@ public:
 
 	}
 
-	bool CreateSwapChain(Microsoft::WRL::ComPtr<ID3D11Device> _pDevice, KPTR<KGameWindow> _window);
+	bool CreateSwapChain(Microsoft::WRL::ComPtr<DeviceBuildVersion> _pDevice, KPTR<KGameWindow> _window);
 
 	Microsoft::WRL::ComPtr<OutputType> Output()
 	{

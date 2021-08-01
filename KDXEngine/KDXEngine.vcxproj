@@ -61,7 +61,7 @@
     <ClCompile Include="KSampler.cpp" />
     <ClCompile Include="KShader.cpp" />
     <ClCompile Include="KSwapChain.hpp" />
-    <ClCompile Include="KSwapChainManager.cpp" />
+    <ClCompile Include="KSwapChainManager.hpp" />
     <ClCompile Include="KTexture.cpp" />
     <ClCompile Include="KTransform.cpp" />
     <ClCompile Include="KTransformCollisionCheck.cpp" />
@@ -71,6 +71,8 @@
     <ClCompile Include="KRendererManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuildTarget.h" />
+    <ClInclude Include="DeviceWrapper.h" />
     <ClInclude Include="K3DBufferBase.h" />
     <ClInclude Include="KBlend.h" />
     <ClInclude Include="KBloomEffect.h" />
