@@ -73,7 +73,8 @@ void KSwapChainManager<KSwapChainWrapper6>::SearchAdapterAndOutput()
 		++adapterNumber;
 	}
 }
-#elif WDK_NTDDI_VERSION >= NTDDI_WIN10
+#endif 
+#if WDK_NTDDI_VERSION >= NTDDI_WIN10
 template<>
 void KSwapChainManager<KSwapChainWrapper0>::SearchAdapterAndOutput()
 {

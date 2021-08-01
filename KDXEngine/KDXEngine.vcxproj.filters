@@ -324,5 +324,9 @@
     <ClInclude Include="KSwapChainWrapper.h">
       <Filter>Device</Filter>
     </ClInclude>
+    <ClInclude Include="DeviceWrapper.h">
+      <Filter>Device</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildTarget.h" />
   </ItemGroup>
 </Project>

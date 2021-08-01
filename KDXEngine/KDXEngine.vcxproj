@@ -71,6 +71,8 @@
     <ClCompile Include="KRendererManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuildTarget.h" />
+    <ClInclude Include="DeviceWrapper.h" />
     <ClInclude Include="K3DBufferBase.h" />
     <ClInclude Include="KBlend.h" />
     <ClInclude Include="KBloomEffect.h" />

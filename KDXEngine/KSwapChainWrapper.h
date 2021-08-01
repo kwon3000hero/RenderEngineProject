@@ -1,4 +1,5 @@
 #pragma once
+#include "BuildTarget.h"
 
 //타겟 OS에 따라 SwapChain 버전을 나눈다.
 #if WDK_NTDDI_VERSION >= NTDDI_WIN10_19H1                    
@@ -33,18 +34,11 @@ public:
 class KSwapChainWrapper0
 {
 public:
+	typedef IDXGIFactory FactoryType;
 	typedef IDXGISwapChain SwapChainType;
 	typedef IDXGIAdapter AdapterType;
 	typedef IDXGIOutput OutputType;
 };
-#endif
-
-#if WDK_NTDDI_VERSION >= NTDDI_WIN10_19H1
-#define SwapChainBuildVersion KSwapChainWrapper6
-#elif WDK_NTDDI_VERSION >= NTDDI_WIN10_RS5
-#define SwapChainBuildVersion KSwapChainWrapper5
-#elif WDK_NTDDI_VERSION >= NTDDI_WIN10
-#define SwapChainBuildVersion KSwapChainWrapper0
 #endif
 
 #pragma comment(lib, "dxgi.lib")
