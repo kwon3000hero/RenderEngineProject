@@ -1,4 +1,4 @@
-#include "KGameDevice.h"
+#include "KGameDeviceManager.h"
 #include "KSampler.h"
 
 void KGameDevice::InitSamplerState()

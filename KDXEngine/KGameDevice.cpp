@@ -5,41 +5,6 @@
 #include "KGameMacros.h"
 #include "KRenderPipeline.h"
 
-Microsoft::WRL::ComPtr<ID3D11Device> KGameDevice::m_pMainDevice = nullptr;
-Microsoft::WRL::ComPtr<ID3D11DeviceContext> KGameDevice::m_pMainContext = nullptr;
-KGameDevice* KGameDevice::m_pMainGameDevice = nullptr;
-
-std::map<KGameString, KPTR<KGameDevice>> KGameDevice::m_deviceContainer;
-
-void KGameDevice::SetMainRenderTarget()
-{
-	m_pMainGameDevice->MainTarget->Clear();
-	m_pMainGameDevice->MainTarget->Setting();
-}
-
-KPTR<KGameDevice> KGameDevice::Find(const KGameString& _DeviceName)
-{
-	if (m_deviceContainer.end() == m_deviceContainer.find(_DeviceName))
-	{
-		return nullptr;
-	}
-
-	return m_deviceContainer[_DeviceName];
-}
-
-void KGameDevice::Create(const KGameString& _WindowName, KVector _ClearColor)
-{
-	if (nullptr != Find(_WindowName).get())
-	{
-		assert(false);
-	}
-
-	KPTR<KGameDevice> NewDevice = new KGameDevice();
-	NewDevice->Create(KGameWindow::FindWin(_WindowName), _ClearColor);
-
-	m_deviceContainer.insert(std::map<KGameString, KPTR<KGameDevice>>::value_type(_WindowName, NewDevice));
-}
-
 KGameDevice::KGameDevice() : m_GameWindow(nullptr), m_MultiQualityLevel(0)
 , m_MultiSamplerCounter(0), m_pDevice(nullptr), m_pContext(nullptr), m_ViewPort{ 0 }
 {
@@ -95,11 +60,11 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 		}
 	}
 
-	if (nullptr == m_pMainDevice.Get())
+	//if (nullptr == m_pMainDevice.Get())
 	{
-		m_pMainDevice = m_pDevice;
+		/*m_pMainDevice = m_pDevice;
 		m_pMainContext = m_pContext;
-		m_pMainGameDevice = this;
+		m_pMainGameDevice = this;*/
 
 
 		InitDefaultMesh();
@@ -151,19 +116,4 @@ void KGameDevice::DeviceRenderEnd()
 {
 	m_pSwapChain->SwapChain()->Present(0, 0);
 	KRenderPipeline::ResetAll();
-}
-
-Microsoft::WRL::ComPtr<ID3D11Device> KGameDevice::MainDevice()
-{
-	return m_pMainDevice;
-}
-
-Microsoft::WRL::ComPtr<ID3D11DeviceContext> KGameDevice::MainContext()
-{
-	return m_pMainContext;
-}
-
-KGameDevice* KGameDevice::MainGameDevice()
-{
-	return m_pMainGameDevice;
 }

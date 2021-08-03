@@ -17,7 +17,7 @@ KRasterizer::~KRasterizer()
 
 void KRasterizer::Create(const D3D11_RASTERIZER_DESC& _Desc) 
 {
-	if (S_OK != KGameDevice::MainDevice()->CreateRasterizerState(&m_Desc, &m_OPTION))
+	if (S_OK != KGameDeviceManager::MainDevice()->CreateRasterizerState(&m_Desc, &m_OPTION))
 	{
 		assert(false);
 	}
@@ -28,5 +28,5 @@ void KRasterizer::Create(const D3D11_RASTERIZER_DESC& _Desc)
 
 void KRasterizer::Setting()
 {
-	KGameDevice::MainContext()->RSSetState(m_OPTION);
+	KGameDeviceManager::MainContext()->RSSetState(m_OPTION);
 }

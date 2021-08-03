@@ -3,7 +3,7 @@
 #include <fbxsdk.h>
 #include <DirectXTex.h>
 #include "KGameResource.h"
-#include "KGameDevice.h"
+#include "KGameDeviceManager.h"
 #include "KShader.h"
 #include "KRenderTarget.h"
 #include "KVertexHeader.h"

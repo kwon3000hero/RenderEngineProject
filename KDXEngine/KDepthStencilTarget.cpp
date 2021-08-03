@@ -32,7 +32,7 @@ void KDepthStencilTarget::Create(KVector _Size, float _Depth, int _Stencil)
 
 void KDepthStencilTarget::Clear()
 {
-	KGameDevice::MainContext()->ClearDepthStencilView(m_Texture->DepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, m_Depth, m_Stencil);
+	KGameDeviceManager::MainContext()->ClearDepthStencilView(m_Texture->DepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, m_Depth, m_Stencil);
 }
 
 void KDepthStencilTarget::Setting()

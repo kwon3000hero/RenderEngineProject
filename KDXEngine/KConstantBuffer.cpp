@@ -26,7 +26,7 @@ void KConstantBuffer::CreateCB(size_t _Size, SHADER_TYPE _eType, unsigned int _R
 	// D3D11_SUBRESOURCE_DATA DS = {};
 	// DS.pSysMem = _Data;
 
-	HRESULT RS = KGameDevice::MainDevice()->CreateBuffer(&m_BufferDesc, nullptr, &m_pBuffer);
+	HRESULT RS = KGameDeviceManager::MainDevice()->CreateBuffer(&m_BufferDesc, nullptr, &m_pBuffer);
 
 	if (S_OK != RS)
 	{
@@ -37,19 +37,19 @@ void KConstantBuffer::CreateCB(size_t _Size, SHADER_TYPE _eType, unsigned int _R
 }
 
 void KConstantBuffer::VSetting() {
-	KGameDevice::MainContext()->VSSetConstantBuffers(uiReg, 1, &m_pBuffer);
+	KGameDeviceManager::MainContext()->VSSetConstantBuffers(uiReg, 1, &m_pBuffer);
 }
 void KConstantBuffer::HSetting() {
-	KGameDevice::MainContext()->HSSetConstantBuffers(uiReg, 1, &m_pBuffer);
+	KGameDeviceManager::MainContext()->HSSetConstantBuffers(uiReg, 1, &m_pBuffer);
 }
 void KConstantBuffer::DSetting() {
-	KGameDevice::MainContext()->DSSetConstantBuffers(uiReg, 1, &m_pBuffer);
+	KGameDeviceManager::MainContext()->DSSetConstantBuffers(uiReg, 1, &m_pBuffer);
 }
 void KConstantBuffer::GSetting() {
-	KGameDevice::MainContext()->GSSetConstantBuffers(uiReg, 1, &m_pBuffer);
+	KGameDeviceManager::MainContext()->GSSetConstantBuffers(uiReg, 1, &m_pBuffer);
 }
 void KConstantBuffer::PSetting() {
-	KGameDevice::MainContext()->PSSetConstantBuffers(uiReg, 1, &m_pBuffer);
+	KGameDeviceManager::MainContext()->PSSetConstantBuffers(uiReg, 1, &m_pBuffer);
 }
 
 void KConstantBuffer::ShaderType(SHADER_TYPE _Type)

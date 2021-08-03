@@ -1,6 +1,6 @@
 #pragma once
 #include "KGameResource.h"
-#include "KGameDevice.h"
+#include "KGameDeviceManager.h"
 
 class K3DBufferBase
 {

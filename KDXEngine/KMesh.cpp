@@ -58,6 +58,6 @@ void KMesh::Render(D3D11_PRIMITIVE_TOPOLOGY _TOPLOGY, size_t _VBIndex, size_t _I
 {
 	m_vertexBufferContainer[_VBIndex]->Setting();
 	m_indexBufferContainer[_IBIndex]->Setting();
-	KGameDevice::MainContext()->IASetPrimitiveTopology(_TOPLOGY);
-	KGameDevice::MainContext()->DrawIndexed(m_indexBufferContainer[0]->Count(), 0, 0);
+	KGameDeviceManager::MainContext()->IASetPrimitiveTopology(_TOPLOGY);
+	KGameDeviceManager::MainContext()->DrawIndexed(m_indexBufferContainer[0]->Count(), 0, 0);
 }

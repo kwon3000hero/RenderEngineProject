@@ -26,7 +26,7 @@ void KPixelShader::Load(const KGameString& _FuncName, unsigned int _VH, unsigned
 		_wassert(Error, _CRT_WIDE(__FILE__), (unsigned)(__LINE__));
 	}
 
-	RS = KGameDevice::MainDevice()->CreatePixelShader(
+	RS = KGameDeviceManager::MainDevice()->CreatePixelShader(
 		m_Blob->GetBufferPointer(),
 		m_Blob->GetBufferSize(),
 		nullptr,
@@ -44,5 +44,5 @@ void KPixelShader::Load(const KGameString& _FuncName, unsigned int _VH, unsigned
 
 void KPixelShader::Setting()
 {
-	KGameDevice::MainContext()->PSSetShader(m_ShaderPtr.Get(), nullptr, 0);
+	KGameDeviceManager::MainContext()->PSSetShader(m_ShaderPtr.Get(), nullptr, 0);
 }

@@ -29,7 +29,7 @@ void KIndexBuffer::Create(size_t _Count, size_t _Size, const void* _Data, D3D11_
 	D3D11_SUBRESOURCE_DATA DS = {};
 	DS.pSysMem = _Data;
 
-	HRESULT RS = KGameDevice::MainDevice()->CreateBuffer(&m_BufferDesc, &DS, &m_pBuffer);
+	HRESULT RS = KGameDeviceManager::MainDevice()->CreateBuffer(&m_BufferDesc, &DS, &m_pBuffer);
 
 	if (S_OK != RS)
 	{
@@ -43,5 +43,5 @@ void KIndexBuffer::Create(size_t _Count, size_t _Size, const void* _Data, D3D11_
 void KIndexBuffer::Setting() {
 
 	unsigned int Offset = 0;
-	KGameDevice::MainContext()->IASetIndexBuffer(m_pBuffer, m_dxgiFormat, Offset);
+	KGameDeviceManager::MainContext()->IASetIndexBuffer(m_pBuffer, m_dxgiFormat, Offset);
 }

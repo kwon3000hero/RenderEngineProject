@@ -1,5 +1,5 @@
 #pragma once
-#include "KGameDevice.h"
+#include "KGameDeviceManager.h"
 #include "KGameResource.h"
 
 class KDepthStencil : public KGameResource<KDepthStencil>
