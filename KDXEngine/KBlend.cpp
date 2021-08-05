@@ -14,7 +14,7 @@ KBlend::~KBlend()
 
 void KBlend::Create(const D3D11_BLEND_DESC& _Desc)
 {
-	if (S_OK != KGameDevice::MainDevice()->CreateBlendState(&m_Desc, &m_STATE))
+	if (S_OK != KGameDeviceManager::MainDevice()->CreateBlendState(&m_Desc, &m_STATE))
 	{
 		assert(false);
 	}
@@ -23,5 +23,5 @@ void KBlend::Create(const D3D11_BLEND_DESC& _Desc)
 
 void KBlend::Setting()
 {
-	KGameDevice::MainContext()->OMSetBlendState(m_STATE, nullptr, BlendMask);
+	KGameDeviceManager::MainContext()->OMSetBlendState(m_STATE, nullptr, BlendMask);
 }

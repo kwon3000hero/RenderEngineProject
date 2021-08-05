@@ -1,6 +1,6 @@
 #pragma once
 #include "KGameResource.h"
-#include "KGameDevice.h"
+#include "KGameDeviceManager.h"
 #include <DirectXTex.h>
 #include "KShader.h"
 

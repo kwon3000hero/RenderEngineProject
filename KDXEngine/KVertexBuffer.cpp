@@ -26,7 +26,7 @@ void KVertexBuffer::Create(
 	D3D11_SUBRESOURCE_DATA DS = {};
 	DS.pSysMem = _pData;
 
-	HRESULT RS = KGameDevice::MainDevice()->CreateBuffer(&m_BufferDesc, &DS, &m_pBuffer);
+	HRESULT RS = KGameDeviceManager::MainDevice()->CreateBuffer(&m_BufferDesc, &DS, &m_pBuffer);
 
 	if (S_OK != RS)
 	{
@@ -41,5 +41,5 @@ void KVertexBuffer::Setting()
 {
 	unsigned int Offset = 0;
 
-	KGameDevice::MainContext()->IASetVertexBuffers(0, 1, &m_pBuffer, &m_uSIZE, &Offset);
+	KGameDeviceManager::MainContext()->IASetVertexBuffers(0, 1, &m_pBuffer, &m_uSIZE, &Offset);
 }

@@ -1,4 +1,5 @@
 #include "KVertexShader.h"
+#include "KGameDeviceManager.h"
 
 void KVertexShader::KInputLayout::AddLayout(
 	const char* _semanticName,
@@ -47,7 +48,7 @@ void KVertexShader::KInputLayout::EndLayout(
 
 void KVertexShader::KInputLayout::CreateLayout()
 {
-	HRESULT result = KGameDevice::MainDevice()->CreateInputLayout(&m_ArrInputLayOutData[0],
+	HRESULT result = KGameDeviceManager::MainDevice()->CreateInputLayout(&m_ArrInputLayOutData[0],
 		(unsigned int)m_ArrInputLayOutData.size(),
 		m_pParent->m_Blob->GetBufferPointer(),
 		m_pParent->m_Blob->GetBufferSize(), &m_LayOut);
@@ -87,7 +88,7 @@ void KVertexShader::Load(const KGameString& _FuncName, unsigned int _VH, unsigne
 		_wassert(Error, _CRT_WIDE(__FILE__), (unsigned)(__LINE__));
 	}
 
-	RS = KGameDevice::MainDevice()->CreateVertexShader(
+	RS = KGameDeviceManager::MainDevice()->CreateVertexShader(
 		m_Blob->GetBufferPointer(),
 		m_Blob->GetBufferSize(),
 		nullptr,
@@ -214,6 +215,6 @@ void KVertexShader::CheckInputLayout(const KGameString& _shaderName)
 
 void KVertexShader::Setting()
 {
-	KGameDevice::MainContext()->IASetInputLayout(InputLayOut.m_LayOut);
-	KGameDevice::MainContext()->VSSetShader(m_ShaderPtr.Get(), nullptr, 0);
+	KGameDeviceManager::MainContext()->IASetInputLayout(InputLayOut.m_LayOut);
+	KGameDeviceManager::MainContext()->VSSetShader(m_ShaderPtr.Get(), nullptr, 0);
 }

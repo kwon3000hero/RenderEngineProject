@@ -1,5 +1,5 @@
 #include "KTexture.h"
-#include "KGameDevice.h"
+#include "KGameDeviceManager.h"
 
 KTexture::KTexture() :
 	m_pTexture(nullptr),
@@ -70,7 +70,7 @@ void KTexture::Load()
 	m_Desc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
 
 	HRESULT Return = DirectX::CreateShaderResourceView(
-		KGameDevice::MainDevice().Get(),
+		KGameDeviceManager::MainDevice().Get(),
 		m_Image.GetImages(),
 		m_Image.GetImageCount(),
 		m_Image.GetMetadata(),
@@ -92,19 +92,19 @@ void KTexture::Setting(SHADER_TYPE _Type, unsigned int _Index)
 	switch (_Type)
 	{
 	case SHADER_TYPE::ST_VS:
-		KGameDevice::MainContext()->VSSetShaderResources(_Index, 1, &m_pSRV);
+		KGameDeviceManager::MainContext()->VSSetShaderResources(_Index, 1, &m_pSRV);
 		break;
 	case SHADER_TYPE::ST_HS:
-		KGameDevice::MainContext()->HSSetShaderResources(_Index, 1, &m_pSRV);
+		KGameDeviceManager::MainContext()->HSSetShaderResources(_Index, 1, &m_pSRV);
 		break;
 	case SHADER_TYPE::ST_DS:
-		KGameDevice::MainContext()->DSSetShaderResources(_Index, 1, &m_pSRV);
+		KGameDeviceManager::MainContext()->DSSetShaderResources(_Index, 1, &m_pSRV);
 		break;
 	case SHADER_TYPE::ST_GS:
-		KGameDevice::MainContext()->GSSetShaderResources(_Index, 1, &m_pSRV);
+		KGameDeviceManager::MainContext()->GSSetShaderResources(_Index, 1, &m_pSRV);
 		break;
 	case SHADER_TYPE::ST_PS:
-		KGameDevice::MainContext()->PSSetShaderResources(_Index, 1, &m_pSRV);
+		KGameDeviceManager::MainContext()->PSSetShaderResources(_Index, 1, &m_pSRV);
 		break;
 	case SHADER_TYPE::ST_MAX:
 		break;
@@ -146,9 +146,9 @@ void KTexture::SetPixel(void* _pPixelData, int _size)
 {
 	D3D11_MAPPED_SUBRESOURCE subResource;
 
-	KGameDevice::MainContext()->Map(m_pTexture, 0, D3D11_MAP_WRITE_DISCARD, 0, &subResource);
+	KGameDeviceManager::MainContext()->Map(m_pTexture, 0, D3D11_MAP_WRITE_DISCARD, 0, &subResource);
 	memcpy_s(subResource.pData, _size, _pPixelData, _size);
-	KGameDevice::MainContext()->Unmap(m_pTexture, 0);
+	KGameDeviceManager::MainContext()->Unmap(m_pTexture, 0);
 }
 
 void KTexture::Create(KVector _Size, DXGI_FORMAT _Fmt, UINT _BindFlag, D3D11_USAGE _eUsage)
@@ -174,7 +174,7 @@ void KTexture::Create(KVector _Size, DXGI_FORMAT _Fmt, UINT _BindFlag, D3D11_USA
 		m_Desc.CPUAccessFlags = 0;
 	}
 
-	if (S_OK != KGameDevice::MainDevice()->CreateTexture2D(&m_Desc, nullptr, (ID3D11Texture2D**)&m_pTexture))
+	if (S_OK != KGameDeviceManager::MainDevice()->CreateTexture2D(&m_Desc, nullptr, (ID3D11Texture2D**)&m_pTexture))
 	{
 		assert(false);
 	}
@@ -196,7 +196,7 @@ void KTexture::SettingData()
 {
 	if (0 != (D3D11_BIND_SHADER_RESOURCE & m_Desc.BindFlags))
 	{
-		if (S_OK != KGameDevice::MainDevice()->CreateShaderResourceView(m_pTexture, nullptr, &m_pSRV))
+		if (S_OK != KGameDeviceManager::MainDevice()->CreateShaderResourceView(m_pTexture, nullptr, &m_pSRV))
 		{
 			assert(false);
 		}
@@ -204,7 +204,7 @@ void KTexture::SettingData()
 
 	if (0 != (D3D11_BIND_DEPTH_STENCIL & m_Desc.BindFlags))
 	{
-		if (S_OK != KGameDevice::MainDevice()->CreateDepthStencilView(m_pTexture, nullptr, &m_pDSV))
+		if (S_OK != KGameDeviceManager::MainDevice()->CreateDepthStencilView(m_pTexture, nullptr, &m_pDSV))
 		{
 			assert(false);
 		}
@@ -212,7 +212,7 @@ void KTexture::SettingData()
 
 	if (0 != (D3D11_BIND_RENDER_TARGET & m_Desc.BindFlags))
 	{
-		if (S_OK != KGameDevice::MainDevice()->CreateRenderTargetView(m_pTexture, nullptr, &m_pRTV))
+		if (S_OK != KGameDeviceManager::MainDevice()->CreateRenderTargetView(m_pTexture, nullptr, &m_pRTV))
 		{
 			assert(false);
 		}
@@ -231,7 +231,7 @@ void KTexture::Create(const D3D11_TEXTURE2D_DESC& _Desc)
 		m_Desc.CPUAccessFlags = 0;
 	}
 
-	if (S_OK != KGameDevice::MainDevice()->CreateTexture2D(&m_Desc, nullptr, (ID3D11Texture2D**)&m_pTexture))
+	if (S_OK != KGameDeviceManager::MainDevice()->CreateTexture2D(&m_Desc, nullptr, (ID3D11Texture2D**)&m_pTexture))
 	{
 		assert(false);
 	}

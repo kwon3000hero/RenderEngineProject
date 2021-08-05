@@ -39,6 +39,7 @@
     <ClCompile Include="KGameDevice.cpp" />
     <ClCompile Include="KGameDeviceBlendInit.cpp" />
     <ClCompile Include="KGameDeviceDepthInit.cpp" />
+    <ClCompile Include="KGameDeviceManager.cpp" />
     <ClCompile Include="KGameDeviceMeshInit.cpp" />
     <ClCompile Include="KGameDeviceRasterizerInit.cpp" />
     <ClCompile Include="KGameDeviceRenderPipelineInit.cpp" />
@@ -72,7 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BuildTarget.h" />
-    <ClInclude Include="DeviceWrapper.h" />
+    <ClInclude Include="KDeviceWrapper.h" />
     <ClInclude Include="K3DBufferBase.h" />
     <ClInclude Include="KBlend.h" />
     <ClInclude Include="KBloomEffect.h" />
@@ -91,6 +92,8 @@
     <ClInclude Include="KGameComponent.h" />
     <ClInclude Include="KGameDebug3D.h" />
     <ClInclude Include="KGameDevice.h" />
+    <ClInclude Include="KGameDeviceManager.h" />
+    <ClInclude Include="KGameDeviceManager.hpp" />
     <ClInclude Include="KGameFont.h" />
     <ClInclude Include="KGameLogic.h" />
     <ClInclude Include="KGameMacros.h" />

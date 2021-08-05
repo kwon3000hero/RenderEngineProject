@@ -51,7 +51,7 @@ void KCamera::Init()
 		KVector{ KGameWindow::MainWindow()->Size().x, KGameWindow::MainWindow()->Size().y },
 		KVector::ZERO);
 
-	m_forwardCameraTarget->SetDepthStencil(KGameDevice::MainGameDevice()->MainTarget->DepthStencil());
+	m_forwardCameraTarget->SetDepthStencil(KGameDeviceManager::MainGameDevice()->MainTarget->DepthStencil());
 
 	m_defferdCameraTarget = make_KPTR<KRenderTarget>();
 	m_defferdCameraTarget->Create(
@@ -78,7 +78,7 @@ void KCamera::Init()
 	m_globalBufferCameraTarget->Create(
 		KVector{ KGameWindow::MainWindow()->Size().x, KGameWindow::MainWindow()->Size().y },
 		KVector::ZERO);
-	m_globalBufferCameraTarget->SetDepthStencil(KGameDevice::MainGameDevice()->MainTarget->DepthStencil());
+	m_globalBufferCameraTarget->SetDepthStencil(KGameDeviceManager::MainGameDevice()->MainTarget->DepthStencil());
 
 	m_lightCameraTarget = make_KPTR<KRenderTarget>();
 	//diffuse

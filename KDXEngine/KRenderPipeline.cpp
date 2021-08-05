@@ -19,36 +19,36 @@ void KRenderPipeline::Reset()
 	m_pCurrentBlend = static_cast<KPTR<KBlend>>(0);
 	m_pCurrentVertexShader = static_cast<KPTR<KVertexShader>>(0);
 	m_pCurrentPixelShader = static_cast<KPTR<KPixelShader>>(0);
-	KGameDevice::MainContext()->RSSetState(nullptr);
-	KGameDevice::MainContext()->OMSetDepthStencilState(nullptr, 0);
-	KGameDevice::MainContext()->OMSetBlendState(nullptr, nullptr, 0xfffffff);
+	KGameDeviceManager::MainContext()->RSSetState(nullptr);
+	KGameDeviceManager::MainContext()->OMSetDepthStencilState(nullptr, 0);
+	KGameDeviceManager::MainContext()->OMSetBlendState(nullptr, nullptr, 0xfffffff);
 }
 
 void KRenderPipeline::ResetAll()
 {
-	KGameDevice::MainContext()->VSSetShader(nullptr, nullptr, 0);
-	KGameDevice::MainContext()->GSSetShader(nullptr, nullptr, 0);
-	KGameDevice::MainContext()->HSSetShader(nullptr, nullptr, 0);
-	KGameDevice::MainContext()->DSSetShader(nullptr, nullptr, 0);
-	KGameDevice::MainContext()->PSSetShader(nullptr, nullptr, 0);
+	KGameDeviceManager::MainContext()->VSSetShader(nullptr, nullptr, 0);
+	KGameDeviceManager::MainContext()->GSSetShader(nullptr, nullptr, 0);
+	KGameDeviceManager::MainContext()->HSSetShader(nullptr, nullptr, 0);
+	KGameDeviceManager::MainContext()->DSSetShader(nullptr, nullptr, 0);
+	KGameDeviceManager::MainContext()->PSSetShader(nullptr, nullptr, 0);
 
 	ID3D11RenderTargetView* pArrView[8] = { nullptr, };
-	KGameDevice::MainContext()->OMSetRenderTargets(8, pArrView, nullptr);
+	KGameDeviceManager::MainContext()->OMSetRenderTargets(8, pArrView, nullptr);
 
 	ID3D11ShaderResourceView* pArrSRView = nullptr;
 	ID3D11SamplerState* pArrSampler = nullptr;
 	for (unsigned int i = 0; i < D3D11_COMMONSHADER_SAMPLER_SLOT_COUNT; i++)
 	{
-		KGameDevice::MainContext()->VSSetShaderResources(i, 1, &pArrSRView);
-		KGameDevice::MainContext()->HSSetShaderResources(i, 1, &pArrSRView);
-		KGameDevice::MainContext()->GSSetShaderResources(i, 1, &pArrSRView);
-		KGameDevice::MainContext()->DSSetShaderResources(i, 1, &pArrSRView);
-		KGameDevice::MainContext()->PSSetShaderResources(i, 1, &pArrSRView);
-		KGameDevice::MainContext()->VSSetSamplers(i, 1, &pArrSampler);
-		KGameDevice::MainContext()->HSSetSamplers(i, 1, &pArrSampler);
-		KGameDevice::MainContext()->GSSetSamplers(i, 1, &pArrSampler);
-		KGameDevice::MainContext()->DSSetSamplers(i, 1, &pArrSampler);
-		KGameDevice::MainContext()->PSSetSamplers(i, 1, &pArrSampler);
+		KGameDeviceManager::MainContext()->VSSetShaderResources(i, 1, &pArrSRView);
+		KGameDeviceManager::MainContext()->HSSetShaderResources(i, 1, &pArrSRView);
+		KGameDeviceManager::MainContext()->GSSetShaderResources(i, 1, &pArrSRView);
+		KGameDeviceManager::MainContext()->DSSetShaderResources(i, 1, &pArrSRView);
+		KGameDeviceManager::MainContext()->PSSetShaderResources(i, 1, &pArrSRView);
+		KGameDeviceManager::MainContext()->VSSetSamplers(i, 1, &pArrSampler);
+		KGameDeviceManager::MainContext()->HSSetSamplers(i, 1, &pArrSampler);
+		KGameDeviceManager::MainContext()->GSSetSamplers(i, 1, &pArrSampler);
+		KGameDeviceManager::MainContext()->DSSetSamplers(i, 1, &pArrSampler);
+		KGameDeviceManager::MainContext()->PSSetSamplers(i, 1, &pArrSampler);
 	}
 
 	Reset();

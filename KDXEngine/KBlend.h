@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KGameDevice.h"
+#include "KGameDeviceManager.h"
 #include "KGameResource.h"
 
 class KBlend : public KGameResource<KBlend>

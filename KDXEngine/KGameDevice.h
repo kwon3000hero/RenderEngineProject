@@ -6,19 +6,23 @@
 #include "KSwapChainManager.h"
 
 class KRenderTarget;
+class KGameDeviceManager;
 class KGameDevice final : public KGameReference
 {
+//private:
+//	static Microsoft::WRL::ComPtr<ID3D11Device> m_pMainDevice;
+//	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pMainContext;
+//	static KGameDevice* m_pMainGameDevice;
+//
+//public:
+//	static Microsoft::WRL::ComPtr<ID3D11Device> MainDevice();
+//	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> MainContext();
+//	static KGameDevice* MainGameDevice();
+//
+//	static void SetMainRenderTarget();
+
 private:
-	static Microsoft::WRL::ComPtr<ID3D11Device> m_pMainDevice;
-	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pMainContext;
-	static KGameDevice* m_pMainGameDevice;
-
-public:
-	static Microsoft::WRL::ComPtr<ID3D11Device> MainDevice();
-	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> MainContext();
-	static KGameDevice* MainGameDevice();
-
-	static void SetMainRenderTarget();
+	friend KGameDeviceManager;
 
 private:
 	KPTR<KGameWindow> m_GameWindow;
@@ -26,12 +30,12 @@ private:
 	KSwapChainManager<SwapChainBuildVersion> m_swapChainManager;
 	KSwapChain<SwapChainBuildVersion>* m_pSwapChain;
 
-private:
-	static std::map<KGameString, KPTR<KGameDevice>> m_deviceContainer;
-
-public:
-	static KPTR<KGameDevice> Find(const KGameString& _DeviceName);
-	static void Create(const KGameString& _WindowName, KVector _ClearColor);
+//private:
+//	static std::map<KGameString, KPTR<KGameDevice>> m_deviceContainer;
+//
+//public:
+//	static KPTR<KGameDevice> Find(const KGameString& _DeviceName);
+//	static void Create(const KGameString& _WindowName, KVector _ClearColor);
 
 private:
 	UINT m_MultiQualityLevel;

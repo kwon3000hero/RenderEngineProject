@@ -242,7 +242,7 @@ void KGameScene::Render()
 {
 	KRenderPipeline::Reset();
 
-	KGameDevice::SetMainRenderTarget();
+	KGameDeviceManager::SetMainRenderTarget();
 
 	ResetLight();
 
@@ -426,13 +426,13 @@ void KGameScene::Render()
 	}
 
 	KRenderPipeline::ResetAll();
-	KGameDevice::SetMainRenderTarget();
+	KGameDeviceManager::SetMainRenderTarget();
 
 	for (auto& cameraGroup : m_cameraGroupContainer)
 	{
 		for (auto& camera : cameraGroup.second)
 		{
-			KGameDevice::MainGameDevice()->MainTarget->AlwaysMerge(camera->CurrentCameraTarget());
+			KGameDeviceManager::MainGameDevice()->MainTarget->AlwaysMerge(camera->CurrentCameraTarget());
 		}
 	}
 
@@ -448,7 +448,7 @@ void KGameScene::Render()
 
 	KGameDebug3D::DebugRender();
 	KRenderPipeline::ResetAll();
-	KGameDevice::MainGameDevice()->DeviceRenderEnd();
+	KGameDeviceManager::MainGameDevice()->DeviceRenderEnd();
 }
 
 void KGameScene::PushCamera(KPTR<KCamera> _pCam)

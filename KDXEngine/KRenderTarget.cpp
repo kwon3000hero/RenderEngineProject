@@ -47,7 +47,7 @@ void KRenderTarget::Clear(bool _isEnableDepth/* = true*/)
 {
 	for (auto& renderTarget : m_RenderTargetViewContainer)
 	{
-		KGameDevice::MainContext()->ClearRenderTargetView(renderTarget, m_ClearColor.Arr);
+		KGameDeviceManager::MainContext()->ClearRenderTargetView(renderTarget, m_ClearColor.Arr);
 	}
 
 	if (nullptr != m_Depth.get() && true == _isEnableDepth)
@@ -87,9 +87,9 @@ void KRenderTarget::Setting()
 		DSV = m_Depth->DSV();
 	}
 
-	KGameDevice::MainContext()->RSSetViewports((unsigned int)m_ViewPortContainer.size(), &m_ViewPortContainer[0]);
+	KGameDeviceManager::MainContext()->RSSetViewports((unsigned int)m_ViewPortContainer.size(), &m_ViewPortContainer[0]);
 
-	KGameDevice::MainContext()->OMSetRenderTargets((unsigned int)m_RenderTargetTextureContainer.size(), &m_RenderTargetViewContainer[0], DSV);
+	KGameDeviceManager::MainContext()->OMSetRenderTargets((unsigned int)m_RenderTargetTextureContainer.size(), &m_RenderTargetViewContainer[0], DSV);
 }
 
 void KRenderTarget::Setting(unsigned int _index)
@@ -101,8 +101,8 @@ void KRenderTarget::Setting(unsigned int _index)
 		DSV = m_Depth->DSV();
 	}
 
-	KGameDevice::MainContext()->RSSetViewports(1, &m_ViewPortContainer[_index]);
-	KGameDevice::MainContext()->OMSetRenderTargets(1, &m_RenderTargetViewContainer[_index], DSV);
+	KGameDeviceManager::MainContext()->RSSetViewports(1, &m_ViewPortContainer[_index]);
+	KGameDeviceManager::MainContext()->OMSetRenderTargets(1, &m_RenderTargetViewContainer[_index], DSV);
 }
 
 void KRenderTarget::SetDepthStencil(KPTR<KDepthStencilTarget> _depthStencil)

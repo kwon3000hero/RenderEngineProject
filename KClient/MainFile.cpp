@@ -3,7 +3,7 @@
 #include <KGameType.h>
 #include <KGAMEDEBUG.h>
 #include <KGameReference.h>
-#include <KGameDevice.h>
+#include <KGameDeviceManager.h>
 #include <KGAMEDIR.h>
 #include <KGAMETIME.h>
 #include <KTexture.h>
@@ -37,7 +37,7 @@
 void __stdcall Start()
 {
 	{
-		KGameDevice::Create(L"MainWindow", { 0.0f, 0.0f, 1.0f, 1.0f });
+		KGameDeviceManager::Create(L"MainWindow", { 0.0f, 0.0f, 1.0f, 1.0f });
 
 #ifdef _DEBUG
 		KGameDebug::ConsoleOn();

@@ -1,4 +1,4 @@
-#include "KGameDevice.h"
+#include "KGameDeviceManager.h"
 #include "KDepthStencil.h"
 
 void KGameDevice::InitDepthStencilState()
