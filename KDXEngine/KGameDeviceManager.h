@@ -15,27 +15,15 @@ private:
 	static KGameDevice* m_pMainGameDevice;
 
 public:
-	static Microsoft::WRL::ComPtr<ID3D11Device> MainDevice()
-	{
-		return m_pMainDevice;
-	}
+	static Microsoft::WRL::ComPtr<ID3D11Device> MainDevice();
+	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> MainContext();
+	static KGameDevice* MainGameDevice();
 
-	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> MainContext()
-	{
-		return m_pMainContext;
-	}
-	static KGameDevice* MainGameDevice()
-	{
-		return m_pMainGameDevice;
-	}
+	static void SetMainDevice(Microsoft::WRL::ComPtr<ID3D11Device> _device);
+	static void SetMainContext(Microsoft::WRL::ComPtr<ID3D11DeviceContext> _Context);
+	static void SetMainGameDevice(KGameDevice* _pDevice);
 
-
-
-	static void SetMainRenderTarget()
-	{
-		//m_pMainGameDevice->MainTarget->Clear();
-		//m_pMainGameDevice->MainTarget->Setting();
-	}
+	static void SetMainRenderTarget();
 
 
 private:

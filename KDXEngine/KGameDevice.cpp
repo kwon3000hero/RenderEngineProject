@@ -60,11 +60,11 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 		}
 	}
 
-	//if (nullptr == m_pMainDevice.Get())
+	if (nullptr == KGameDeviceManager::MainDevice().Get())
 	{
-		/*m_pMainDevice = m_pDevice;
-		m_pMainContext = m_pContext;
-		m_pMainGameDevice = this;*/
+		KGameDeviceManager::SetMainDevice(m_pDevice);
+		KGameDeviceManager::SetMainContext(m_pContext);
+		KGameDeviceManager::SetMainGameDevice(this);
 
 
 		InitDefaultMesh();
