@@ -1,6 +1,6 @@
-
 #include "KGameDeviceManager.h"
 #include "KRasterizer.h"
+
 
 void KGameDevice::InitRasterizer() {
 

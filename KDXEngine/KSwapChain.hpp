@@ -3,7 +3,7 @@
 
 #if WDK_NTDDI_VERSION >= NTDDI_WIN10_19H1
 template<>
-bool KSwapChain<KSwapChainWrapper6>::CreateSwapChain(Microsoft::WRL::ComPtr<DeviceBuildVersion> _pDevice, KPTR<KGameWindow> _window)
+bool KSwapChain<KSwapChainWrapper6>::CreateSwapChain(Microsoft::WRL::ComPtr<DeviceBuildVersion::DeviceType> _pDevice, KPTR<KGameWindow> _window)
 {
 	DXGI_SWAP_CHAIN_DESC1 SCDECS;
 	memset(&SCDECS, 0, sizeof(DXGI_SWAP_CHAIN_DESC1));
@@ -49,7 +49,7 @@ bool KSwapChain<KSwapChainWrapper6>::CreateSwapChain(Microsoft::WRL::ComPtr<Devi
 #endif
 #if WDK_NTDDI_VERSION >= NTDDI_WIN10
 template<>
-bool KSwapChain<KSwapChainWrapper0>::CreateSwapChain(Microsoft::WRL::ComPtr<DeviceBuildVersion> _pDevice, KPTR<KGameWindow> _window)
+bool KSwapChain<KSwapChainWrapper0>::CreateSwapChain(Microsoft::WRL::ComPtr<DeviceBuildVersion::DeviceType> _pDevice, KPTR<KGameWindow> _window)
 {
 	DXGI_SWAP_CHAIN_DESC SCDECS;
 	memset(&SCDECS, 0, sizeof(DXGI_SWAP_CHAIN_DESC));

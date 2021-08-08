@@ -93,7 +93,6 @@
     <ClInclude Include="KGameDebug3D.h" />
     <ClInclude Include="KGameDevice.h" />
     <ClInclude Include="KGameDeviceManager.h" />
-    <ClInclude Include="KGameDeviceManager.hpp" />
     <ClInclude Include="KGameFont.h" />
     <ClInclude Include="KGameLogic.h" />
     <ClInclude Include="KGameMacros.h" />

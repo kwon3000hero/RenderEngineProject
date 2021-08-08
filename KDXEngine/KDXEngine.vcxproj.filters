@@ -200,9 +200,7 @@
     <ClCompile Include="KSwapChainManager.hpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="KGameDeviceManager.cpp">
-      <Filter>Device</Filter>
-    </ClCompile>
+    <ClCompile Include="KGameDeviceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KGameDevice.h">
@@ -332,9 +330,6 @@
       <Filter>Device</Filter>
     </ClInclude>
     <ClInclude Include="KGameDeviceManager.h">
-      <Filter>Device</Filter>
-    </ClInclude>
-    <ClInclude Include="KGameDeviceManager.hpp">
       <Filter>Device</Filter>
     </ClInclude>
   </ItemGroup>

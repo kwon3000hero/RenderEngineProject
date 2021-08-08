@@ -1,14 +1,13 @@
 #pragma once
 #include <wrl.h>
-#include <d3d11_4.h>
 #include <d3dcompiler.h>
 #include "KGameDevice.h"
 #include "KGameReference.h"
 
 class KRenderTarget;
-//template<typename T>
 class KGameDeviceManager final : public KGameReference
 {
+
 private:
 	static Microsoft::WRL::ComPtr<ID3D11Device> m_pMainDevice;
 	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pMainContext;
@@ -50,6 +49,7 @@ public:
 		KPTR<KGameDevice> NewDevice = new KGameDevice();
 		NewDevice->Create(KGameWindow::FindWin(_WindowName), _ClearColor);
 
-		m_deviceContainer.insert(std::map<KGameString, KPTR<KGameDevice>>::value_type(_WindowName, NewDevice));
+		m_deviceContainer.insert(
+			std::map<KGameString, KPTR<KGameDevice>>::value_type(_WindowName, NewDevice));
 	}
 };

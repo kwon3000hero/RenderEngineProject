@@ -9,6 +9,7 @@ KGameDevice::KGameDevice() : m_GameWindow(nullptr), m_MultiQualityLevel(0)
 , m_MultiSamplerCounter(0), m_pDevice(nullptr), m_pContext(nullptr), m_ViewPort{ 0 }
 {
 }
+
 KGameDevice::~KGameDevice()
 {
 	KGameFont::End();
@@ -93,7 +94,6 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 }
 
 
-
 bool KGameDevice::CreateBackBuffer(KVector _ClearColor)
 {
 	ID3D11Texture2D* BackTex = nullptr;
@@ -110,7 +110,6 @@ bool KGameDevice::CreateBackBuffer(KVector _ClearColor)
 
 	return true;
 }
-
 
 void KGameDevice::DeviceRenderEnd()
 {
