@@ -1,11 +1,13 @@
-#include "KGAMEDEVICE.h"
+#pragma once
+#include "KGameDevice.h"
 #include "KGAMEDIR.h"
 #include "KVertexShader.h"
 #include "KPixelShader.h"
 #include "KTransform.h"
 #include "KCuttingRender.h"
 
-void KGameDevice::InitShader()
+template<typename T>
+void KGameDevice<T>::InitShader()
 {
 	{
 		KGAMEDIR Dir;

@@ -60,7 +60,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="KGameDevice.cpp">
+    <ClCompile Include="KGameDevice.hpp">
       <Filter>Device</Filter>
     </ClCompile>
     <ClCompile Include="KGameActor.cpp">
@@ -144,25 +144,25 @@
       <Filter>Resource\Sub\Texture</Filter>
     </ClCompile>
     <ClCompile Include="KTransformCollisionCheck.cpp" />
-    <ClCompile Include="KGameDeviceBlendInit.cpp">
+    <ClCompile Include="KGameDeviceBlendInit.hpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="KGameDeviceDepthInit.cpp">
+    <ClCompile Include="KGameDeviceDepthInit.hpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="KGameDeviceMeshInit.cpp">
+    <ClCompile Include="KGameDeviceMeshInit.hpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="KGameDeviceRasterizerInit.cpp">
+    <ClCompile Include="KGameDeviceRasterizerInit.hpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="KGameDeviceShaderInit.cpp">
+    <ClCompile Include="KGameDeviceShaderInit.hpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="KGameDeviceSamplerInit.cpp">
+    <ClCompile Include="KGameDeviceSamplerInit.hpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="KGameDeviceRenderPipelineInit.cpp">
+    <ClCompile Include="KGameDeviceRenderPipelineInit.hpp">
       <Filter>Device</Filter>
     </ClCompile>
     <ClCompile Include="KGameDebug3D.cpp" />
@@ -200,7 +200,9 @@
     <ClCompile Include="KSwapChainManager.hpp">
       <Filter>Device</Filter>
     </ClCompile>
-    <ClCompile Include="KGameDeviceManager.cpp" />
+    <ClCompile Include="KGameDeviceManager.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KGameDevice.h">

@@ -9,15 +9,15 @@
 class KRenderTarget;
 class KGameDeviceManager;
 
-//template<typename T>
+template<typename T>
 class KGameDevice final : public KGameReference
 {
 private:
 	friend KGameDeviceManager;
 
 private:
-	//typedef typename T::DeviceType DeviceType;
-	//typedef typename T::ContextType ContextType;
+	typedef typename T::DeviceType DeviceType;
+	typedef typename T::ContextType ContextType;
 
 private:
 	KPTR<KGameWindow> m_GameWindow;

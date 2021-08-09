@@ -6,9 +6,9 @@
 Microsoft::WRL::ComPtr<ID3D11Device> KGameDeviceManager::m_pMainDevice = nullptr;
 Microsoft::WRL::ComPtr<ID3D11DeviceContext> KGameDeviceManager::m_pMainContext = nullptr;
 
-KGameDevice* KGameDeviceManager::m_pMainGameDevice = nullptr;
+KGameDevice<DeviceBuildVersion>* KGameDeviceManager::m_pMainGameDevice = nullptr;
 
-std::map<KGameString, KPTR<KGameDevice>> KGameDeviceManager::m_deviceContainer;
+std::map<KGameString, KPTR<KGameDevice<DeviceBuildVersion>>> KGameDeviceManager::m_deviceContainer;
 
 Microsoft::WRL::ComPtr<ID3D11Device> KGameDeviceManager::MainDevice()
 {
@@ -19,7 +19,7 @@ Microsoft::WRL::ComPtr<ID3D11DeviceContext> KGameDeviceManager::MainContext()
 {
 	return m_pMainContext;
 }
-KGameDevice* KGameDeviceManager::MainGameDevice()
+KGameDevice<DeviceBuildVersion>* KGameDeviceManager::MainGameDevice()
 {
 	return m_pMainGameDevice;
 }
@@ -34,7 +34,7 @@ void KGameDeviceManager::SetMainContext(Microsoft::WRL::ComPtr<ID3D11DeviceConte
 	m_pMainContext = _Context;
 }
 
-void KGameDeviceManager::SetMainGameDevice(KGameDevice* _pDevice)
+void KGameDeviceManager::SetMainGameDevice(KGameDevice<DeviceBuildVersion>* _pDevice)
 {
 	m_pMainGameDevice = _pDevice;
 }

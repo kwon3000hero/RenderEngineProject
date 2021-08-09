@@ -11,25 +11,25 @@ class KGameDeviceManager final : public KGameReference
 private:
 	static Microsoft::WRL::ComPtr<ID3D11Device> m_pMainDevice;
 	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pMainContext;
-	static KGameDevice* m_pMainGameDevice;
+	static KGameDevice<DeviceBuildVersion>* m_pMainGameDevice;
 
 public:
 	static Microsoft::WRL::ComPtr<ID3D11Device> MainDevice();
 	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> MainContext();
-	static KGameDevice* MainGameDevice();
+	static KGameDevice<DeviceBuildVersion>* MainGameDevice();
 
 	static void SetMainDevice(Microsoft::WRL::ComPtr<ID3D11Device> _device);
 	static void SetMainContext(Microsoft::WRL::ComPtr<ID3D11DeviceContext> _Context);
-	static void SetMainGameDevice(KGameDevice* _pDevice);
+	static void SetMainGameDevice(KGameDevice<DeviceBuildVersion>* _pDevice);
 
 	static void SetMainRenderTarget();
 
 
 private:
-	static std::map<KGameString, KPTR<KGameDevice>> m_deviceContainer;
+	static std::map<KGameString, KPTR<KGameDevice<DeviceBuildVersion>>> m_deviceContainer;
 
 public:
-	static KPTR<KGameDevice> Find(const KGameString& _DeviceName)
+	static KPTR<KGameDevice<DeviceBuildVersion>> Find(const KGameString& _DeviceName)
 	{
 		if (m_deviceContainer.end() == m_deviceContainer.find(_DeviceName))
 		{
@@ -46,10 +46,10 @@ public:
 			assert(false);
 		}
 
-		KPTR<KGameDevice> NewDevice = new KGameDevice();
+		/*KPTR<KGameDevice<DeviceBuildVersion>> NewDevice = new KGameDevice<DeviceBuildVersion>();
 		NewDevice->Create(KGameWindow::FindWin(_WindowName), _ClearColor);
 
 		m_deviceContainer.insert(
-			std::map<KGameString, KPTR<KGameDevice>>::value_type(_WindowName, NewDevice));
+			std::map<KGameString, KPTR<KGameDevice<DeviceBuildVersion>>>::value_type(_WindowName, NewDevice));*/
 	}
 };

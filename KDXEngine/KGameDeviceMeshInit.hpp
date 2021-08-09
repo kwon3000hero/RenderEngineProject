@@ -1,10 +1,12 @@
-#include "KGAMEDEVICE.h"
+#pragma once
+#include "KGameDevice.h"
 #include "KVertexHeader.h"
 #include "KMesh.h"
 #include "KVertexBuffer.h"
 #include "KIndexBuffer.h"
 
-void KGameDevice::InitDefaultMesh()
+template<typename T>
+void KGameDevice<T>::InitDefaultMesh()
 {
 	{
 		std::vector<KVertex2D> m_VTX;
