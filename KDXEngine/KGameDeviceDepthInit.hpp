@@ -1,7 +1,9 @@
-#include "KGameDeviceManager.h"
+#pragma once
+#include "KGameDevice.h"
 #include "KDepthStencil.h"
 
-void KGameDevice::InitDepthStencilState()
+template<typename T>
+void KGameDevice<T>::InitDepthStencilState()
 {
 	{
 		D3D11_DEPTH_STENCIL_DESC Desc;

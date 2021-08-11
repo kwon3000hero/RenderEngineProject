@@ -1,3 +1,4 @@
+#pragma once
 #include "KGameDevice.h"
 #include "KRenderTarget.h"
 #include "KGameDebug3D.h"
@@ -5,16 +6,21 @@
 #include "KGameMacros.h"
 #include "KRenderPipeline.h"
 
-KGameDevice::KGameDevice() : m_GameWindow(nullptr), m_MultiQualityLevel(0)
+template<typename T>
+KGameDevice<T>::KGameDevice() : m_GameWindow(nullptr), m_MultiQualityLevel(0)
 , m_MultiSamplerCounter(0), m_pDevice(nullptr), m_pContext(nullptr), m_ViewPort{ 0 }
 {
 }
-KGameDevice::~KGameDevice()
+
+
+template<typename T>
+KGameDevice<T>::~KGameDevice()
 {
 	KGameFont::End();
 }
 
-void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
+template<typename T>
+void KGameDevice<T>::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 {
 	if (nullptr == _Window.get())
 	{
@@ -92,9 +98,8 @@ void KGameDevice::Create(KPTR<KGameWindow> _Window, KVector _ClearColor)
 
 }
 
-
-
-bool KGameDevice::CreateBackBuffer(KVector _ClearColor)
+template<typename T>
+bool KGameDevice<T>::CreateBackBuffer(KVector _ClearColor)
 {
 	ID3D11Texture2D* BackTex = nullptr;
 
@@ -111,8 +116,8 @@ bool KGameDevice::CreateBackBuffer(KVector _ClearColor)
 	return true;
 }
 
-
-void KGameDevice::DeviceRenderEnd()
+template<typename T>
+void KGameDevice<T>::DeviceRenderEnd()
 {
 	m_pSwapChain->SwapChain()->Present(0, 0);
 	KRenderPipeline::ResetAll();

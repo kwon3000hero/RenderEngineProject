@@ -1,7 +1,9 @@
-#include "KGameDeviceManager.h"
+#pragma once
+#include "KGameDevice.h"
 #include "KSampler.h"
 
-void KGameDevice::InitSamplerState()
+template<typename T>
+void KGameDevice<T>::InitSamplerState()
 {
 
 	{

@@ -1,41 +1,29 @@
 #pragma once
 #include <KGAMEMATH.h>
 #include <KGameWindow.h>
-#include <d3d11_4.h>
 #include <d3dcompiler.h>
+#include "KDeviceWrapper.h"
 #include "KSwapChainManager.h"
+#include "KGameFont.h"
 
 class KRenderTarget;
 class KGameDeviceManager;
+
+template<typename T>
 class KGameDevice final : public KGameReference
 {
-//private:
-//	static Microsoft::WRL::ComPtr<ID3D11Device> m_pMainDevice;
-//	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pMainContext;
-//	static KGameDevice* m_pMainGameDevice;
-//
-//public:
-//	static Microsoft::WRL::ComPtr<ID3D11Device> MainDevice();
-//	static Microsoft::WRL::ComPtr<ID3D11DeviceContext> MainContext();
-//	static KGameDevice* MainGameDevice();
-//
-//	static void SetMainRenderTarget();
-
 private:
 	friend KGameDeviceManager;
+
+private:
+	typedef typename T::DeviceType DeviceType;
+	typedef typename T::ContextType ContextType;
 
 private:
 	KPTR<KGameWindow> m_GameWindow;
 
 	KSwapChainManager<SwapChainBuildVersion> m_swapChainManager;
 	KSwapChain<SwapChainBuildVersion>* m_pSwapChain;
-
-//private:
-//	static std::map<KGameString, KPTR<KGameDevice>> m_deviceContainer;
-//
-//public:
-//	static KPTR<KGameDevice> Find(const KGameString& _DeviceName);
-//	static void Create(const KGameString& _WindowName, KVector _ClearColor);
 
 private:
 	UINT m_MultiQualityLevel;
@@ -53,7 +41,7 @@ public:
 	void DeviceRenderEnd();
 
 
-private:
+public:
 	void Create(KPTR<KGameWindow> _Window, KVector _ClearColor);
 	bool CreateBackBuffer(KVector _ClearColor);
 
@@ -69,6 +57,4 @@ public:
 public:
 	KGameDevice();
 	~KGameDevice();
-
 };
-

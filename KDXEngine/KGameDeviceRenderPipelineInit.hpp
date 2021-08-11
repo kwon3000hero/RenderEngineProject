@@ -1,8 +1,10 @@
-#include "KGameDeviceManager.h"
+#pragma once
+#include "KGameDevice.h"
 #include "KGAMEDIR.h"
 #include "KRenderPipeline.h"
 
-void KGameDevice::InitRenderPipeline()
+template<typename T>
+void KGameDevice<T>::InitRenderPipeline()
 {
 	{
 		KPTR<KRenderPipeline> RPL = KRenderPipeline ::Create(L"FXAA");

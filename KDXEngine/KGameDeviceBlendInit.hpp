@@ -1,7 +1,9 @@
-#include "KGameDeviceManager.h"
+#pragma once
+#include "KGameDevice.h"
 #include "KBlend.h"
 
-void KGameDevice::InitBlendState() {
+template<typename T>
+void KGameDevice<T>::InitBlendState() {
 
 	{
 		D3D11_BLEND_DESC Data;

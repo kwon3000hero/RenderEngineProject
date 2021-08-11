@@ -1,8 +1,9 @@
-
-#include "KGameDeviceManager.h"
+#pragma once
+#include "KGameDevice.h"
 #include "KRasterizer.h"
 
-void KGameDevice::InitRasterizer() {
+template<typename T>
+void KGameDevice<T>::InitRasterizer() {
 
 	{
 		D3D11_RASTERIZER_DESC Desc;
