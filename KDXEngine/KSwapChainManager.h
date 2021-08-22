@@ -20,7 +20,7 @@ private:
 	Microsoft::WRL::ComPtr<FactoryType> m_pFactory;
 
 	typedef std::pair<int, int> swapChainKey;
-	std::map<swapChainKey, KSwapChain<SwapChainBuildVersion>*> m_swapchainContainer;
+	std::map<swapChainKey, KSwapChain<SwapChainSelectedWrapper>*> m_swapchainContainer;
 
 	typedef std::pair<int, int> outputKey;
 	std::map<outputKey, OutputType*> m_OutputContainer;
@@ -41,7 +41,7 @@ public:
 	void SearchAdapterAndOutput();
 	
 	//임시.. output의 영역으로 찾게 수정해야...	
-	KSwapChain<SwapChainBuildVersion>* GetOutput(int _adapterIndex, int _outputIndex)
+	KSwapChain<SwapChainSelectedWrapper>* GetOutput(int _adapterIndex, int _outputIndex)
 	{
 		swapChainKey findedKey(_adapterIndex, _outputIndex);
 

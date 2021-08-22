@@ -22,15 +22,15 @@ private:
 private:
 	KPTR<KGameWindow> m_GameWindow;
 
-	KSwapChainManager<SwapChainBuildVersion> m_swapChainManager;
-	KSwapChain<SwapChainBuildVersion>* m_pSwapChain;
+	KSwapChainManager<SwapChainSelectedWrapper> m_swapChainManager;
+	KSwapChain<SwapChainSelectedWrapper>* m_pSwapChain;
 
 private:
 	UINT m_MultiQualityLevel;
 	UINT m_MultiSamplerCounter;
 
-	Microsoft::WRL::ComPtr<ID3D11Device> m_pDevice;
-	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pContext;
+	Microsoft::WRL::ComPtr<DeviceType> m_pDevice;
+	Microsoft::WRL::ComPtr<ContextType> m_pContext;
 
 	D3D11_VIEWPORT m_ViewPort;
 

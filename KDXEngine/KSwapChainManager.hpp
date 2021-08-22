@@ -1,7 +1,7 @@
 #pragma once
 #include "KSwapChainManager.h"
 
-#if WDK_NTDDI_VERSION >= NTDDI_WIN10_19H1
+#if SwapChainVersion == SwapChainWrapper6
 template<>
 void KSwapChainManager<KSwapChainWrapper6>::SearchAdapterAndOutput()
 {
@@ -67,14 +67,14 @@ void KSwapChainManager<KSwapChainWrapper6>::SearchAdapterAndOutput()
 			m_OutputContainer[key] = pOutput;
 			++outputNumber;
 
-			m_swapchainContainer[key] = new KSwapChain<SwapChainBuildVersion>(adapterNumber, pAdapter, outputNumber, pOutput);
+			m_swapchainContainer[key] = new KSwapChain<SwapChainSelectedWrapper>(adapterNumber, pAdapter, outputNumber, pOutput);
 		}
 
 		++adapterNumber;
 	}
 }
 #endif 
-#if WDK_NTDDI_VERSION >= NTDDI_WIN10
+#if SwapChainVersion == SwapChainWrapper0
 template<>
 void KSwapChainManager<KSwapChainWrapper0>::SearchAdapterAndOutput()
 {
@@ -101,7 +101,7 @@ void KSwapChainManager<KSwapChainWrapper0>::SearchAdapterAndOutput()
 			m_OutputContainer[key] = pOutput;
 			++outputNumber;
 
-			m_swapchainContainer[key] = new KSwapChain<SwapChainBuildVersion>(adapterNumber, pAdapter, outputNumber, pOutput);
+			m_swapchainContainer[key] = new KSwapChain<SwapChainSelectedWrapper>(adapterNumber, pAdapter, outputNumber, pOutput);
 		}
 
 		++adapterNumber;
