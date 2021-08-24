@@ -59,15 +59,15 @@ void KSwapChainManager<KSwapChainWrapper6>::SearchAdapterAndOutput()
 		m_pAdapterContainer[adapterNumber] = pAdapter;
 
 		UINT outputNumber = 0;
-		IDXGIOutput6* pOutput;
+		Microsoft::WRL::ComPtr<IDXGIOutput6> pOutput;
 
-		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, reinterpret_cast<IDXGIOutput**>(&pOutput)))
+		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, reinterpret_cast<IDXGIOutput**>(pOutput.Get())))
 		{
 			outputKey key(adapterNumber, outputNumber);
-			m_OutputContainer[key] = pOutput;
+			m_OutputContainer[key] = pOutput.Get();
 			++outputNumber;
 
-			m_swapchainContainer[key] = new KSwapChain<SwapChainSelectedWrapper>(adapterNumber, pAdapter, outputNumber, pOutput);
+			m_swapchainContainer[key] = new KSwapChain<SwapChainSelectedWrapper>(adapterNumber, pAdapter, outputNumber, pOutput.Get());
 		}
 
 		++adapterNumber;

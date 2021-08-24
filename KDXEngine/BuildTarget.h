@@ -19,10 +19,10 @@
 
 
 #if WDK_NTDDI_VERSION >= NTDDI_WIN10_19H1
-#define DeviceSelectedWrapper KDeviceWrapper0
-#define SwapChainSelectedWrapper KSwapChainWrapper0
-#define DeviceVersion DeviceWrapperVer0
-#define SwapChainVersion SwapChainWrapper0
+#define DeviceSelectedWrapper KDeviceWrapper5
+#define SwapChainSelectedWrapper KSwapChainWrapper6
+#define DeviceVersion DeviceWrapperVer5
+#define SwapChainVersion SwapChainWrapper6
 #elif WDK_NTDDI_VERSION >= NTDDI_WIN10_RS5
 #define DeviceBuildVersion KDeviceWrapper5
 #define SwapChainBuildVersion KSwapChainWrapper5
