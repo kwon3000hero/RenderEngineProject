@@ -29,7 +29,7 @@ public:
 	private:
 		KVertexShader* m_pParent;
 		UINT m_Offset;
-		ID3D11InputLayout* m_LayOut;
+		Microsoft::WRL::ComPtr<ID3D11InputLayout> m_LayOut;
 		std::vector<D3D11_INPUT_ELEMENT_DESC> m_ArrInputLayOutData;
 
 	public:
@@ -58,13 +58,11 @@ public:
 		}
 
 		~KInputLayout()
-		{
-			if (nullptr != m_LayOut)
+		{			
+			if (nullptr != m_LayOut.Get())
 			{
-				m_LayOut->Release();
 				m_LayOut = nullptr;
 			}
-
 		}
 
 
@@ -93,7 +91,11 @@ public:
 	}
 
 	~KVertexShader()
-	{		
+	{
+		if (nullptr != m_ShaderPtr.Get())
+		{
+			m_ShaderPtr = nullptr;
+		}
 	}
 
 };

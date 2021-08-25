@@ -1,7 +1,7 @@
 #pragma once
 #include "KSwapChainManager.h"
 
-#if WDK_NTDDI_VERSION >= NTDDI_WIN10_19H1
+#if SwapChainVersion == SwapChainWrapper6
 template<>
 void KSwapChainManager<KSwapChainWrapper6>::SearchAdapterAndOutput()
 {
@@ -52,29 +52,29 @@ void KSwapChainManager<KSwapChainWrapper6>::SearchAdapterAndOutput()
 	}
 
 	UINT adapterNumber = 0;
-	IDXGIAdapter4* pAdapter = nullptr;
+	Microsoft::WRL::ComPtr<IDXGIAdapter4> pAdapter = nullptr;
 
-	while (DXGI_ERROR_NOT_FOUND != m_pFactory->EnumAdapters1(adapterNumber, reinterpret_cast<IDXGIAdapter1**>(&pAdapter)))
+	while (DXGI_ERROR_NOT_FOUND != m_pFactory->EnumAdapters1(adapterNumber, reinterpret_cast<IDXGIAdapter1**>(pAdapter.GetAddressOf())))
 	{
 		m_pAdapterContainer[adapterNumber] = pAdapter;
 
 		UINT outputNumber = 0;
-		IDXGIOutput6* pOutput;
+		Microsoft::WRL::ComPtr<IDXGIOutput6> pOutput;
 
-		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, reinterpret_cast<IDXGIOutput**>(&pOutput)))
+		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, reinterpret_cast<IDXGIOutput**>(pOutput.GetAddressOf())))
 		{
 			outputKey key(adapterNumber, outputNumber);
-			m_OutputContainer[key] = pOutput;
+			m_OutputContainer[key] = pOutput.Get();
 			++outputNumber;
 
-			m_swapchainContainer[key] = new KSwapChain<SwapChainBuildVersion>(adapterNumber, pAdapter, outputNumber, pOutput);
+			m_swapchainContainer[key] = new KSwapChain<SwapChainSelectedWrapper>(adapterNumber, pAdapter, outputNumber, pOutput.Get());
 		}
 
 		++adapterNumber;
 	}
 }
 #endif 
-#if WDK_NTDDI_VERSION >= NTDDI_WIN10
+#if SwapChainVersion == SwapChainWrapper0
 template<>
 void KSwapChainManager<KSwapChainWrapper0>::SearchAdapterAndOutput()
 {
@@ -86,14 +86,14 @@ void KSwapChainManager<KSwapChainWrapper0>::SearchAdapterAndOutput()
 	}
 
 	UINT adapterNumber = 0;
-	IDXGIAdapter* pAdapter = nullptr;
+	Microsoft::WRL::ComPtr<IDXGIAdapter> pAdapter = nullptr;
 
 	while (DXGI_ERROR_NOT_FOUND != m_pFactory->EnumAdapters(adapterNumber, &pAdapter))
 	{
 		m_pAdapterContainer[adapterNumber] = pAdapter;
 
 		UINT outputNumber = 0;
-		IDXGIOutput* pOutput;
+		Microsoft::WRL::ComPtr<IDXGIOutput> pOutput;
 
 		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, &pOutput))
 		{
@@ -101,7 +101,7 @@ void KSwapChainManager<KSwapChainWrapper0>::SearchAdapterAndOutput()
 			m_OutputContainer[key] = pOutput;
 			++outputNumber;
 
-			m_swapchainContainer[key] = new KSwapChain<SwapChainBuildVersion>(adapterNumber, pAdapter, outputNumber, pOutput);
+			m_swapchainContainer[key] = new KSwapChain<SwapChainSelectedWrapper>(adapterNumber, pAdapter, outputNumber, pOutput);
 		}
 
 		++adapterNumber;
