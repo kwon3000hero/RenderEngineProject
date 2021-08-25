@@ -72,8 +72,7 @@ void KGameDevice<KDeviceWrapper5>::Create(KPTR<KGameWindow> _Window, KVector _Cl
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> deviceContext;
 	Microsoft::WRL::ComPtr<IDXGIAdapter> pAdapter = m_pSwapChain->Adapter();
 	HRESULT HR = D3D11CreateDevice(pAdapter.Get(), D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,
-		nullptr, iFlag, nullptr, 0, D3D11_SDK_VERSION, reinterpret_cast<ID3D11Device**>(device.Get()), &ReturneLv, 
-		reinterpret_cast<ID3D11DeviceContext**>(deviceContext.Get()));
+		nullptr, iFlag, nullptr, 0, D3D11_SDK_VERSION, &device, &ReturneLv, &deviceContext);
 
 	if (S_OK != HR || nullptr == device.Get() || nullptr == deviceContext.Get())
 	{

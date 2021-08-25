@@ -52,16 +52,16 @@ void KSwapChainManager<KSwapChainWrapper6>::SearchAdapterAndOutput()
 	}
 
 	UINT adapterNumber = 0;
-	IDXGIAdapter4* pAdapter = nullptr;
+	Microsoft::WRL::ComPtr<IDXGIAdapter4> pAdapter = nullptr;
 
-	while (DXGI_ERROR_NOT_FOUND != m_pFactory->EnumAdapters1(adapterNumber, reinterpret_cast<IDXGIAdapter1**>(&pAdapter)))
+	while (DXGI_ERROR_NOT_FOUND != m_pFactory->EnumAdapters1(adapterNumber, reinterpret_cast<IDXGIAdapter1**>(pAdapter.GetAddressOf())))
 	{
 		m_pAdapterContainer[adapterNumber] = pAdapter;
 
 		UINT outputNumber = 0;
 		Microsoft::WRL::ComPtr<IDXGIOutput6> pOutput;
 
-		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, reinterpret_cast<IDXGIOutput**>(pOutput.Get())))
+		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, reinterpret_cast<IDXGIOutput**>(pOutput.GetAddressOf())))
 		{
 			outputKey key(adapterNumber, outputNumber);
 			m_OutputContainer[key] = pOutput.Get();
@@ -86,14 +86,14 @@ void KSwapChainManager<KSwapChainWrapper0>::SearchAdapterAndOutput()
 	}
 
 	UINT adapterNumber = 0;
-	IDXGIAdapter* pAdapter = nullptr;
+	Microsoft::WRL::ComPtr<IDXGIAdapter> pAdapter = nullptr;
 
 	while (DXGI_ERROR_NOT_FOUND != m_pFactory->EnumAdapters(adapterNumber, &pAdapter))
 	{
 		m_pAdapterContainer[adapterNumber] = pAdapter;
 
 		UINT outputNumber = 0;
-		IDXGIOutput* pOutput;
+		Microsoft::WRL::ComPtr<IDXGIOutput> pOutput;
 
 		while (DXGI_ERROR_NOT_FOUND != pAdapter->EnumOutputs(outputNumber, &pOutput))
 		{

@@ -18,17 +18,16 @@ bool KSwapChain<KSwapChainWrapper6>::CreateSwapChain(Microsoft::WRL::ComPtr<Devi
 	SCDECS.Flags = 0;
 
 	SCDECS.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	SCDECS.Scaling = DXGI_SCALING::DXGI_SCALING_ASPECT_RATIO_STRETCH;
+	SCDECS.Scaling = DXGI_SCALING::DXGI_SCALING_NONE;
 
-	SCDECS.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	SCDECS.SampleDesc.Quality = 0;
 	SCDECS.SampleDesc.Count = 1;
 
 	SCDECS.BufferCount = 2;
-	SCDECS.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+	SCDECS.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 
 	Microsoft::WRL::ComPtr<IDXGIFactory2> pFactory(nullptr);
-	m_pAdapter->GetParent(__uuidof(IDXGIFactory2), (void**)&pFactory);
+	m_pAdapter->GetParent(IID_PPV_ARGS(&pFactory));
 	if (nullptr == pFactory)
 	{
 		assert(false);
@@ -36,8 +35,8 @@ bool KSwapChain<KSwapChainWrapper6>::CreateSwapChain(Microsoft::WRL::ComPtr<Devi
 	}
 
 	HRESULT result = S_OK;
-	IDXGISwapChain1* tempSW = m_pSwapChain.Get();
-	result = pFactory->CreateSwapChainForHwnd(_pDevice.Get(), _window->WINHWND(), &SCDECS, NULL, NULL, &tempSW);
+	result = pFactory->CreateSwapChainForHwnd(_pDevice.Get(), _window->WINHWND(), &SCDECS, NULL, NULL, 
+		reinterpret_cast<IDXGISwapChain1**>(m_pSwapChain.GetAddressOf()));
 	if (FAILED(result))
 	{
 		ShowHResultString(result, "KSwapChain::CreateSwapChain6");

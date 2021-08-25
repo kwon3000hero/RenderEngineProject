@@ -23,9 +23,9 @@ private:
 	std::map<swapChainKey, KSwapChain<SwapChainSelectedWrapper>*> m_swapchainContainer;
 
 	typedef std::pair<int, int> outputKey;
-	std::map<outputKey, OutputType*> m_OutputContainer;
+	std::map<outputKey, Microsoft::WRL::ComPtr<OutputType>> m_OutputContainer;
 
-	std::map<int, AdapterType*> m_pAdapterContainer;
+	std::map<int, Microsoft::WRL::ComPtr<AdapterType>> m_pAdapterContainer;
 
 public:
 	KSwapChainManager() :m_pFactory(nullptr)
