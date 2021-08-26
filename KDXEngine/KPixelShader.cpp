@@ -33,7 +33,7 @@ void KPixelShader::Load(const KGameString& _FuncName, unsigned int _VH, unsigned
 		&m_ShaderPtr
 	);
 
-	if (nullptr == m_ShaderPtr || FAILED(RS))
+	if (nullptr == m_ShaderPtr.Get() || FAILED(RS))
 	{
 		_wassert(L"쉐이더 파일이 제대로 만들어지지 않았습니다", _CRT_WIDE(__FILE__), (unsigned)(__LINE__));
 	}

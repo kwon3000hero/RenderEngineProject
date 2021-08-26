@@ -26,7 +26,7 @@ void KConstantBuffer::CreateCB(size_t _Size, SHADER_TYPE _eType, unsigned int _R
 	// D3D11_SUBRESOURCE_DATA DS = {};
 	// DS.pSysMem = _Data;
 
-	HRESULT RS = KGameDeviceManager::MainDevice()->CreateBuffer(&m_BufferDesc, nullptr, &m_pBuffer);
+	HRESULT RS = KGameDeviceManager::MainDevice()->CreateBuffer(&m_BufferDesc, nullptr, m_pBuffer.GetAddressOf());
 
 	if (S_OK != RS)
 	{

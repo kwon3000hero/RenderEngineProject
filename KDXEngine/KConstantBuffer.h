@@ -52,12 +52,12 @@ public:
 			assert(false);
 		}
 
-		KGameDeviceManager::MainContext()->Map(m_pBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &m_Sub);
+		KGameDeviceManager::MainContext()->Map(m_pBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &m_Sub);
 
 		memcpy_s(m_Sub.pData, m_BufferDesc.ByteWidth, &_Data, m_BufferDesc.ByteWidth);
 
 
-		KGameDeviceManager::MainContext()->Unmap(m_pBuffer, 0);
+		KGameDeviceManager::MainContext()->Unmap(m_pBuffer.Get(), 0);
 
 	}
 
@@ -68,11 +68,11 @@ public:
 			assert(false);
 		}
 
-		KGameDeviceManager::MainContext()->Map(m_pBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &m_Sub);
+		KGameDeviceManager::MainContext()->Map(m_pBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &m_Sub);
 
 		memcpy_s(m_Sub.pData, m_BufferDesc.ByteWidth, _pData, m_BufferDesc.ByteWidth);
 
-		KGameDeviceManager::MainContext()->Unmap(m_pBuffer, 0);
+		KGameDeviceManager::MainContext()->Unmap(m_pBuffer.Get(), 0);
 
 	}
 

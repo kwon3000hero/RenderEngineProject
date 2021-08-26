@@ -42,10 +42,7 @@ public:
 
 	~KPixelShader()
 	{
-		if (nullptr != m_ShaderPtr.Get())
-		{
-			m_ShaderPtr = nullptr;
-		}
+		m_ShaderPtr = nullptr;
 	}
 };
 

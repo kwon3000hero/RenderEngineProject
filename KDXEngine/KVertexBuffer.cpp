@@ -26,7 +26,7 @@ void KVertexBuffer::Create(
 	D3D11_SUBRESOURCE_DATA DS = {};
 	DS.pSysMem = _pData;
 
-	HRESULT RS = KGameDeviceManager::MainDevice()->CreateBuffer(&m_BufferDesc, &DS, &m_pBuffer);
+	HRESULT RS = KGameDeviceManager::MainDevice()->CreateBuffer(&m_BufferDesc, &DS, m_pBuffer.GetAddressOf());
 
 	if (S_OK != RS)
 	{
